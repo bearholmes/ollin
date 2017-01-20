@@ -1,0 +1,21 @@
+@charset "utf-8";
+#overlay_merlin {
+/*display: none;*/
+position: absolute;
+top: 30px;
+left: 0;
+text-align: center;
+opacity:0.5;
+z-index:2147483646;
+}
+#overlay_merlin img{display:block;}
+
+#dk_overlay_controller_toolbar {
+  z-index: 2147483647 !important;
+    position: fixed !important;
+    top:0 !important;
+    left: 0px !important;
+    width: 100% !important;
+    height: 30px !important;
+    background-color: #3f79c2 !important;
+}
