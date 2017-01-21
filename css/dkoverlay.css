@@ -27,6 +27,11 @@
     padding: 0 !important;
     border: 0 !important;
     border-bottom: 1px solid #ffcf22 !important;
+    font-family: 'Apple SD Gothic Neo','굴림',gulim,sans-serif !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    font-size: 12px !important;
 }
 
 #dk_overlay_controller_toolbar .tit {
@@ -40,9 +45,10 @@
     margin-left: 10px !important;;
     color: #fff !important;
     align-items: baseline !important;
-    line-height: 1 !important;
     text-align: start !important;;
-    font-size: 12px !important;;
+    font : caption !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
 }
 
 #dk_overlay_controller_toolbar input[type='range'] {
@@ -94,6 +100,8 @@
     outline: 0 !important;
     color: #fff !important;
     vertical-align: middle !important;
+    font : caption !important;
+    line-height: 1 !important;
 }
 
 #dk_overlay_controller_toolbar .tools i.opacity {

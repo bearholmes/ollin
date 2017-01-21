@@ -27,6 +27,15 @@
                     };
                     FR.readAsDataURL(e.target.files[0]);
                 }
+                var btn_elem =$("dk_overlay_btn");
+                if (btn_elem.disabled == true){
+                  $("dk_overlay_img_layer").style.display = 'block';
+                  btn_elem.childNodes[1].innerHTML = 'on';
+                  btn_elem.childNodes[0].className = "on";
+                  btn_elem.disabled = false;
+                  $("dk_overlay_scale").disabled = false;
+                  $("dk_overlay_opacity").disabled = false;
+                }
             },
             opacity : function(e) {
                 $("dk_overlay_img_layer").style.opacity = this.value;
@@ -37,14 +46,16 @@
                 $("dk_overlay_scale_text").innerText = "x" + this.value;
             },
             layer : function(e) {
-                if ($("dk_overlay_img_layer").style.display == 'block') {
-                    $("dk_overlay_img_layer").style.display = 'none';
-                    $("dk_overlay_btn").childNodes[0].className = "off";
-                    $("dk_overlay_btn").childNodes[1].innerHTML = 'off';
+              var overlay_elem = $("dk_overlay_img_layer");
+              var btn_elem = $("dk_overlay_btn");
+                if (overlay_elem.style.display == 'block') {
+                    overlay_elem.style.display = 'none';
+                    btn_elem.childNodes[0].className = "off";
+                    btn_elem.childNodes[1].innerHTML = 'off';
                 } else {
-                    $("dk_overlay_img_layer").style.display = 'block';
-                    $("dk_overlay_btn").childNodes[1].innerHTML = 'on';
-                    $("dk_overlay_btn").childNodes[0].className = "on";
+                    overlay_elem.style.display = 'block';
+                    btn_elem.childNodes[1].innerHTML = 'on';
+                    btn_elem.childNodes[0].className = "on";
                 }
             }
         },
@@ -53,7 +64,7 @@
             var div = doc.createElement("div");
             var img = doc.createElement("img");
             div.id = "dk_overlay_img_layer";
-            div.style = "display:block";
+            div.style.display = 'none';
             img.id = "dk_overlay_img";
             img.src = "";
             img.alt = "";
@@ -72,11 +83,12 @@
 
             sw.id = "dk_overlay_btn";
             sw.className = "sw";
+            sw.disabled = true;
             var sw_icon = doc.createElement("i");
             var sw_txt = doc.createElement("span");
-            sw_icon.className = "on";
+            sw_icon.className = "off";
             sw.appendChild(sw_icon);
-            sw_txt.innerText = "on";
+            sw_txt.innerText = "off";
             sw.appendChild(sw_txt);
             div.appendChild(sw);
 
@@ -97,6 +109,7 @@
             scale.min = 0.5;
             scale.step = 0.5;
             scale.value = 1;
+            scale.disabled = true;
             var s_txt = doc.createElement("span");
             s_txt.id = "dk_overlay_scale_text";
             s_txt.innerText = "x1";
@@ -114,6 +127,7 @@
             opacity.min = 0;
             opacity.step = 0.05;
             opacity.value = 0.5;
+            opacity.disabled = true;
             var o_txt = doc.createElement("span");
             o_txt.id = "dk_overlay_opacity_text";
             o_txt.innerText = "0.5";
@@ -128,21 +142,19 @@
           }
         },
         init : function() {
+            ollin.markup.overlay();
+            ollin.markup.control();
 
+            $("dk_overlay_btn").addEventListener('click', ollin.handle.layer);
+            $("dk_overlay_opacity").addEventListener('change', ollin.handle.opacity);
+            $("dk_overlay_scale").addEventListener('change', ollin.handle.scale);
+            $("dk_overlay_files").addEventListener('change', ollin.handle.file);
         }
     }
-
-    ollin.markup.overlay();
-    ollin.markup.control();
-
-    $("dk_overlay_opacity").addEventListener('change', ollin.handle.opacity);
-    $("dk_overlay_scale").addEventListener('change', ollin.handle.scale);
-    $("dk_overlay_files").addEventListener('change', ollin.handle.file);
-    $("dk_overlay_btn").addEventListener('click', ollin.handle.layer);
+    ollin.init();
 
 
     function DragImg() {
-
         var clickX = 0,
             clickY = 0,
             beforeX = 0,
