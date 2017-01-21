@@ -2,16 +2,16 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>키티가 이름은 정해줄거야 - Option</title>
-	<script src="js/option.js"></script>
+	<title>Option</title>
+	<script type="text/javascript" src="js/option.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/option.css">
 </head>
 <body>
 	<div id="dkWrap" class="path_admin">
 		<header id="dkHead">
 			<div class="inner_head">
-				<h1 class="tit">키티가 이름은 정해줄거야</h1>
-				<div class="info">버전 : 0.1.0</div>
+				<h1 class="tit" id="dk_title">tool name</h1>
+				<div class="info" id="dk_ver">버전 : 0.0.0</div>
 			</div>
 		</header>
 		<!-- // dkHead -->
@@ -19,17 +19,15 @@
 		<main id="dkContent">
 			<div id="cMain">
 				<div id="mFeature" class="">
-	                <div id="dkGnb">
-	                    <h2 class="screen_out">옵션 메뉴</h2>
-	                    <ul class="gnb_comm">
-	                        <li><a href="#idx01" class="link_gnb">소개</a></li>
-	                        <li><a href="#idx02" class="link_gnb">단축키 설정방법</a></li>
-	                        <!--<li><a href="#idx03" class="link_gnb">환경설정</a></li>
-	                        <li><a href="#idx04" class="link_gnb">참고자료</a></li>-->
-	                        <li><a href="#idx05" class="link_gnb">Support</a></li>
-	                    </ul>
-	                </div>
-            	</div>
+					<div id="dkGnb">
+						<h2 class="screen_out">옵션 메뉴</h2>
+						<ul class="gnb_comm">
+							<li><a href="#idx01" class="link_gnb">소개</a></li>
+							<li><a href="#idx02" class="link_gnb">사용법 안내</a></li>
+							<li><a href="#idx03" class="link_gnb">Support</a></li>
+						</ul>
+					</div>
+				</div>
 				<article id="mArticle">
 					<h2 id="dkBody" class="screen_out">옵션 본문</h2>
 					<div class="info_box">
@@ -38,76 +36,46 @@
 							<ul>
 								<li>새벽에 난 왜 이런건 만들고 있을까 자괴감이 들어</li>
 								<li>마법사 멀린 아이디어로 시작된 확장프로그램<br>완망 되지 않길</li>
-								<li>생각하고 있는기능 : 단축키로 레이어이미지 활성화/비활성화 껏다켰다하기, 투명도 조절하기, 콘솔내용 툴바영역에서 뿌려주기 등등<br>ui디자인해야하고, 기능 붙여야하고, 단축키연동해야하고, 확장프로그램에 맞게코드 수정해야하고, css !important 떡칠해야하고 할거 많네 </li>
+								<li>생각하고 있는기능 : 단축키로 레이어이미지 활성화/비활성화 껏다켰다하기, 콘솔내용 툴바영역에서 뿌려주기 등등<br> 확장프로그램에 맞게코드 수정해야하고, css !important 떡칠해야하고 할거 많네 </li>
 							</ul>
 
 						</div>
 					</div>
 					<div class="info_box">
-						<h2 id="idx02" class="tit">단축키 설정방법, 나중엔 될거야</h2>
+						<h2 id="idx02" class="tit">사용법 안내</h2>
 						<div>
 							<ul>
-								<li>단축키를 통해 빠르게 전환할 수 있습니다.</li>
+								<li>1. 이미지 파일선택</li>
+								<li>2. 방향키를 이용하여 위치 조절</li>
+							</ul>
+							<br>
+							<strong>추가 지원 기능</strong>
+							<ul>
+								<li>1. 이미지 숨기기/보이기</li>
+								<li>2. 이미지 비율 조절</li>
+								<li>2. 이미지 투명도 조절</li>
+							</ul>
+							<br>
+							<strong>기본키</strong>
+							<ul>
+								<li>방향키 : 1px 씩 이동</li>
+								<li>shift + 방향키 : 10px 씩 이동</li>
+							</ul>
+							<br>
+							<strong>단축키</strong>
+							<ul>
+								<li>실행/해제 단축키를 설정하면 빠르게 전환할 수 있습니다.</li>
 								<li>1. <a href="chrome://extensions/" target="_blank">chrome://extensions/</a>로 이동</li>
 								<li>2. 확장프로그램 목록 최하단에 "단축키" 링크 선택</li>
-								<li>3. "oooo - 확장 프로그램 활성화" 항목에서 단축키 설정</li>
+								<li>3. "프로그램명 - 확장 프로그램 활성화" 항목에서 단축키 설정</li>
 							</ul>
-
 						</div>
 					</div>
-					<!--<div class="info_box">
-						<h2 id="idx03" class="tit">환경설정</h2>
-						<div class="box">
-							<div class="info_item">
-								<label for="resStd" class="tit_lab">해상도 기준</label>
-								<div class="cont_item">
-									<div class="box_inptf">
-										<select id="resStd" class="inp_comm">
-											<option value="1280x1024" id="1280x1024">1280x1024</option>
-											<option value="1366x768" id="1366x768">1366x768</option>
-											<option value="1440x900" id="1440x900">1440x900</option>
-											<option value="1600x900" id="1600x900">1600x900</option>
-											<option value="1600x1200" id="1600x1200">1600x1200</option>
-											<option value="1680x1050" id="1680x1050">1680x1050</option>
-											<option value="1920x1080" id="1920x1080">1920x1080</option>
-											<option value="2560x1440" id="2560x1440">2560x1440</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="info_item">
-								<label for="moniStd" class="tit_lab">모니터 기준</label>
-								<div class="cont_item">
-									<div class="box_inptf">
-										<select id="moniStd" class="inp_comm">
-											<option value="17" id="17">17 inch</option>
-											<option value="19" id="19">19 inch</option>
-											<option value="21" id="21">21 inch</option>
-											<option value="22" id="22">22 inch</option>
-											<option value="24" id="24">24 inch</option>
-											<option value="27" id="27">27 inch</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="alert-info" role="alert">
-								<button id="resBtn" class="btn_g">설정</button> <span id="resStatus" class="txt"></span> </div>
-						</div>
-					</div>
-					<div class="info_box">
-						<h2 id="idx04" class="tit">참고자료</h2>
-						<ul>
-							<li>CSSViewer를 기반으로 만들어졌습니다. <a href="https://chrome.google.com/webstore/detail/cssviewer/ggfgijbpiheegefliciemofobhmofgce?hl=ko" target="_blank" class="link_comm">more</a></li>
-							<li>명도대비 체크는 WebAIM의 Color Contrast Checker를 참고하였습니다. <a href="http://webaim.org/resources/contrastchecker" target="_blank" class="link_comm">more</a></li>
-							<li>접근성 컴포넌트 대각선도구 툴의 구현방식을 참고하였습니다. <a href="https://chrome.google.com/webstore/detail/chogmnfcfckihakaealpjfjdkbjmkpok?hl=ko" target="_blank" class="link_comm">more</a></li>
-						</ul>
-					</div>-->
 					<div class="info_box info_lst">
-						<h2 id="idx05" class="tit">Support</h2>
+						<h2 id="idx03" class="tit">Support</h2>
 						<ul>
 							<li>문의사항이나 개선의견이 있으면 언제든지 연락주세요.</li>
-							<li>지원 > 개발자 알리기</li>
-							<!--<li><a href=" https://chrome.google.com/webstore/detail/dk-a11y-inspector/ngcmkfaolkgkjbddhjnhgoekgaamjibo/support?hl=ko" target="_blank" class="link_comm">문의하기</a></li>-->
+							<li><a href="https://github.com/bearholmes/ollin">git hub project</a></li>
 						</ul>
 					</div>
 				</article>
@@ -118,7 +86,7 @@
 		<!-- // dkContent -->
 		<hr class="hide">
 		<footer id="dkFoot" class="footer_comm">
-			<small class="txt_copyright"><a href="http://dktechin.com/" class="link_daum">&copy; dk techin.</a></small>
+			<small class="txt_copyright"><a href="https://github.com/bearholmes/ollin" class="link_daum">&copy; bearholmes</a></small>
 		</footer>
 		<!-- // dkFoot -->
 	</div>
