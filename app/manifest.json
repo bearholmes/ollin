@@ -4,9 +4,8 @@
    },
    "browser_action": {
       "default_icon": "img/16.png",
-      "default_title": "키티가 이름은 정해줄거야"
+      "default_title": "__MSG_application_default_title__"
    },
-   "description": "Pick Me Pick Me Pick Me Up",
    "icons": {
       "16": "img/16.png",
       "22": "img/22.png",
@@ -15,9 +14,11 @@
       "48": "img/48.png"
    },
    "manifest_version": 2,
-   "name": "The name is set by Kitty",
+   "name": "__MSG_application_title__",
+   "description": "__MSG_application_description__",
+   "default_locale": "ko",
    "options_page": "option.html",
    "permissions": [ "tabs", "storage", "http://*/*", "https://*/*", "contextMenus" ],
-   "version": "0.1.6",
-   "homepage_url": "https://github.com/bearholmes/ollin"
+   "version": "0.2.0",
+   "homepage_url": "https://bearholmes.github.io/ollin/"
 }

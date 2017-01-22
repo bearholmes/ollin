@@ -1,0 +1,14 @@
+{
+    "application_title": {
+        "message": "The name is set by Kitty",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "application_description": {
+        "message": "You can see the images overlap",
+        "description": "The description of the application, displayed in the web store."
+    },
+    "application_default_title": {
+      "message": "The name is set by Kitty",
+      "description": "The description of the application, displayed in the web store."
+    }
+}
