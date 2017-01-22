@@ -4,33 +4,31 @@
 /* 2017.01.20 ~ 22*/
 
 (function() {
+  "use strict";
     var manifest = chrome.runtime.getManifest();
     var extension_name = manifest.name;
 
-    var doc = document,
-        html = doc.getElementsByTagName("html")[0],
-        body = doc.getElementsByTagName("BODY")[0];
-    var $ = function() {
-        return doc.getElementById(arguments[0]);
-    };
+    var doc = document;
+    var html = doc.getElementsByTagName("html")[0];
+    var body = doc.getElementsByTagName("BODY")[0];
 
     var getCssProperty = function(elmId, property) {
         var elem = elmId ? elmId : doc.getElementById(elmId);
-        var pro = window.getComputedStyle(elem, null).getPropertyValue(property);
-        return parseInt(pro);
+        var prop = window.getComputedStyle(elem, null).getPropertyValue(property);
+        return parseInt(prop);
     };
     //초기값 설정
-    var clickX = 0,
-        clickY = 0,
-        beforeX = 0,
-        beforeY = 0,
-        elemOffsetX = 0,
-        elemOffsetY = 0;
+    var clickX = 0;
+    var clickY = 0;
+    var beforeX = 0;
+    var beforeY = 0;
+    var elemOffsetX = 0;
+    var elemOffsetY = 0;
 
     var ollin = {
         handle: {
             file: function(e) {
-                var canvas = $("dk_overlay_img");
+                var canvas = doc.getElementById("dk_overlay_img");
                 if (e.target.files && e.target.files[0]) {
                     var FR = new FileReader();
                     FR.onload = function(e) {
@@ -43,44 +41,44 @@
                     FR.readAsDataURL(e.target.files[0]);
                 }
 
-                var btn_elem = $("dk_overlay_btn");
+                var btn_elem = doc.getElementById("dk_overlay_btn");
                 if (btn_elem.disabled == true) {
-                    $("dk_overlay_img_layer").style.display = 'block';
-                    btn_elem.childNodes[1].innerHTML = 'on';
+                    doc.getElementById("dk_overlay_img_layer").style.display = "block";
+                    btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.childNodes[0].className = "on";
                     btn_elem.disabled = false;
-                    $("dk_overlay_scale").disabled = false;
-                    $("dk_overlay_opacity").disabled = false;
+                    doc.getElementById("dk_overlay_scale").disabled = false;
+                    doc.getElementById("dk_overlay_opacity").disabled = false;
                 }
             },
             opacity: function(e) {
-                $("dk_overlay_img_layer").style.opacity = this.value;
-                $("dk_overlay_opacity_text").innerText = this.value;
+                doc.getElementById("dk_overlay_img_layer").style.opacity = this.value;
+                doc.getElementById("dk_overlay_opacity_text").innerText = this.value;
             },
             scale: function(e) {
-                $("dk_overlay_img_layer").style.transform = "scale(" + this.value + ", " + this.value + ")";
-                $("dk_overlay_scale_text").innerText = "x" + this.value;
+                doc.getElementById("dk_overlay_img_layer").style.transform = "scale(" + this.value + ", " + this.value + ")";
+                doc.getElementById("dk_overlay_scale_text").innerText = "x" + this.value;
             },
             layer: function(e) {
-                var overlay_elem = $("dk_overlay_img_layer"),
-                    btn_elem = $("dk_overlay_btn");
-                if (overlay_elem.style.display == 'block') {
-                    overlay_elem.style.display = 'none';
+                var overlay_elem = doc.getElementById("dk_overlay_img_layer");
+                var btn_elem = doc.getElementById("dk_overlay_btn");
+                if (overlay_elem.style.display == "block") {
+                    overlay_elem.style.display = "none";
                     btn_elem.childNodes[0].className = "off";
-                    btn_elem.childNodes[1].innerHTML = 'off';
+                    btn_elem.childNodes[1].innerHTML = "off";
                 } else {
-                    overlay_elem.style.display = 'block';
-                    btn_elem.childNodes[1].innerHTML = 'on';
+                    overlay_elem.style.display = "block";
+                    btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.childNodes[0].className = "on";
                 }
             }
         },
         markup: {
             overlay: function() {
-                var div = doc.createElement("div"),
-                    img = doc.createElement("img");
+                var div = doc.createElement("div");
+                var img = doc.createElement("img");
                 div.id = "dk_overlay_img_layer";
-                div.style.display = 'none';
+                div.style.display = "none";
                 img.id = "dk_overlay_img";
                 img.src = "";
                 img.alt = "";
@@ -88,16 +86,16 @@
                 html.appendChild(div);
             },
             control: function() {
-                var div = doc.createElement("div"),
-                    tit = doc.createElement("span");
+                var div = doc.createElement("div");
+                var tit = doc.createElement("span");
                 div.id = "dk_overlay_controller_toolbar";
                 tit.className = "tit";
                 tit.innerText = extension_name;
                 div.appendChild(tit);
 
-                var sw = doc.createElement("button"),
-                    sw_icon = doc.createElement("i"),
-                    sw_txt = doc.createElement("span");
+                var sw = doc.createElement("button");
+                var sw_icon = doc.createElement("i");
+                var sw_txt = doc.createElement("span");
                 sw.id = "dk_overlay_btn";
                 sw.className = "sw";
                 sw.disabled = true;
@@ -115,9 +113,9 @@
                 var sub = doc.createElement("div");
                 sub.className = "tools";
 
-                var s_icon = doc.createElement("i"),
-                    scale = doc.createElement("input"),
-                    s_txt = doc.createElement("span");
+                var s_icon = doc.createElement("i");
+                var scale = doc.createElement("input");
+                var s_txt = doc.createElement("span");
                 s_icon.className = "mag";
                 s_icon.title = "비율";
                 scale.id = "dk_overlay_scale";
@@ -133,9 +131,9 @@
                 sub.appendChild(scale);
                 sub.appendChild(s_txt);
 
-                var o_icon = doc.createElement("i"),
-                    opacity = doc.createElement("input"),
-                    o_txt = doc.createElement("span");
+                var o_icon = doc.createElement("i");
+                var opacity = doc.createElement("input");
+                var o_txt = doc.createElement("span");
                 o_icon.className = "opacity";
                 o_icon.title = "투명도";
                 opacity.id = "dk_overlay_opacity";
@@ -163,77 +161,75 @@
                 clickX = e.clientX;
                 clickY = e.clientY;
 
-                elemOffsetX = getCssProperty(elem, 'left'),
-                elemOffsetY = getCssProperty(elem, 'top');
+                elemOffsetX = getCssProperty(elem, "left");
+                elemOffsetY = getCssProperty(elem, "top");
                 return false;
             },
             move: function(e, elem) {
-                var moveX = e.clientX,
-                    moveY = e.clientY,
-                    resultX = moveX - clickX,
-                    resultY = moveY - clickY;
-                //console.log('clickX :'+ clickX + ',' + 'clickY :' + clickY);
-                //console.log('moveX :'+ moveX + ',' + 'moveY :' + moveY);
+                var moveX = e.clientX;
+                var moveY = e.clientY;
+                var resultX = moveX - clickX;
+                var resultY = moveY - clickY;
+                //console.log("clickX :"+ clickX + "," + "clickY :" + clickY);
+                //console.log("moveX :"+ moveX + "," + "moveY :" + moveY);
 
                 if (!(beforeX == resultX && beforeY == resultY) && !(moveX == 0 && moveY == 0)) {
-                    //console.log('resultX :'+ resultX + ',' + 'resultY :' + resultY);
-                    //console.log('elemOffsetX :'+ elemOffsetX + ',' + 'elemOffsetY :' + elemOffsetY);
+                    //console.log("resultX :"+ resultX + "," + "resultY :" + resultY);
+                    //console.log("elemOffsetX :"+ elemOffsetX + "," + "elemOffsetY :" + elemOffsetY);
 
-                    var left = (resultX + elemOffsetX),
-                        top = (resultY + elemOffsetY);
+                    var left = (resultX + elemOffsetX);
+                    var top = (resultY + elemOffsetY);
 
-                    elem.style.left = left + 'px';
-                    elem.style.top = top + 'px';
+                    elem.style.left = left + "px";
+                    elem.style.top = top + "px";
 
                     beforeX = resultX;
                     beforeY = resultY;
-                    // console.log('left :'+ left + ',' + 'top :' + top);
+                    // console.log("left :"+ left + "," + "top :" + top);
                 }
                 return false;
             },
             key: function(e, elem) {
-                elemOffsetX = getCssProperty(elem, 'left'),
-                elemOffsetY = getCssProperty(elem, 'top');
+                elemOffsetX = getCssProperty(elem, "left");
+                elemOffsetY = getCssProperty(elem, "top");
 
                 switch (e.keyCode) {
                     //left
                     case 37:
-                        console.log('left');
+                        console.log("left");
 
-                        if (!e.shiftKey) elem.style.left = (elemOffsetX - 1) + 'px';
-                        else if (e.shiftKey) elem.style.left = (elemOffsetX - 10) + 'px';
+                        if (!e.shiftKey) {elem.style.left = (elemOffsetX - 1) + "px";}
+                        else if (e.shiftKey) {elem.style.left = (elemOffsetX - 10) + "px";}
                         e.preventDefault();
                         break;
                         //up
                     case 38:
-                        console.log('up');
+                        console.log("up");
 
-                        if (!e.shiftKey) elem.style.top = (elemOffsetY - 1) + 'px';
-                        else if (e.shiftKey) elem.style.top = (elemOffsetY - 10) + 'px';
+                        if (!e.shiftKey) {elem.style.top = (elemOffsetY - 1) + "px";}
+                        else if (e.shiftKey) {elem.style.top = (elemOffsetY - 10) + "px";}
                         e.preventDefault();
                         break;
                         //right
                     case 39:
-                        console.log('right');
+                        console.log("right");
 
-                        if (!e.shiftKey) elem.style.left = (elemOffsetX + 1) + 'px';
-                        else if (e.shiftKey) elem.style.left = (elemOffsetX + 10) + 'px';
+                        if (!e.shiftKey) {elem.style.left = (elemOffsetX + 1) + "px";}
+                        else if (e.shiftKey) {elem.style.left = (elemOffsetX + 10) + "px";}
                         e.preventDefault();
                         break;
                         //down
                     case 40:
-                        console.log('down');
+                        console.log("down");
 
-                        if (!e.shiftKey) elem.style.top = (elemOffsetY + 1) + 'px';
-                        else if (e.shiftKey) elem.style.top = (elemOffsetY + 10) + 'px';
-                        else if (e.ctrlKey) elem.style.top = (elemOffsetY + 50) + 'px';
+                        if (!e.shiftKey) {elem.style.top = (elemOffsetY + 1) + "px";}
+                        else if (e.shiftKey) {elem.style.top = (elemOffsetY + 10) + "px";}
                         e.preventDefault();
                         break;
                 }
             },
             init: function() {
                 function Drag(elem) {
-                    this.elem = null;
                     Drag.prototype.init(elem);
                     Drag.prototype.initEvent();
                 }
@@ -255,7 +251,7 @@
                         return false;
                     }, false);
 
-                    doc.body.addEventListener('keydown', function(e) {
+                    doc.body.addEventListener("keydown", function(e) {
                         ollin.drag.key(e, that.elem);
                     });
                 };
@@ -266,12 +262,12 @@
             ollin.markup.overlay();
             ollin.markup.control();
 
-            ollin.drag.init()('dk_overlay_img_layer');
+            ollin.drag.init()("dk_overlay_img_layer");
 
-            $("dk_overlay_btn").addEventListener('click', ollin.handle.layer);
-            $("dk_overlay_opacity").addEventListener('change', ollin.handle.opacity);
-            $("dk_overlay_scale").addEventListener('change', ollin.handle.scale);
-            $("dk_overlay_files").addEventListener('change', ollin.handle.file);
+            doc.getElementById("dk_overlay_btn").addEventListener("click", ollin.handle.layer);
+            doc.getElementById("dk_overlay_opacity").addEventListener("change", ollin.handle.opacity);
+            doc.getElementById("dk_overlay_scale").addEventListener("change", ollin.handle.scale);
+            doc.getElementById("dk_overlay_files").addEventListener("change", ollin.handle.file);
         }
     }
     ollin.init();
