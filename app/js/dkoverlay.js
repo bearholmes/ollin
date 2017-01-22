@@ -4,33 +4,33 @@
 /* 2017.01.20 ~ 22*/
 
 (function() {
-  "use strict";
-    var manifest = chrome.runtime.getManifest();
-    var extension_name = manifest.name;
+    "use strict";
+    var manifest = chrome.runtime.getManifest(),
+        extension_name = manifest.name;
 
-    var doc = document;
-    var html = doc.getElementsByTagName("html")[0];
-    var body = doc.getElementsByTagName("BODY")[0];
+    var doc = document,
+        html = doc.getElementsByTagName("html")[0],
+        body = doc.getElementsByTagName("BODY")[0];
 
     var getCssProperty = function(elmId, property) {
-        var elem = elmId ? elmId : doc.getElementById(elmId);
-        var prop = window.getComputedStyle(elem, null).getPropertyValue(property);
+        let elem = elmId ? elmId : doc.getElementById(elmId);
+        let prop = window.getComputedStyle(elem, null).getPropertyValue(property);
         return parseInt(prop);
     };
     //초기값 설정
-    var clickX = 0;
-    var clickY = 0;
-    var beforeX = 0;
-    var beforeY = 0;
-    var elemOffsetX = 0;
-    var elemOffsetY = 0;
+    var clickX = 0,
+        clickY = 0,
+        beforeX = 0,
+        beforeY = 0,
+        elemOffsetX = 0,
+        elemOffsetY = 0;
 
     var ollin = {
         handle: {
             file: function(e) {
-                var canvas = doc.getElementById("dk_overlay_img");
+                let canvas = doc.getElementById("dk_overlay_img");
                 if (e.target.files && e.target.files[0]) {
-                    var FR = new FileReader();
+                    let FR = new FileReader();
                     FR.onload = function(e) {
                         var img = new Image();
                         img.src = e.target.result;
@@ -41,7 +41,7 @@
                     FR.readAsDataURL(e.target.files[0]);
                 }
 
-                var btn_elem = doc.getElementById("dk_overlay_btn");
+                let btn_elem = doc.getElementById("dk_overlay_btn");
                 if (btn_elem.disabled == true) {
                     doc.getElementById("dk_overlay_img_layer").style.display = "block";
                     btn_elem.childNodes[1].innerHTML = "on";
@@ -60,8 +60,8 @@
                 doc.getElementById("dk_overlay_scale_text").innerText = "x" + this.value;
             },
             layer: function(e) {
-                var overlay_elem = doc.getElementById("dk_overlay_img_layer");
-                var btn_elem = doc.getElementById("dk_overlay_btn");
+                let overlay_elem = doc.getElementById("dk_overlay_img_layer");
+                let btn_elem = doc.getElementById("dk_overlay_btn");
                 if (overlay_elem.style.display == "block") {
                     overlay_elem.style.display = "none";
                     btn_elem.childNodes[0].className = "off";
@@ -75,8 +75,8 @@
         },
         markup: {
             overlay: function() {
-                var div = doc.createElement("div");
-                var img = doc.createElement("img");
+                let div = doc.createElement("div"),
+                    img = doc.createElement("img");
                 div.id = "dk_overlay_img_layer";
                 div.style.display = "none";
                 img.id = "dk_overlay_img";
@@ -86,16 +86,16 @@
                 html.appendChild(div);
             },
             control: function() {
-                var div = doc.createElement("div");
-                var tit = doc.createElement("span");
+                let div = doc.createElement("div"),
+                    tit = doc.createElement("span");
                 div.id = "dk_overlay_controller_toolbar";
                 tit.className = "tit";
                 tit.innerText = extension_name;
                 div.appendChild(tit);
 
-                var sw = doc.createElement("button");
-                var sw_icon = doc.createElement("i");
-                var sw_txt = doc.createElement("span");
+                let sw = doc.createElement("button"),
+                    sw_icon = doc.createElement("i"),
+                    sw_txt = doc.createElement("span");
                 sw.id = "dk_overlay_btn";
                 sw.className = "sw";
                 sw.disabled = true;
@@ -105,19 +105,19 @@
                 sw.appendChild(sw_txt);
                 div.appendChild(sw);
 
-                var file = doc.createElement("input");
+                let file = doc.createElement("input");
                 file.id = "dk_overlay_files";
                 file.setAttribute("type", "file");
                 div.appendChild(file);
 
-                var sub = doc.createElement("div");
+                let sub = doc.createElement("div");
                 sub.className = "tools";
 
-                var s_icon = doc.createElement("i");
-                var scale = doc.createElement("input");
-                var s_txt = doc.createElement("span");
+                let s_icon = doc.createElement("i"),
+                    scale = doc.createElement("input"),
+                    s_txt = doc.createElement("span");
                 s_icon.className = "mag";
-                s_icon.title = "비율";
+                s_icon.title = "ratio";
                 scale.id = "dk_overlay_scale";
                 scale.setAttribute("type", "range");
                 scale.max = 3;
@@ -131,11 +131,11 @@
                 sub.appendChild(scale);
                 sub.appendChild(s_txt);
 
-                var o_icon = doc.createElement("i");
-                var opacity = doc.createElement("input");
-                var o_txt = doc.createElement("span");
+                let o_icon = doc.createElement("i"),
+                    opacity = doc.createElement("input"),
+                    o_txt = doc.createElement("span");
                 o_icon.className = "opacity";
-                o_icon.title = "투명도";
+                o_icon.title = "opacity";
                 opacity.id = "dk_overlay_opacity";
                 opacity.setAttribute("type", "range");
                 opacity.max = 1;
@@ -166,10 +166,10 @@
                 return false;
             },
             move: function(e, elem) {
-                var moveX = e.clientX;
-                var moveY = e.clientY;
-                var resultX = moveX - clickX;
-                var resultY = moveY - clickY;
+                var moveX = e.clientX,
+                    moveY = e.clientY,
+                    resultX = moveX - clickX,
+                    resultY = moveY - clickY;
                 //console.log("clickX :"+ clickX + "," + "clickY :" + clickY);
                 //console.log("moveX :"+ moveX + "," + "moveY :" + moveY);
 
@@ -177,8 +177,8 @@
                     //console.log("resultX :"+ resultX + "," + "resultY :" + resultY);
                     //console.log("elemOffsetX :"+ elemOffsetX + "," + "elemOffsetY :" + elemOffsetY);
 
-                    var left = (resultX + elemOffsetX);
-                    var top = (resultY + elemOffsetY);
+                    var left = (resultX + elemOffsetX),
+                        top = (resultY + elemOffsetY);
 
                     elem.style.left = left + "px";
                     elem.style.top = top + "px";
@@ -196,34 +196,46 @@
                 switch (e.keyCode) {
                     //left
                     case 37:
-                        console.log("left");
-
-                        if (!e.shiftKey) {elem.style.left = (elemOffsetX - 1) + "px";}
-                        else if (e.shiftKey) {elem.style.left = (elemOffsetX - 10) + "px";}
+                        if (!e.shiftKey) {
+                            console.log("left");
+                            elem.style.left = (elemOffsetX - 1) + "px";
+                        } else if (e.shiftKey) {
+                            console.log("shift + left");
+                            elem.style.left = (elemOffsetX - 10) + "px";
+                        }
                         e.preventDefault();
                         break;
                         //up
                     case 38:
-                        console.log("up");
-
-                        if (!e.shiftKey) {elem.style.top = (elemOffsetY - 1) + "px";}
-                        else if (e.shiftKey) {elem.style.top = (elemOffsetY - 10) + "px";}
+                        if (!e.shiftKey) {
+                            console.log("up");
+                            elem.style.top = (elemOffsetY - 1) + "px";
+                        } else if (e.shiftKey) {
+                            console.log("shift + up");
+                            elem.style.top = (elemOffsetY - 10) + "px";
+                        }
                         e.preventDefault();
                         break;
                         //right
                     case 39:
-                        console.log("right");
-
-                        if (!e.shiftKey) {elem.style.left = (elemOffsetX + 1) + "px";}
-                        else if (e.shiftKey) {elem.style.left = (elemOffsetX + 10) + "px";}
+                        if (!e.shiftKey) {
+                            console.log("right");
+                            elem.style.left = (elemOffsetX + 1) + "px";
+                        } else if (e.shiftKey) {
+                            console.log("shift + right");
+                            elem.style.left = (elemOffsetX + 10) + "px";
+                        }
                         e.preventDefault();
                         break;
                         //down
                     case 40:
-                        console.log("down");
-
-                        if (!e.shiftKey) {elem.style.top = (elemOffsetY + 1) + "px";}
-                        else if (e.shiftKey) {elem.style.top = (elemOffsetY + 10) + "px";}
+                        if (!e.shiftKey) {
+                            console.log("down");
+                            elem.style.top = (elemOffsetY + 1) + "px";
+                        } else if (e.shiftKey) {
+                            console.log("shift + down");
+                            elem.style.top = (elemOffsetY + 10) + "px";
+                        }
                         e.preventDefault();
                         break;
                 }
@@ -239,7 +251,7 @@
                 };
 
                 Drag.prototype.initEvent = function() {
-                    var that = this;
+                    let that = this;
 
                     this.elem.addEventListener("mousedown", function(e) {
                         ollin.drag.click(e, that.elem);
