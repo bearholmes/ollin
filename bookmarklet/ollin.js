@@ -2,7 +2,7 @@
 /* 2017.01.20 ~ 22*/
 
 (function() {
-    //"use strict";
+    "use strict";
     var extension_name = "키티가 안시켰어";
 
     var doc = document,
@@ -10,8 +10,8 @@
         body = doc.getElementsByTagName("BODY")[0];
 
     var getCssProperty = function(elmId, property) {
-        let elem = elmId ? elmId : doc.getElementById(elmId);
-        let prop = window.getComputedStyle(elem, null).getPropertyValue(property);
+        var elem = elmId ? elmId : doc.getElementById(elmId);
+        var prop = window.getComputedStyle(elem, null).getPropertyValue(property);
         return parseInt(prop);
     };
 
@@ -29,7 +29,7 @@
                 if (e.target.files && e.target.files[0]) {
                     var fr = new FileReader();
                     fr.onload = function(e) {
-                        let img = new Image();
+                        var img = new Image();
                         img.src = fr.result;
                         canvas.src = fr.result;
                         canvas.width = img.naturalWidth  || img.width;
@@ -38,7 +38,7 @@
                     fr.readAsDataURL(fr.files[0]);
                 }
 
-                let btn_elem = doc.getElementById("dk_overlay_btn");
+                var btn_elem = doc.getElementById("dk_overlay_btn");
                 if (btn_elem.disabled == true) {
                     doc.getElementById("dk_overlay_img_layer").style.display = "block";
                     btn_elem.childNodes[1].innerHTML = "on";
@@ -57,8 +57,8 @@
                 doc.getElementById("dk_overlay_scale_text").innerText = "x" + this.value;
             },
             layer: function(e) {
-                let overlay_elem = doc.getElementById("dk_overlay_img_layer");
-                let btn_elem = doc.getElementById("dk_overlay_btn");
+                var overlay_elem = doc.getElementById("dk_overlay_img_layer");
+                var btn_elem = doc.getElementById("dk_overlay_btn");
                 if (overlay_elem.style.display == "block") {
                     overlay_elem.style.display = "none";
                     btn_elem.childNodes[0].className = "off";
@@ -72,15 +72,15 @@
         },
         markup: {
             css: function() {
-              let link = document.createElement( "link" );
-              link.href = "https://rawgit.com/bearholmes/ollin/master/bookmarklet/ollin.css";
+              var link = document.createElement("link");
+              link.href = "https://rawgit.com/bearholmes/ollin/master/bookmarkvar/ollin.css";
               link.type = "text/css";
               link.rel = "stylesheet";
               link.media = "all";
-              document.getElementsByTagName( "head" )[0].appendChild(link);
+              doc.getElementsByTagName("head")[0].appendChild(link);
             },
             overlay: function() {
-                let div = doc.createElement("div"),
+                var div = doc.createElement("div"),
                     img = doc.createElement("img");
                 div.id = "dk_overlay_img_layer";
                 div.style.display = "none";
@@ -91,14 +91,14 @@
                 html.appendChild(div);
             },
             control: function() {
-                let div = doc.createElement("div"),
+                var div = doc.createElement("div"),
                     tit = doc.createElement("span");
                 div.id = "dk_overlay_controller_toolbar";
                 tit.className = "tit";
                 tit.innerText = extension_name;
                 div.appendChild(tit);
 
-                let sw = doc.createElement("button"),
+                var sw = doc.createElement("button"),
                     sw_icon = doc.createElement("i"),
                     sw_txt = doc.createElement("span");
                 sw.id = "dk_overlay_btn";
@@ -110,15 +110,15 @@
                 sw.appendChild(sw_txt);
                 div.appendChild(sw);
 
-                let file = doc.createElement("input");
+                var file = doc.createElement("input");
                 file.id = "dk_overlay_files";
                 file.setAttribute("type", "file");
                 div.appendChild(file);
 
-                let sub = doc.createElement("div");
+                var sub = doc.createElement("div");
                 sub.className = "tools";
 
-                let s_icon = doc.createElement("i"),
+                var s_icon = doc.createElement("i"),
                     scale = doc.createElement("input"),
                     s_txt = doc.createElement("span");
                 s_icon.className = "mag";
@@ -136,7 +136,7 @@
                 sub.appendChild(scale);
                 sub.appendChild(s_txt);
 
-                let o_icon = doc.createElement("i"),
+                var o_icon = doc.createElement("i"),
                     opacity = doc.createElement("input"),
                     o_txt = doc.createElement("span");
                 o_icon.className = "opacity";
@@ -256,7 +256,7 @@
                 };
 
                 Drag.prototype.initEvent = function() {
-                    let that = this;
+                    var that = this;
 
                     this.elem.addEventListener("mousedown", function(e) {
                         ollin.drag.click(e, that.elem);
