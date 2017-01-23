@@ -31,7 +31,7 @@
                     fr.onload = function(e) {
                         var img = new Image();
                         canvas.src = fr.result;
-                        
+
                         img.onload = function() {
                             canvas.width = img.naturalWidth  || img.width;
                             canvas.height = img.naturalHeight || img.height;
@@ -201,7 +201,8 @@
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
 
-                switch (e.keyCode) {
+                var evt = e || window.event; // ie support
+                switch (evt.keyCode) {
                     //left
                     case 37:
                         if (!e.shiftKey) {
@@ -259,14 +260,15 @@
                 };
 
                 Drag.prototype.initEvent = function() {
-                    var that = this;
+                    var img = doc.getElementById("dk_overlay_img"),
+                    that = doc.getElementById("dk_overlay_img_layer");
 
-                    doc.getElementById("dk_overlay_img").addEventListener("mousedown", function(e) {
+                    img.addEventListener("mousedown", function(e) {
                         ollin.drag.click(e, that.elem);
                         return false;
                     }, false);
 
-                    doc.getElementById("dk_overlay_img").addEventListener("drag", function(e) {
+                    img.addEventListener("drag", function(e) {
                         ollin.drag.move(e, that.elem);
                         return false;
                     }, false);
