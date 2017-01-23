@@ -73,7 +73,7 @@
         markup: {
             css: function() {
               let link = document.createElement( "link" );
-              link.href = "https://raw.githubusercontent.com/bearholmes/ollin/bookmarklet/bookmarklet/ollin.css";
+              link.href = "https://rawgit.com/bearholmes/ollin/bookmarklet/bookmarklet/ollin.css";
               link.type = "text/css";
               link.rel = "stylesheet";
               link.media = "all";
@@ -91,7 +91,6 @@
                 html.appendChild(div);
             },
             control: function() {
-                let
                 let div = doc.createElement("div"),
                     tit = doc.createElement("span");
                 div.id = "dk_overlay_controller_toolbar";
