@@ -201,8 +201,8 @@
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
 
-                var evt = e || window.event; // ie support
-                switch (evt.keyCode) {
+                //var evt = e || window.event; // ie support
+                switch (e.keyCode) {
                     //left
                     case 37:
                         if (!e.shiftKey) {
