@@ -261,12 +261,12 @@
                 Drag.prototype.initEvent = function() {
                     var that = this;
 
-                    this.elem.addEventListener("mousedown", function(e) {
+                    doc.getElementById("dk_overlay_img").addEventListener("mousedown", function(e) {
                         ollin.drag.click(e, that.elem);
                         return false;
                     }, false);
 
-                    this.elem.addEventListener("drag", function(e) {
+                    doc.getElementById("dk_overlay_img").addEventListener("drag", function(e) {
                         ollin.drag.move(e, that.elem);
                         return false;
                     }, false);
