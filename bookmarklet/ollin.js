@@ -268,7 +268,7 @@
                         return false;
                     }, false);
 
-                    overlay.addEventListener("dragenter", function(e) {
+                    overlay.addEventListener("drag", function(e) {
                         ollin.drag.move(e, that);
                         return false;
                     }, false);
