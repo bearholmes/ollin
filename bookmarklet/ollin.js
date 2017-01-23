@@ -201,7 +201,7 @@
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
 
-                //var evt = e || window.event; // ie support
+                var evt = e || window.event; // ie support
                 switch (e.keyCode) {
                     //left
                     case 37:
@@ -260,15 +260,15 @@
                 };
 
                 Drag.prototype.initEvent = function() {
-                    var img = doc.getElementById("dk_overlay_img"),
-                    that = doc.getElementById("dk_overlay_img_layer");
+                    var overlay = doc.getElementById("dk_overlay_img"),
+                    that = this;
 
-                    img.addEventListener("mousedown", function(e) {
+                    overlay.addEventListener("mousedown", function(e) {
                         ollin.drag.click(e, that.elem);
                         return false;
                     }, false);
 
-                    img.addEventListener("drag", function(e) {
+                    overlay.addEventListener("drag", function(e) {
                         ollin.drag.move(e, that.elem);
                         return false;
                     }, false);
