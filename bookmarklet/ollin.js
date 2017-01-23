@@ -73,7 +73,7 @@
         markup: {
             css: function() {
               var link = document.createElement("link");
-              link.href = "https://rawgit.com/bearholmes/ollin/master/bookmarkvar/ollin.css";
+              link.href = "https://rawgit.com/bearholmes/ollin/master/bookmarklet/ollin.css";
               link.type = "text/css";
               link.rel = "stylesheet";
               link.media = "all";
