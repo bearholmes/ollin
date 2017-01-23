@@ -3,7 +3,7 @@
 
 (function() {
     "use strict";
-    var extension_name = "키티가 시켰어";
+    var extension_name = "키티가 안시켰어";
 
     var doc = document,
         html = doc.getElementsByTagName("html")[0],
