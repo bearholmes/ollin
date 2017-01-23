@@ -25,17 +25,17 @@
     var ollin = {
         handle: {
             file: function(e) {
-                let canvas = doc.getElementById("dk_overlay_img");
+                var canvas = doc.getElementById("dk_overlay_img");
                 if (e.target.files && e.target.files[0]) {
-                    let FR = new FileReader();
-                    FR.onload = function(e) {
-                        var img = new Image();
-                        img.src = e.target.result;
-                        canvas.src = e.target.result;
-                        canvas.width = img.width;
-                        canvas.height = img.height;
+                    var fr = new FileReader();
+                    fr.onload = function(e) {
+                        let img = new Image();
+                        img.src = fr.result;
+                        canvas.src = fr.result;
+                        canvas.width = img.naturalWidth  || img.width;
+                        canvas.height = img.naturalHeight || img.height;
                     };
-                    FR.readAsDataURL(e.target.files[0]);
+                    FR.readAsDataURL(fr.files[0]);
                 }
 
                 let btn_elem = doc.getElementById("dk_overlay_btn");
@@ -268,7 +268,7 @@
                         return false;
                     }, false);
 
-                    doc.body.addEventListener("keydown", function(e) {
+                    body.addEventListener("keydown", function(e) {
                         ollin.drag.key(e, that.elem);
                     });
                 };
