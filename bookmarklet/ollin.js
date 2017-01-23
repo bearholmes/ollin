@@ -261,21 +261,20 @@
 
                 Drag.prototype.initEvent = function() {
                     var overlay = doc.getElementById("dk_overlay_img"),
-                    that = this;
-                    console.log(that);
+                    that = doc.getElementById("dk_overlay_img_layer");
 
                     overlay.addEventListener("mousedown", function(e) {
-                        ollin.drag.click(e, that.elem);
+                        ollin.drag.click(e, that);
                         return false;
                     }, false);
 
                     overlay.addEventListener("drag", function(e) {
-                        ollin.drag.move(e, that.elem);
+                        ollin.drag.move(e, that);
                         return false;
                     }, false);
 
                     body.addEventListener("keydown", function(e) {
-                        ollin.drag.key(e, that.elem);
+                        ollin.drag.key(e, that);
                     });
                 };
                 return Drag;
