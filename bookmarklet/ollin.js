@@ -31,7 +31,7 @@
                     fr.onload = function(e) {
                         var img = new Image();
                         canvas.src = fr.result;
-                        
+
                         img.onload = function() {
                             canvas.width = img.naturalWidth  || img.width;
                             canvas.height = img.naturalHeight || img.height;
@@ -90,6 +90,7 @@
                 img.id = "dk_overlay_img";
                 img.src = "";
                 img.alt = "";
+                div.draggable="true";
                 div.appendChild(img);
                 html.appendChild(div);
             },
@@ -201,6 +202,7 @@
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
 
+                var e = e || window.event; // ie support
                 switch (e.keyCode) {
                     //left
                     case 37:
@@ -259,20 +261,21 @@
                 };
 
                 Drag.prototype.initEvent = function() {
-                    var that = this;
+                    var overlay = doc.getElementById("dk_overlay_img"),
+                    that = doc.getElementById("dk_overlay_img_layer");
 
-                    doc.getElementById("dk_overlay_img").addEventListener("mousedown", function(e) {
-                        ollin.drag.click(e, that.elem);
+                    overlay.addEventListener("mousedown", function(e) {
+                        ollin.drag.click(e, that);
                         return false;
                     }, false);
 
-                    doc.getElementById("dk_overlay_img").addEventListener("drag", function(e) {
-                        ollin.drag.move(e, that.elem);
+                    overlay.addEventListener("drag", function(e) {
+                        ollin.drag.move(e, that);
                         return false;
                     }, false);
 
                     body.addEventListener("keydown", function(e) {
-                        ollin.drag.key(e, that.elem);
+                        ollin.drag.key(e, that);
                     });
                 };
                 return Drag;
