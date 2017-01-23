@@ -2,7 +2,7 @@
 /* 2017.01.20 ~ 22*/
 
 (function() {
-    "use strict";
+    //"use strict";
     var extension_name = "키티가 안시켰어";
 
     var doc = document,
