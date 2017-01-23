@@ -1,12 +1,9 @@
-/*jshint browser: true */
-/*global chrome */
 /* 키티가 시킨건 아닌데 시작한 프로젝트 */
 /* 2017.01.20 ~ 22*/
 
 (function() {
     "use strict";
-    var manifest = chrome.runtime.getManifest(),
-        extension_name = manifest.name;
+    var extension_name = "키티가 시켰어";
 
     var doc = document,
         html = doc.getElementsByTagName("html")[0],
@@ -17,7 +14,7 @@
         let prop = window.getComputedStyle(elem, null).getPropertyValue(property);
         return parseInt(prop);
     };
-    //초기값 설정
+
     var clickX = 0,
         clickY = 0,
         beforeX = 0,
@@ -76,7 +73,7 @@
         markup: {
             css: function() {
               let link = document.createElement( "link" );
-              link.href = "ollin.css";
+              link.href = "https://raw.githubusercontent.com/bearholmes/ollin/bookmarklet/bookmarklet/ollin.css";
               link.type = "text/css";
               link.rel = "stylesheet";
               link.media = "all";
