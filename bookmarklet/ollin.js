@@ -35,7 +35,7 @@
                         canvas.width = img.naturalWidth  || img.width;
                         canvas.height = img.naturalHeight || img.height;
                     };
-                    fr.readAsDataURL(fr.files[0]);
+                    fr.readAsDataURL(e.target.files[0]);
                 }
 
                 var btn_elem = doc.getElementById("dk_overlay_btn");
