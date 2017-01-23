@@ -77,7 +77,7 @@
               link.type = "text/css";
               link.rel = "stylesheet";
               link.media = "all";
-              document.getElementsByTagName( "head" )[0].appendChild( link );
+              document.getElementsByTagName( "head" )[0].appendChild(link);
             },
             overlay: function() {
                 let div = doc.createElement("div"),
