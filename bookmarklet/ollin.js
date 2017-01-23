@@ -262,6 +262,7 @@
                 Drag.prototype.initEvent = function() {
                     var overlay = doc.getElementById("dk_overlay_img"),
                     that = this;
+                    console.log(that);
 
                     overlay.addEventListener("mousedown", function(e) {
                         ollin.drag.click(e, that.elem);
