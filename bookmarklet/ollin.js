@@ -30,10 +30,13 @@
                     var fr = new FileReader();
                     fr.onload = function(e) {
                         var img = new Image();
-                        img.src = fr.result;
                         canvas.src = fr.result;
-                        canvas.width = img.naturalWidth  || img.width;
-                        canvas.height = img.naturalHeight || img.height;
+                        
+                        img.onload = function() {
+                            canvas.width = img.naturalWidth  || img.width;
+                            canvas.height = img.naturalHeight || img.height;
+                        }
+                        img.src = fr.result;
                     };
                     fr.readAsDataURL(e.target.files[0]);
                 }
