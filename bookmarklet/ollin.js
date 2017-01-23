@@ -202,7 +202,7 @@
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
 
-                var evt = e || window.event; // ie support
+                var e = e || window.event; // ie support
                 switch (e.keyCode) {
                     //left
                     case 37:
