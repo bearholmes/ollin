@@ -34,11 +34,13 @@
                     fr.onload = function(e) {
                         var img = new Image();
                         img.src = e.target.result;
-                        canvas.src = e.target.result;
-                        canvas.width = img.width;
-                        canvas.height = img.height;
+                        img.onload = function() {
+                            canvas.src = e.target.result;
+                            canvas.width = img.naturalWidth || img.width;
+                            canvas.height = img.naturalHeight || img.height;
+                        }
                     };
-                    FR.readAsDataURL(e.target.files[0]);
+                    fr.readAsDataURL(e.target.files[0]);
                 }
 
                 let btn_elem = doc.getElementById("dk_overlay_btn");

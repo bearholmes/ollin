@@ -2,8 +2,7 @@
 /* 2017.01.20 ~ 22*/
 
 (function() {
-    "use strict";
-    var extension_name = "키티가 안시켰어";
+    //  "use strict";
 
     var doc = document,
         html = doc.getElementsByTagName("html")[0],
@@ -22,10 +21,18 @@
         elemOffsetX = 0,
         elemOffsetY = 0;
 
+    var doclang = doc.documentElement.lang;
+    var extension_name = "Images overlap with Kitty";
+    if (doclang === "ko" || doclang === "ko-KR" ) {
+        extension_name = "이미지는 키티가 겹쳐줄거야";
+    };
+
+
     var ollin = {
         handle: {
             file: function(e) {
                 var canvas = doc.getElementById("dk_overlay_img");
+                let layer = doc.getElementById("dk_overlay_img_layer");
                 if (e.target.files && e.target.files[0]) {
                     var fr = new FileReader();
                     fr.onload = function(e) {
@@ -33,8 +40,15 @@
                         canvas.src = fr.result;
 
                         img.onload = function() {
-                            canvas.width = img.naturalWidth  || img.width;
-                            canvas.height = img.naturalHeight || img.height;
+                            var iwidth = img.naturalWidth || img.width;
+                            var iheight = img.naturalHeight || img.height;
+
+                            canvas.width = iwidth;
+                            canvas.height = iheight;
+                            layer.style.width = iwidth;
+                            layer.style.height = iheight;
+                            layer.style.left = 0;
+                            layer.style.top = "30px";
                         }
                         img.src = fr.result;
                     };
@@ -75,12 +89,12 @@
         },
         markup: {
             css: function() {
-              var link = document.createElement("link");
-              link.href = "https://rawgit.com/bearholmes/ollin/master/bookmarklet/ollin.css";
-              link.type = "text/css";
-              link.rel = "stylesheet";
-              link.media = "all";
-              doc.getElementsByTagName("head")[0].appendChild(link);
+                var link = document.createElement("link");
+                link.href = "https://rawgit.com/bearholmes/ollin/master/bookmarklet/ollin.css";
+                link.type = "text/css";
+                link.rel = "stylesheet";
+                link.media = "all";
+                doc.getElementsByTagName("head")[0].appendChild(link);
             },
             overlay: function() {
                 var div = doc.createElement("div"),
@@ -90,7 +104,7 @@
                 img.id = "dk_overlay_img";
                 img.src = "";
                 img.alt = "";
-                div.draggable="true";
+                div.draggable = "true";
                 div.appendChild(img);
                 html.appendChild(div);
             },
@@ -165,44 +179,45 @@
             }
         },
         drag: {
-            //drag event - code by 멀린
-            click: function(e, elem) {
-                clickX = e.clientX;
-                clickY = e.clientY;
+            move: function(event) {
+                event.preventDefault();
+                // Set variable to true on mousedown
 
-                elemOffsetX = getCssProperty(elem, "left");
-                elemOffsetY = getCssProperty(elem, "top");
-                return false;
-            },
-            move: function(e, elem) {
-                var moveX = e.clientX,
-                    moveY = e.clientY,
-                    resultX = moveX - clickX,
-                    resultY = moveY - clickY;
-                //console.log("clickX :"+ clickX + "," + "clickY :" + clickY);
-                //console.log("moveX :"+ moveX + "," + "moveY :" + moveY);
-
-                if (!(beforeX == resultX && beforeY == resultY) && !(moveX == 0 && moveY == 0)) {
-                    //console.log("resultX :"+ resultX + "," + "resultY :" + resultY);
-                    //console.log("elemOffsetX :"+ elemOffsetX + "," + "elemOffsetY :" + elemOffsetY);
-
-                    var left = (resultX + elemOffsetX),
-                        top = (resultY + elemOffsetY);
-
-                    elem.style.left = left + "px";
-                    elem.style.top = top + "px";
-
-                    beforeX = resultX;
-                    beforeY = resultY;
-                    // console.log("left :"+ left + "," + "top :" + top);
+                var click = event || window.event;
+                if (click.which == 1) {
+                    moving = true;
                 }
-                return false;
+                var target = event.target;
+                // Positions cursor in center of element when being dragged, as oposed to the top left
+                var width = target.offsetWidth / 2;
+                var height = target.offsetHeight / 2;
+                // Element follows mouse cursor
+                target.addEventListener('mousemove', function(e) {
+                    // Only run if variable is true (this is destroyed on mouseup)
+                    if (moving === true) {
+                        var layer = document.getElementById("dk_overlay_img_layer");
+                        // Postion element, minus half width/height as above
+                        var x = e.clientX - width;
+                        var y = e.clientY - height;
+                        // Set style
+                        layer.style.left = x + "px";
+                        layer.style.top = y + "px";
+                        layer.style.cursor = "move";
+                    };
+                });
+            },
+            end: function(event) {
+                // Destroy drag on mouse up
+                moving = false;
+                event.target.removeEventListener('mousemove', false);
+                var layer = document.getElementById("dk_overlay_img_layer");
+                layer.style.cursor = "pointer";
             },
             key: function(e, elem) {
+                //drag key event - code by 멀린
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
-
-                var e = e || window.event; // ie support
+                
                 switch (e.keyCode) {
                     //left
                     case 37:
@@ -249,36 +264,6 @@
                         e.preventDefault();
                         break;
                 }
-            },
-            init: function() {
-                function Drag(elem) {
-                    Drag.prototype.init(elem);
-                    Drag.prototype.initEvent();
-                }
-
-                Drag.prototype.init = function(elem) {
-                    this.elem = doc.getElementById(elem);
-                };
-
-                Drag.prototype.initEvent = function() {
-                    var overlay = doc.getElementById("dk_overlay_img"),
-                    that = doc.getElementById("dk_overlay_img_layer");
-
-                    overlay.addEventListener("mousedown", function(e) {
-                        ollin.drag.click(e, that);
-                        return false;
-                    }, false);
-
-                    overlay.addEventListener("drag", function(e) {
-                        ollin.drag.move(e, that);
-                        return false;
-                    }, false);
-
-                    body.addEventListener("keydown", function(e) {
-                        ollin.drag.key(e, that);
-                    });
-                };
-                return Drag;
             }
         },
         init: function() {
@@ -286,7 +271,18 @@
             ollin.markup.overlay();
             ollin.markup.control();
 
-            ollin.drag.init()("dk_overlay_img_layer");
+            var moving = false;
+
+            var layer = doc.getElementById("dk_overlay_img_layer");
+            body.addEventListener("keydown", function(e) {
+                ollin.drag.key(e, layer);
+            });
+
+            doc.getElementById("dk_overlay_img_layer").addEventListener("mousedown", ollin.drag.move);
+            doc.getElementById("dk_overlay_img_layer").addEventListener("mouseup", ollin.drag.end);
+            doc.getElementById("dk_overlay_img").ondragstart = function() {
+                return false;
+            };
 
             doc.getElementById("dk_overlay_btn").addEventListener("click", ollin.handle.layer);
             doc.getElementById("dk_overlay_opacity").addEventListener("change", ollin.handle.opacity);
