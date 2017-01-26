@@ -4,5 +4,8 @@
     },
     "application_description": {
         "message": "시안을 겹쳐 볼 수 있어요."
+    },
+    "application_default_title": {
+        "message": "이미지는 키티가 겹쳐줄거야"
     }
 }

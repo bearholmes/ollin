@@ -6,5 +6,9 @@
     "application_description": {
         "message": "You can see the images overlap",
         "description": "The description of the application, displayed in the web store."
+    },
+    "application_default_title": {
+        "message": "Images overlap with Kitty",
+        "description": "application default_title, displayed in the web store."
     }
 }
