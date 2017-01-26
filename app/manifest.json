@@ -19,6 +19,6 @@
    "default_locale": "ko",
    "options_page": "option.html",
    "permissions": [ "tabs", "storage", "http://*/*", "https://*/*", "contextMenus" ],
-   "version": "0.2.2",
+   "version": "0.2.3",
    "homepage_url": "https://bearholmes.github.io/ollin/"
 }
