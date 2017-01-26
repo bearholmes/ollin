@@ -1,11 +1,8 @@
 {
     "application_title": {
-        "message": "이름은 키티가 정해줄거야"
+        "message": "이미지는 키티가 겹쳐줄거야"
     },
     "application_description": {
         "message": "시안을 겹쳐 볼 수 있어요."
-    },
-    "application_default_title": {
-      "message": "이름은 키티가 정해줄거야"
     }
 }
