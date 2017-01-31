@@ -84,6 +84,7 @@
                 img.id = "dk_overlay_img";
                 img.src = "";
                 img.alt = "";
+                img.draggable = true;
                 div.appendChild(img);
                 html.appendChild(div);
             },

@@ -217,7 +217,7 @@
                 //drag key event - code by 멀린
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
-                
+
                 switch (e.keyCode) {
                     //left
                     case 37:

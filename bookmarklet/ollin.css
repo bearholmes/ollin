@@ -51,6 +51,7 @@
     font : caption !important;
     font-size: 12px !important;
     line-height: 1 !important;
+    display: inline-block !important;
 }
 
 #dk_overlay_controller_toolbar input[type='range'] {
@@ -59,6 +60,7 @@
     padding: 0 !important;
     vertical-align: middle;
     cursor: ew-resize !important;
+    display: inline-block !important;
 }
 
 #dk_overlay_opacity {
