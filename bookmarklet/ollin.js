@@ -14,6 +14,16 @@
         return parseInt(prop);
     };
 
+    function addEvent(el, type, handler) {
+        if (el.attachEvent) el.attachEvent('on' + type, handler);
+        else el.addEventListener(type, handler);
+    }
+
+    function removeEvent(el, type, handler) {
+        if (el.detachEvent) el.detachEvent('on' + type, handler);
+        else el.removeEventListener(type, handler);
+    }
+
     var clickX = 0,
         clickY = 0,
         beforeX = 0,
@@ -23,7 +33,7 @@
 
     var doclang = doc.documentElement.lang;
     var extension_name = "Images overlap with Kitty";
-    if (doclang === "ko" || doclang === "ko-KR" ) {
+    if (doclang === "ko" || doclang === "ko-KR") {
         extension_name = "이미지는 키티가 겹쳐줄거야";
     };
 
@@ -192,7 +202,7 @@
                 var width = target.offsetWidth / 2;
                 var height = target.offsetHeight / 2;
                 // Element follows mouse cursor
-                target.addEventListener('mousemove', function(e) {
+                addEvent(target, 'mousemove', function(e) {
                     // Only run if variable is true (this is destroyed on mouseup)
                     if (moving === true) {
                         var layer = document.getElementById("dk_overlay_img_layer");
@@ -217,7 +227,7 @@
                 //drag key event - code by 멀린
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
-                
+
                 switch (e.keyCode) {
                     //left
                     case 37:
@@ -274,20 +284,20 @@
             var moving = false;
 
             var layer = doc.getElementById("dk_overlay_img_layer");
-            body.addEventListener("keydown", function(e) {
+            addEvent(body, "keydown", function(e) {
                 ollin.drag.key(e, layer);
             });
 
-            doc.getElementById("dk_overlay_img_layer").addEventListener("mousedown", ollin.drag.move);
-            doc.getElementById("dk_overlay_img_layer").addEventListener("mouseup", ollin.drag.end);
+            addEvent(doc.getElementById("dk_overlay_img_layer"), "mousedown", ollin.drag.move);
+            addEvent(doc.getElementById("dk_overlay_img_layer"), "mouseup", ollin.drag.end);
             doc.getElementById("dk_overlay_img").ondragstart = function() {
                 return false;
             };
 
-            doc.getElementById("dk_overlay_btn").addEventListener("click", ollin.handle.layer);
-            doc.getElementById("dk_overlay_opacity").addEventListener("change", ollin.handle.opacity);
-            doc.getElementById("dk_overlay_scale").addEventListener("change", ollin.handle.scale);
-            doc.getElementById("dk_overlay_files").addEventListener("change", ollin.handle.file);
+            addEvent(doc.getElementById("dk_overlay_btn"), "click", ollin.handle.layer);
+            addEvent(doc.getElementById("dk_overlay_opacity"), "change", ollin.handle.opacity);
+            addEvent(doc.getElementById("dk_overlay_scale"), "change", ollin.handle.scale);
+            addEvent(doc.getElementById("dk_overlay_files"), "change", ollin.handle.file);
         }
     }
     ollin.init();
