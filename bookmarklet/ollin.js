@@ -42,7 +42,7 @@
         handle: {
             file: function(e) {
                 var canvas = doc.getElementById("dk_overlay_img");
-                let layer = doc.getElementById("dk_overlay_img_layer");
+                var layer = doc.getElementById("dk_overlay_img_layer");
                 if (e.target.files && e.target.files[0]) {
                     var fr = new FileReader();
                     fr.onload = function(e) {
