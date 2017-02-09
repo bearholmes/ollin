@@ -24,6 +24,10 @@
         else el.removeEventListener(type, handler);
     }
 
+    if (typeof console === "undefined" || typeof console.log === "undefined") {
+        var console = window.console || {log:function(){}};
+    }
+
     var clickX = 0,
         clickY = 0,
         beforeX = 0,
