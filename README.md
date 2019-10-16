@@ -9,4 +9,4 @@
 Download : 
 https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko
 
-북마클릿: https://rawgit.com/bearholmes/ollin/master/bookmarklet/index.html
+북마클릿: https://bearholmes.github.io/ollin/

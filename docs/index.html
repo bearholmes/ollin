@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+
+	<title>ollin bookmarklet project</title>
+	<style>
+	body, h1{padding:0;margin:0}
+	.qt_head {position: relative;;padding:5px;margin-bottom:30px;background-color: #4A525F;color:#fff;}
+	.qt_head h1 {padding:5px 15px}
+	.wrap {margin-bottom:50px;}
+	.wrap a {border: 1px dashed;display: block;padding: 5px 10px;margin-left:20px;text-align: center;width: 300px;}
+	.wrap a:hover, .wrap a:focus {border: 1px dashed red; color:red;}
+	.wrap span {padding:5px 15px}
+	</style>
+</head>
+<body>
+	<header class="qt_head">
+		<h1>ollin bookmarklet project</h1>
+	</header>
+	<div class="wrap">
+		<span><strong> 사용법 </strong></span>
+		<ol>
+			<li>아래 링크를 북마크 영역으로 드래그</li>
+			<li>레이어를 겹치고 싶은 페이지 열기</li>
+			<li>북마크에 등록한 링크 클릭</li>
+		</ol>
+		<br>
+		<span>현재 기능 구현만 해놓은 상태로 크로스 브라우징이 되지 않거나, css 적용이 제대로 되지 않아 툴바 영역의 UI가 깨질 수 있습니다. 그런 경우 제보 주세요</span><br>
+		<span>맥 크롬, 맥사파리, 맥파폭  정상 </span><br>
+		<span>윈7 크롬, 윈7 파폭, 윈7 ie11, 윈10 엣지 정상</span><br>
+		<span>윈10/ie11 = 모든기능x</span><br>
+
+<br>
+		<br>
+
+		<a href="javascript:function loadScript(scriptURL){var scriptElem=document.createElement('SCRIPT');scriptElem.setAttribute('type','text/javaScript');scriptElem.setAttribute('charset','UTF-8');scriptElem.setAttribute('src',scriptURL);document.body.appendChild(scriptElem);}loadScript('https://bearholmes.github.io/ollin/ollin.js');">이미지띄우기</a>
+		<br>
+		<br>
+		<span>last update. 170123</span>
+	</div>
+</body>
+</html>
