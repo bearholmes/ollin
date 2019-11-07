@@ -66,12 +66,26 @@
                 }
             },
             opacity: function(e) {
+                console.log('opacity',this.value);
                 doc.getElementById("dk_overlay_img_layer").style.opacity = this.value;
                 doc.getElementById("dk_overlay_opacity_text").innerText = this.value;
             },
             scale: function(e) {
+                console.log('scale',this.value);
                 doc.getElementById("dk_overlay_img_layer").style.transform = "scale(" + this.value + ", " + this.value + ")";
                 doc.getElementById("dk_overlay_scale_text").innerText = "x" + this.value;
+
+
+                var img_width = getCssProperty(doc.getElementById("dk_overlay_img"), "width");
+                var img_height = getCssProperty(doc.getElementById("dk_overlay_img"), "height");
+                
+                if (this.value === "0.5") {
+                    doc.getElementById("dk_overlay_img_layer").style.top = ((img_height * (parseFloat(this.value * 0.5))) * -1) + 30 + 'px';
+                    doc.getElementById("dk_overlay_img_layer").style.left = (img_width * (parseFloat(this.value * 0.5)))* -1 + 'px';
+                } else {
+                    doc.getElementById("dk_overlay_img_layer").style.top = ((img_height * (1 - parseFloat(this.value))) * -0.5) + 30 + "px";
+                    doc.getElementById("dk_overlay_img_layer").style.left = (img_width * (1 - parseFloat(this.value))) * -0.5 + "px";
+                }
             },
             layer: function(e) {
                 var overlay_elem = doc.getElementById("dk_overlay_img_layer");
@@ -79,18 +93,18 @@
                 if (overlay_elem.style.display == "block") {
                     overlay_elem.style.display = "none";
                     btn_elem.childNodes[0].className = "off";
-                    btn_elem.childNodes[1].innerHTML = "off";
+                    //btn_elem.childNodes[1].innerHTML = "off";
                 } else {
                     overlay_elem.style.display = "block";
-                    btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.childNodes[0].className = "on";
+                    //btn_elem.childNodes[1].innerHTML = "on";
                 }
             }
         },
         markup: {
             css: function() {
                 var link = document.createElement("link");
-                link.href = "https://bearholmes.github.io/ollin/ollin.css";
+                link.href = "https://rawgit.com/bearholmes/ollin/master/bookmarklet/ollin.css";
                 link.type = "text/css";
                 link.rel = "stylesheet";
                 link.media = "all";
@@ -114,19 +128,19 @@
                 div.id = "dk_overlay_controller_toolbar";
                 tit.className = "tit";
                 tit.innerText = extension_name;
-                div.appendChild(tit);
 
                 var sw = doc.createElement("button"),
-                    sw_icon = doc.createElement("i"),
-                    sw_txt = doc.createElement("span");
+                    sw_icon = doc.createElement("i");
+                    //sw_txt = doc.createElement("span");
                 sw.id = "dk_overlay_btn";
                 sw.className = "sw";
                 sw.disabled = true;
-                sw_icon.className = "off";
+                //sw_icon.className = "off";
                 sw.appendChild(sw_icon);
-                sw_txt.innerText = "off";
-                sw.appendChild(sw_txt);
+                //sw_txt.innerText = "off";
+                //sw.appendChild(sw_txt);
                 div.appendChild(sw);
+                div.appendChild(tit);
 
                 var file = doc.createElement("input");
                 file.id = "dk_overlay_files";
