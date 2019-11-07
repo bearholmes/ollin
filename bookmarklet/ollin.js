@@ -58,8 +58,8 @@
                 var btn_elem = doc.getElementById("dk_overlay_btn");
                 if (btn_elem.disabled == true) {
                     doc.getElementById("dk_overlay_img_layer").style.display = "block";
-                    btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.childNodes[0].className = "on";
+                    //btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.disabled = false;
                     doc.getElementById("dk_overlay_scale").disabled = false;
                     doc.getElementById("dk_overlay_opacity").disabled = false;
@@ -135,7 +135,7 @@
                 sw.id = "dk_overlay_btn";
                 sw.className = "sw";
                 sw.disabled = true;
-                //sw_icon.className = "off";
+                sw_icon.className = "off";
                 sw.appendChild(sw_icon);
                 //sw_txt.innerText = "off";
                 //sw.appendChild(sw_txt);
