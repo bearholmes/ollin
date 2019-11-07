@@ -18,7 +18,7 @@
    "description": "__MSG_application_description__",
    "default_locale": "ko",
    "options_page": "option.html",
-   "permissions": [ "tabs", "storage", "http://*/*", "https://*/*", "contextMenus" ],
-   "version": "0.2.3",
+   "permissions": [ "activeTab", "storage", "contextMenus" ],
+   "version": "0.3.0",
    "homepage_url": "https://bearholmes.github.io/ollin/"
 }

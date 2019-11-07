@@ -46,20 +46,33 @@
                 let btn_elem = doc.getElementById("dk_overlay_btn");
                 if (btn_elem.disabled == true) {
                     doc.getElementById("dk_overlay_img_layer").style.display = "block";
-                    btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.childNodes[0].className = "on";
+                    //btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.disabled = false;
                     doc.getElementById("dk_overlay_scale").disabled = false;
                     doc.getElementById("dk_overlay_opacity").disabled = false;
                 }
             },
             opacity: function(e) {
+                console.log('opacity',this.value);
                 doc.getElementById("dk_overlay_img_layer").style.opacity = this.value;
                 doc.getElementById("dk_overlay_opacity_text").innerText = this.value;
             },
             scale: function(e) {
+                console.log('scale',this.value);
                 doc.getElementById("dk_overlay_img_layer").style.transform = "scale(" + this.value + ", " + this.value + ")";
                 doc.getElementById("dk_overlay_scale_text").innerText = "x" + this.value;
+
+                var img_width = getCssProperty(doc.getElementById("dk_overlay_img"), "width");
+                var img_height = getCssProperty(doc.getElementById("dk_overlay_img"), "height");
+                
+                if (this.value === "0.5") {
+                    doc.getElementById("dk_overlay_img_layer").style.top = ((img_height * (parseFloat(this.value * 0.5))) * -1) + 30 + 'px';
+                    doc.getElementById("dk_overlay_img_layer").style.left = (img_width * (parseFloat(this.value * 0.5)))* -1 + 'px';
+                } else {
+                    doc.getElementById("dk_overlay_img_layer").style.top = ((img_height * (1 - parseFloat(this.value))) * -0.5) + 30 + "px";
+                    doc.getElementById("dk_overlay_img_layer").style.left = (img_width * (1 - parseFloat(this.value))) * -0.5 + "px";
+                }
             },
             layer: function(e) {
                 let overlay_elem = doc.getElementById("dk_overlay_img_layer");
@@ -67,11 +80,13 @@
                 if (overlay_elem.style.display == "block") {
                     overlay_elem.style.display = "none";
                     btn_elem.childNodes[0].className = "off";
-                    btn_elem.childNodes[1].innerHTML = "off";
+                    //btn_elem.childNodes[1].innerHTML = "off";
+                    console.log('off')
                 } else {
                     overlay_elem.style.display = "block";
-                    btn_elem.childNodes[1].innerHTML = "on";
                     btn_elem.childNodes[0].className = "on";
+                    //btn_elem.childNodes[1].innerHTML = "on";
+                    console.log('on')
                 }
             }
         },
@@ -94,19 +109,19 @@
                 div.id = "dk_overlay_controller_toolbar";
                 tit.className = "tit";
                 tit.innerText = extension_name;
-                div.appendChild(tit);
 
                 let sw = doc.createElement("button"),
-                    sw_icon = doc.createElement("i"),
-                    sw_txt = doc.createElement("span");
+                    sw_icon = doc.createElement("i");
+                    //sw_txt = doc.createElement("span");
                 sw.id = "dk_overlay_btn";
                 sw.className = "sw";
                 sw.disabled = true;
                 sw_icon.className = "off";
                 sw.appendChild(sw_icon);
-                sw_txt.innerText = "off";
-                sw.appendChild(sw_txt);
+                //sw_txt.innerText = "off";
+                //sw.appendChild(sw_txt);
                 div.appendChild(sw);
+                div.appendChild(tit);
 
                 let file = doc.createElement("input");
                 file.id = "dk_overlay_files";
