@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html data-i18n="lang=@@IETF_lang_tag">
 <head>
 	<meta charset="UTF-8">
-	<title>Option</title>
+	<title data-i18n="application_title"></title>
 	<script type="text/javascript" src="js/option.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/option.css">
 </head>
@@ -11,7 +11,7 @@
 		<header id="dkHead">
 			<div class="inner_head">
 				<h1 class="tit" id="dk_title"></h1>
-				<div class="info">버전 : <span id="dk_ver"></span></div>
+				<div class="info"><span data-i18n="txt_version"></span> : <span id="dk_ver"></span></div>
 			</div>
 		</header>
 		<!-- // dkHead -->
@@ -20,66 +20,65 @@
 			<div id="cMain">
 				<div id="mFeature">
 					<div id="dkGnb">
-						<h2 class="screen_out">옵션 메뉴</h2>
+						<h2 class="screen_out" data-i18n="txt_menu"></h2>
 						<ul class="gnb_comm">
-							<li><a href="#idx01" class="link_gnb">소개</a></li>
-							<li><a href="#idx02" class="link_gnb">사용법 안내</a></li>
-							<li><a href="#idx03" class="link_gnb">Support</a></li>
+							<li><a href="#idx01" class="link_gnb" data-i18n="txt_introduction"></a></li>
+							<li><a href="#idx02" class="link_gnb" data-i18n="txt_guidance"></a></li>
+							<li><a href="#idx03" class="link_gnb" data-i18n="txt_support"></a></li>
 						</ul>
 					</div>
 				</div>
 				<article id="mArticle">
-					<h2 id="dkBody" class="screen_out">옵션 본문</h2>
+					<h2 id="dkBody" class="screen_out" data-i18n="txt_body"></h2>
 					<div class="info_box">
-						<h2 id="idx01" class="tit">소개</h2>
+						<h2 id="idx01" class="tit" data-i18n="txt_introduction"></h2>
 						<div>
 							<ul>
-								<li>웹페이지에 이미지를 손쉽게 띄우고, 이동시킬 수 있습니다.</li>
-								<li>We do not yet support English. But it will not be difficult to use. Use it as you think.</li>
+								<li data-i18n="txt_introduction_desc_1"></li>
 								<!--<li>생각하고 있는기능 : 단축키로 레이어이미지 활성화/비활성화 껏다켰다하기, 콘솔내용 툴바영역에서 뿌려주기 등등</li>-->
 							</ul>
 
 						</div>
 					</div>
 					<div class="info_box">
-						<h2 id="idx02" class="tit">사용법 안내</h2>
+						<h2 id="idx02" class="tit" data-i18n="txt_guidance"></h2>
 						<div>
-							<strong>기본 기능</strong>
+							<strong data-i18n="txt_guidance_tit_1"></strong>
 							<ul>
-								<li>1. 이미지 파일선택</li>
-								<li>2. 방향키를 이용하여 위치 조절</li>
+								<li data-i18n="txt_guidance_desc_1"></li>
+								<li data-i18n="txt_guidance_desc_2"></li>
 							</ul>
 							<br>
-							<strong>추가 기능</strong>
+							<strong data-i18n="txt_guidance_tit_2"></strong>
 							<ul>
-								<li>툴바에서 선택</li>
-								<li>1. 이미지 숨기기/보이기</li>
-								<li>2. 이미지 비율 조절</li>
-								<li>2. 이미지 투명도 조절</li>
+								<li data-i18n="txt_guidance_desc_3"></li>
+								<li data-i18n="txt_guidance_desc_4"></li>
+								<li data-i18n="txt_guidance_desc_5"></li>
+								<li data-i18n="txt_guidance_desc_6"></li>
 							</ul>
 							<br>
-							<strong>기본키</strong>
+							<strong data-i18n="txt_guidance_tit_3"></strong>
 							<ul>
-								<li>arrow key {up, down, left, right} : 1px move</li>
-								<li>shift + arrow key : 10px move</li>
-								<li>이동이 안되면 이미지 클릭 후, 조작</li>
+								<li data-i18n="txt_guidance_desc_7"></li>
+								<li data-i18n="txt_guidance_desc_8"></li>
+								<li data-i18n="txt_guidance_desc_9"></li>
 							</ul>
 							<br>
-							<strong>단축키</strong>
+							<strong data-i18n="txt_guidance_tit_4"></strong>
 							<ul>
-								<li>실행/해제 단축키를 설정하면 빠르게 전환할 수 있습니다.</li>
-								<li>1. <a href="chrome://extensions/" target="_blank">chrome://extensions/</a>로 이동</li>
-								<li>2. 확장프로그램 목록 최하단에 "단축키" 링크 선택</li>
-								<li>3. "프로그램명 - 확장 프로그램 활성화" 항목에서 단축키 설정</li>
+								<li data-i18n="txt_guidance_desc_10"></li>
+								<li>1. <a href="chrome://extensions/" target="_blank" data-i18n="txt_guidance_desc_11"></a></li>
+								<li data-i18n="txt_guidance_desc_12"></li>
+								<li data-i18n="txt_guidance_desc_13"></li>
 							</ul>
 						</div>
 					</div>
 					<div class="info_box info_lst">
-						<h2 id="idx03" class="tit">Support</h2>
-						<p>Who is Kitty?. She is a very secretive person.</p>
+						<h2 id="idx03" class="tit" data-i18n="txt_support"></h2>
+						<!--						<p>Who is Kitty?. She is a very secretive person.</p>-->
 						<ul>
-							<li>문의사항이나 개선의견이 있으면 언제든지 연락주세요.</li>
-							<li><a href="https://github.com/bearholmes/ollin">git hub project</a></li>
+							<li data-i18n="txt_support_desc_1"></li>
+							<li><a href="https://github.com/bearholmes/ollin/issues">github</a></li>
 						</ul>
 					</div>
 				</article>
@@ -95,5 +94,6 @@
 		<!-- // dkFoot -->
 	</div>
 	<!-- // dkWrap -->
+	<script type="application/ecmascript" src="js/i18n.js"></script>
 </body>
 </html>

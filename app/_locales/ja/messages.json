@@ -1,0 +1,86 @@
+{
+  "application_title": {
+    "message": "Ollin"
+  },
+  "application_description": {
+    "message": "デザインを重ねることができます。"
+  },
+  "application_default_title": {
+    "message": "Ollin"
+  },
+  "txt_version": {
+    "message": "バージョン"
+  },
+  "txt_introduction": {
+    "message": "紹介"
+  },
+  "txt_menu": {
+    "message": "メニュー"
+  },
+  "txt_guidance": {
+    "message": "ガイダンス"
+  },
+  "txt_support": {
+    "message": "サポート"
+  },
+  "txt_body": {
+    "message": "本文"
+  },
+  "txt_introduction_desc_1": {
+    "message": "ウェブページに画像を簡単に表示し、移動させることができます。"
+  },
+  "txt_support_desc_1": {
+    "message": "ご質問やご意見があれば、いつでもご連絡ください。"
+  },
+  "txt_guidance_tit_1" : {
+    "message": "基本機能"
+  },
+  "txt_guidance_tit_2" : {
+    "message": "追加機能"
+  },
+  "txt_guidance_tit_3" : {
+    "message": "基本キー"
+  },
+  "txt_guidance_tit_4" : {
+    "message": "ショートカット"
+  },
+  "txt_guidance_desc_1" : {
+    "message": "1. 画像ファイルを選択"
+  },
+  "txt_guidance_desc_2" : {
+    "message": "2. 矢印キーで位置を調整"
+  },
+  "txt_guidance_desc_3" : {
+    "message": "ツールバーから選択"
+  },
+  "txt_guidance_desc_4" : {
+    "message": "1. 画像の非表示/表示"
+  },
+  "txt_guidance_desc_5" : {
+    "message": "2. 画像の比率調整"
+  },
+  "txt_guidance_desc_6" : {
+    "message": "3. 画像の透明度調整"
+  },
+  "txt_guidance_desc_7" : {
+    "message": "矢印キー {上、下、左、右} : 1px移動"
+  },
+  "txt_guidance_desc_8" : {
+    "message": "shift + 矢印キー : 10px移動"
+  },
+  "txt_guidance_desc_9" : {
+    "message": "移動しない場合は、画像をクリックしてから操作してください"
+  },
+  "txt_guidance_desc_10" : {
+    "message": "ショートカットキーを設定することで、素早く切り替えることができます。"
+  },
+  "txt_guidance_desc_11" : {
+    "message": "chrome://extensions/ に移動"
+  },
+  "txt_guidance_desc_12" : {
+    "message": "2. 拡張機能リストの最下部にある「ショートカット」リンクを選択"
+  },
+  "txt_guidance_desc_13" : {
+    "message": "3. 「プログラム名 - 拡張機能を有効にする」項目でショートカットを設定"
+  }
+}
