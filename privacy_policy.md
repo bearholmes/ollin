@@ -31,3 +31,39 @@ ollin 확장프로그램("서비스")은 사용자의 개인정보를 중요하�
 - 이메일: bearholmes@gmail.com
 
 저희 서비스는 귀하의 개인정보를 보호하기 위해 최선을 다하겠습니다. 감사합니다.
+
+---
+
+# Privacy Policy
+
+**Last Updated: July 15, 2024**
+
+Our extension ("Service") takes your privacy seriously. This Privacy Policy explains the types of information we collect, how we use that information, and how we protect your information when you use our Service.
+
+## 1. Information We Collect
+Our Service uses the following permissions to collect information:
+- `activeTab`: Used to access information about the currently active tab and add images via scripts.
+- `contextMenus`: Used to create context menus within the extension.
+- `scripting`: Used to inject scripts into page content to display images.
+
+Our Service uses these permissions solely to provide the functionality of adding images to your browser tab. We do not collect or store personal information for any other purposes.
+
+## 2. How We Use Information
+The information collected by our Service is used solely for the following purposes:
+- To add images to the currently active page using scripts.
+
+## 3. Information Sharing and Disclosure
+We do not sell, trade, or rent your personal information to third parties. However, information may be disclosed if required by law or with your consent.
+
+## 4. Information Security
+We implement reasonable physical, electronic, and managerial procedures to protect your information. However, please be aware that no system can guarantee absolute security, and we cannot ensure complete protection of your information transmitted over the internet.
+
+## 5. Changes to the Privacy Policy
+We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. If significant changes are made, we will provide more prominent notice.
+
+## 6. Contact Us
+If you have any questions or concerns about this Privacy Policy, please contact us at:
+
+- Email: bearholmes@gmail.com
+
+We are committed to protecting your privacy and appreciate your trust. Thank you.
