@@ -7,10 +7,13 @@
 **UI 개발자를 위한 디자인 시안 오버레이 도구**
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko)
-[![Version](https://img.shields.io/badge/version-0.5.0-green.svg)](https://github.com/bearholmes/ollin)
+[![Version](https://img.shields.io/badge/version-0.6.0-green.svg)](https://github.com/bearholmes/ollin)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
 [![ESLint](https://img.shields.io/badge/linting-ESLint-4B32C3.svg)](https://eslint.org/)
+[![TypeScript](https://img.shields.io/badge/types-TypeScript-blue.svg)](https://www.typescriptlang.org/)
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF.svg)](https://github.com/bearholmes/ollin/actions)
+[![Tests](https://img.shields.io/badge/tests-Jest-C21325.svg)](https://jestjs.io/)
 
 [English](#english) | [한국어](#korean)
 
@@ -124,6 +127,12 @@ Ollin 아이콘 클릭
 # 의존성 설치
 npm install
 
+# 빌드
+npm run build          # Chrome Extension + Bookmarklet 빌드
+npm run build:chrome   # Chrome Extension만 빌드
+npm run build:bookmarklet  # Bookmarklet만 빌드
+npm run clean          # 빌드 결과물 삭제
+
 # 코드 품질 검사
 npm run lint           # ESLint 검사
 npm run lint:fix       # ESLint 자동 수정
@@ -151,36 +160,48 @@ Husky와 lint-staged가 설정되어 있어 커밋 시 자동으로:
 
 ```
 ollin/
+├── .github/workflows/                # GitHub Actions CI/CD
+│   ├── ci.yml                        # 테스트, 린트, 빌드 자동화
+│   ├── release.yml                   # 자동 릴리스
+│   └── deploy-pages.yml              # GitHub Pages 배포
 ├── app/                              # Chrome Extension 소스
-│   ├── manifest.json                 # Extension 설정
+│   ├── manifest.json                 # Extension 설정 (Manifest V3)
 │   ├── background.js                 # Service Worker
 │   ├── js/
-│   │   ├── dkoverlay.js              # 핵심 로직 (ES2020+)
-│   │   ├── option.js                 # 옵션 페이지
+│   │   ├── content-script.js         # 핵심 로직 (ES2020+)
+│   │   ├── options.js                # 옵션 페이지
 │   │   └── i18n.js                   # 다국어 지원
 │   ├── css/                          # 스타일시트
 │   ├── _locales/                     # 다국어 메시지
 │   └── icons/                        # 아이콘
+├── src/types/                        # TypeScript 타입 정의
+│   └── index.ts                      # 전역 타입 정의
+├── scripts/                          # 빌드 스크립트
+│   ├── build-chrome.js               # Chrome Extension 빌드
+│   └── build-bookmarklet.js          # Bookmarklet 빌드
 ├── tests/                            # Jest 테스트
 │   ├── setup.js                      # 테스트 환경 설정
-│   ├── dkoverlay.test.js
+│   ├── content-script.test.js
 │   ├── background.test.js
-│   └── option.test.js
+│   └── options.test.js
+├── dist/                             # 빌드 결과물 (gitignore)
+│   ├── chrome/                       # 배포용 Chrome Extension
+│   └── bookmarklet/                  # 배포용 Bookmarklet
 ├── .husky/                           # Git hooks
 │   └── pre-commit                    # 커밋 전 검증
-├── eslint.config.js                  # ESLint 설정
-├── tsconfig.json                     # TypeScript 설정
-├── .prettierrc.json                  # Prettier 설정
-├── PROJECT_ANALYSIS.md               # 프로젝트 분석 문서 (600+ 줄)
+├── eslint.config.js                  # ESLint 9.16 설정
+├── tsconfig.json                     # TypeScript 5.7 설정
+├── .prettierrc.json                  # Prettier 3.4 설정
+├── PROJECT_ANALYSIS.md               # 프로젝트 분석 (600+ lines)
 ├── CODE_REVIEW.md                    # 코드 리뷰 #1: 버그 수정
 ├── CODE_REVIEW_2.md                  # 코드 리뷰 #2: 구조 분석
 ├── CODE_REVIEW_3_MODERNIZATION.md    # 코드 리뷰 #3: 현대화
-├── NAMING_CONVENTIONS.md             # 네이밍 컨벤션 가이드
+├── CODE_REVIEW_4_STRUCTURAL_REFACTORING.md  # 코드 리뷰 #4: 리팩토링
+├── CODE_REVIEW_FINAL.md              # 최종 코드 리뷰
+├── NAMING_CONVENTIONS.md             # 네이밍 컨벤션
 ├── MODERNIZATION_GUIDE.md            # 현대화 가이드
-├── TODO_ROADMAP.md                   # 개선 로드맵 (6단계)
-├── FOLDER_STRUCTURE_PROPOSAL.md      # 폴더 구조 제안
-├── BUILD_SYSTEM_PROPOSAL.md          # 빌드 시스템 제안
-└── GITHUB_PAGES_PROPOSAL.md          # GitHub Pages 제안
+├── TODO_ROADMAP.md                   # 개선 로드맵 (완료)
+└── ... (기타 문서들)
 ```
 
 ### 📝 라이선스
