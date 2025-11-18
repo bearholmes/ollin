@@ -49,6 +49,6 @@
     /* Chrome Extension Types */
     "types": ["chrome", "jest"]
   },
-  "include": ["src/**/*", "app/**/*", "tests/**/*"],
+  "include": ["src/**/*", "app/**/*", "tests/**/*", "vite.config.ts"],
   "exclude": ["node_modules", "dist", "coverage", "bookmarklet", "docs"]
 }

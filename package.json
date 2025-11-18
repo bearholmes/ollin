@@ -3,11 +3,11 @@
   "version": "0.6.0",
   "description": "UI 개발자를 위한 디자인 시안 오버레이 도구",
   "type": "module",
-  "main": "app/js/content-script.js",
+  "main": "app/content/content-script.ts",
   "scripts": {
     "build": "npm run build:chrome && npm run build:bookmarklet",
-    "build:chrome": "node scripts/build-chrome.js",
-    "build:bookmarklet": "node scripts/build-bookmarklet.js",
+    "build:chrome": "vite build && node scripts/post-build-chrome.js",
+    "build:bookmarklet": "vite build --mode bookmarklet",
     "clean": "rm -rf dist",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -64,9 +64,8 @@
     "testEnvironment": "jsdom",
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
-      "app/js/**/*.{js,ts}",
-      "app/*.{js,ts}",
-      "!app/js/i18n.js"
+      "app/**/*.{js,ts}",
+      "!app/shared/i18n.ts"
     ],
     "testMatch": [
       "**/tests/**/*.test.{js,ts}"
