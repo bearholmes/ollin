@@ -1,5 +1,5 @@
 /**
- * dkoverlay.js 핵심 로직 테스트
+ * content-script.js 핵심 로직 테스트
  */
 
 describe('Overlay Logic', () => {
@@ -8,17 +8,17 @@ describe('Overlay Logic', () => {
     document.body.innerHTML = `
       <html>
         <body>
-          <div id="dk_overlay_img_layer" style="display: none;">
-            <img id="dk_overlay_img" />
+          <div id="ollin-img-layer" style="display: none;">
+            <img id="ollin-img" />
           </div>
-          <button id="dk_overlay_btn" disabled>
+          <button id="ollin-btn" disabled>
             <i class="off"></i>
           </button>
-          <input id="dk_overlay_scale" type="range" />
-          <span id="dk_overlay_scale_text">x1</span>
-          <input id="dk_overlay_opacity" type="range" />
-          <span id="dk_overlay_opacity_text">0.5</span>
-          <input id="dk_overlay_files" type="file" />
+          <input id="ollin-scale" type="range" />
+          <span id="ollin-scale_text">x1</span>
+          <input id="ollin-opacity" type="range" />
+          <span id="ollin-opacity_text">0.5</span>
+          <input id="ollin-files" type="file" />
         </body>
       </html>
     `;
@@ -119,8 +119,8 @@ describe('Overlay Logic', () => {
 
   describe('투명도 조절', () => {
     test('투명도 값이 0~1 사이어야 함', () => {
-      const opacityInput = document.getElementById('dk_overlay_opacity');
-      const imgLayer = document.getElementById('dk_overlay_img_layer');
+      const opacityInput = document.getElementById('ollin-opacity');
+      const imgLayer = document.getElementById('ollin-img-layer');
 
       const testValues = [0, 0.25, 0.5, 0.75, 1];
 
@@ -134,8 +134,8 @@ describe('Overlay Logic', () => {
 
   describe('배율 조절', () => {
     test('배율 값이 0.5~3 사이어야 함', () => {
-      const scaleInput = document.getElementById('dk_overlay_scale');
-      const imgLayer = document.getElementById('dk_overlay_img_layer');
+      const scaleInput = document.getElementById('ollin-scale');
+      const imgLayer = document.getElementById('ollin-img-layer');
 
       const testValues = [0.5, 1, 1.5, 2, 2.5, 3];
 
@@ -149,8 +149,8 @@ describe('Overlay Logic', () => {
 
   describe('레이어 토글', () => {
     test('레이어가 표시/숨김되어야 함', () => {
-      const imgLayer = document.getElementById('dk_overlay_img_layer');
-      const btn = document.getElementById('dk_overlay_btn');
+      const imgLayer = document.getElementById('ollin-img-layer');
+      const btn = document.getElementById('ollin-btn');
 
       // 초기 상태: 숨김
       expect(imgLayer.style.display).toBe('none');

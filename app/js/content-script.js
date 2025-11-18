@@ -78,7 +78,7 @@
   let elemOffsetY = 0;
 
   const ollin = {
-    handle: {
+    handlers: {
       /**
        * 이미지 파일 로드 및 오버레이 활성화
        * @param {Event} e - File input change event
@@ -189,7 +189,7 @@
       }
     },
 
-    markup: {
+    ui: {
       /**
        * 이미지 오버레이 레이어 DOM 생성
        */
@@ -197,10 +197,10 @@
         const div = doc.createElement('div');
         const img = doc.createElement('img');
 
-        div.id = 'dk_overlay_img_layer';
+        div.id = 'ollin-img-layer';
         div.style.display = 'none';
 
-        img.id = 'dk_overlay_img';
+        img.id = 'ollin-img';
         img.src = '';
         img.alt = '';
         img.draggable = true;
@@ -216,7 +216,7 @@
         const div = doc.createElement('div');
         const tit = doc.createElement('span');
 
-        div.id = 'dk_overlay_controller_toolbar';
+        div.id = 'ollin-controller-toolbar';
         tit.className = 'tit';
         tit.innerText = extension_name;
 
@@ -224,7 +224,7 @@
         const sw = doc.createElement('button');
         const sw_icon = doc.createElement('i');
 
-        sw.id = 'dk_overlay_btn';
+        sw.id = 'ollin-btn';
         sw.className = 'sw';
         sw.disabled = true;
         sw_icon.className = 'off';
@@ -235,7 +235,7 @@
 
         // 파일 입력
         const file = doc.createElement('input');
-        file.id = 'dk_overlay_files';
+        file.id = 'ollin-files';
         file.setAttribute('type', 'file');
         file.setAttribute('accept', 'image/*');
         div.appendChild(file);
@@ -251,14 +251,14 @@
 
         s_icon.className = 'mag';
         s_icon.title = 'ratio';
-        scale.id = 'dk_overlay_scale';
+        scale.id = 'ollin-scale';
         scale.setAttribute('type', 'range');
         scale.max = CONFIG.SCALE_MAX;
         scale.min = CONFIG.SCALE_MIN;
         scale.step = CONFIG.SCALE_STEP;
         scale.value = 1;
         scale.disabled = true;
-        s_txt.id = 'dk_overlay_scale_text';
+        s_txt.id = 'ollin-scale-text';
         s_txt.innerText = 'x1';
 
         sub.appendChild(s_icon);
@@ -272,14 +272,14 @@
 
         o_icon.className = 'opacity';
         o_icon.title = 'opacity';
-        opacity.id = 'dk_overlay_opacity';
+        opacity.id = 'ollin-opacity';
         opacity.setAttribute('type', 'range');
         opacity.max = CONFIG.OPACITY_MAX;
         opacity.min = CONFIG.OPACITY_MIN;
         opacity.step = CONFIG.OPACITY_STEP;
         opacity.value = CONFIG.OPACITY_DEFAULT;
         opacity.disabled = true;
-        o_txt.id = 'dk_overlay_opacity_text';
+        o_txt.id = 'ollin-opacity-text';
         o_txt.innerText = CONFIG.OPACITY_DEFAULT.toString();
 
         sub.appendChild(o_icon);
@@ -436,27 +436,27 @@
      */
     init: () => {
       // DOM 생성
-      ollin.markup.overlay();
-      ollin.markup.control();
+      ollin.ui.overlay();
+      ollin.ui.control();
 
       // DOM 요소 캐싱
-      elements.imgLayer = doc.getElementById('dk_overlay_img_layer');
-      elements.img = doc.getElementById('dk_overlay_img');
-      elements.btn = doc.getElementById('dk_overlay_btn');
-      elements.scale = doc.getElementById('dk_overlay_scale');
-      elements.scaleText = doc.getElementById('dk_overlay_scale_text');
-      elements.opacity = doc.getElementById('dk_overlay_opacity');
-      elements.opacityText = doc.getElementById('dk_overlay_opacity_text');
-      elements.files = doc.getElementById('dk_overlay_files');
+      elements.imgLayer = doc.getElementById('ollin-img-layer');
+      elements.img = doc.getElementById('ollin-img');
+      elements.btn = doc.getElementById('ollin-btn');
+      elements.scale = doc.getElementById('ollin-scale');
+      elements.scaleText = doc.getElementById('ollin-scale-text');
+      elements.opacity = doc.getElementById('ollin-opacity');
+      elements.opacityText = doc.getElementById('ollin-opacity-text');
+      elements.files = doc.getElementById('ollin-files');
 
       // 드래그 기능 초기화
-      ollin.drag.init()('dk_overlay_img_layer');
+      ollin.drag.init()('ollin-img-layer');
 
       // 이벤트 리스너 등록
-      elements.btn.addEventListener('click', ollin.handle.layer);
-      elements.opacity.addEventListener('change', ollin.handle.opacity);
-      elements.scale.addEventListener('change', ollin.handle.scale);
-      elements.files.addEventListener('change', ollin.handle.file);
+      elements.btn.addEventListener('click', ollin.handlers.layer);
+      elements.opacity.addEventListener('change', ollin.handlers.opacity);
+      elements.scale.addEventListener('change', ollin.handlers.scale);
+      elements.files.addEventListener('change', ollin.handlers.file);
     }
   };
 

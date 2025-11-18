@@ -18,8 +18,8 @@ const version = manifest.version;
  * 확장 프로그램 이름과 버전 정보를 페이지에 표시
  */
 function initOptionPage() {
-  const titleElement = document.getElementById('dk_title');
-  const versionElement = document.getElementById('dk_ver');
+  const titleElement = document.getElementById('ollin-title');
+  const versionElement = document.getElementById('ollin-version');
 
   if (titleElement) {
     titleElement.innerText = name;

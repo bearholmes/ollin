@@ -16,8 +16,8 @@ const BLOCKED_URL_PATTERNS = ['chrome://', 'chrome-extension://', 'https://chrom
  * @constant {object}
  */
 const CONTENT_SCRIPTS = {
-  js: ['js/dkoverlay.js'],
-  css: ['css/dkoverlay.css']
+  js: ['js/content-script.js'],
+  css: ['css/content-script.css']
 };
 
 /**
@@ -36,7 +36,7 @@ function isInternalPage(url) {
  */
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: 'option.html' });
+    chrome.tabs.create({ url: 'options.html' });
   }
 });
 
