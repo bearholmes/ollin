@@ -6,7 +6,7 @@
  * @license MIT
  */
 
-import { createOllin } from '../src/core/ollin-core.js';
+import { createOllin } from '../src/ollin-core.js';
 
 // Bookmarklet IIFE wrapper
 (function () {

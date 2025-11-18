@@ -6,7 +6,7 @@
  * @license MIT
  */
 
-import { createOllin } from '../../src/core/ollin-core.js';
+import { createOllin } from '../../src/ollin-core.js';
 
 // Get extension name from manifest
 const contentManifest = chrome.runtime.getManifest();

@@ -5,8 +5,8 @@
  * @license MIT
  */
 
-import { CONFIG } from '../shared/constants/config.js';
-import type { Ollin, OllinElements } from '../shared/types/ollin.js';
+import { CONFIG } from './config.js';
+import type { Ollin, OllinElements } from './types.js';
 
 /**
  * Create Ollin overlay instance
