@@ -19,6 +19,20 @@ export default [
       'docs/ollin.js'
     ]
   },
+  // Build scripts and config files (Node.js environment)
+  {
+    files: ['scripts/**/*.js', 'vite.config*.js', 'eslint.config.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      globals: {
+        ...globals.node
+      }
+    },
+    rules: {
+      'no-console': 'off' // Allow console in build scripts
+    }
+  },
   // Test files
   {
     files: ['tests/**/*.js'],
