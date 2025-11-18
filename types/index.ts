@@ -41,3 +41,8 @@ export interface Ollin {
   init: () => void;
   activateOverlay: () => void;
 }
+
+/**
+ * i18n function type for error messages
+ */
+export type I18nFunction = (key: string) => string;

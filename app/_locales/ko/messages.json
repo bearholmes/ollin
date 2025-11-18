@@ -82,5 +82,14 @@
   },
   "txt_guidance_desc_13": {
     "message": "3. '프로그램명 - 확장 프로그램 활성화' 항목에서 단축키 설정"
+  },
+  "error_invalid_file_type": {
+    "message": "이미지 파일만 선택할 수 있습니다."
+  },
+  "error_file_read_failed": {
+    "message": "파일을 읽을 수 없습니다."
+  },
+  "error_image_load_failed": {
+    "message": "이미지 파일을 불러올 수 없습니다."
   }
 }

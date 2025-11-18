@@ -9,7 +9,7 @@
 /**
  * Get localized message from Chrome i18n API
  */
-const i18n = (key: string, substitutions?: string | string[]): string => {
+export const i18n = (key: string, substitutions?: string | string[]): string => {
   if (key === '@@IETF_lang_tag') {
     return i18n('@@ui_locale').replace(/_/g, '-');
   }

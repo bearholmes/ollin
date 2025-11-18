@@ -35,10 +35,11 @@ jobs:
       - name: Build Bookmarklet
         run: npm run build:bookmarklet
 
-      - name: Copy docs to dist
+      - name: Prepare GitHub Pages
         run: |
           mkdir -p dist/pages
-          cp -r docs/* dist/pages/
+          cp bookmarklet/index.html dist/pages/
+          cp bookmarklet/ollin.css dist/pages/
           cp dist/bookmarklet/ollin.js dist/pages/
 
       - name: Setup Pages

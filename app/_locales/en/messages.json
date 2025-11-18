@@ -82,5 +82,14 @@
   },
   "txt_guidance_desc_13": {
     "message": "3. Set the shortcut in the 'Program Name - Enable extension' section"
+  },
+  "error_invalid_file_type": {
+    "message": "Only image files can be selected."
+  },
+  "error_file_read_failed": {
+    "message": "Failed to read the file."
+  },
+  "error_image_load_failed": {
+    "message": "Failed to load the image file."
   }
 }
