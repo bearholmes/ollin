@@ -146,7 +146,15 @@ npm run test:coverage  # 커버리지 확인
 
 # TypeScript
 npm run type-check     # TypeScript 타입 체크
+
+# 배포 (자동화)
+npm run deploy         # 대화형 배포 (버전 업데이트 + 태그 + 푸시)
+npm run deploy:patch   # 패치 버전 배포 (0.6.0 → 0.6.1)
+npm run deploy:minor   # 마이너 버전 배포 (0.6.0 → 0.7.0)
+npm run deploy:major   # 메이저 버전 배포 (0.6.0 → 1.0.0)
 ```
+
+자세한 배포 가이드는 [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)를 참조하세요.
 
 #### Git 커밋 전 자동 검증
 
@@ -338,7 +346,16 @@ npm run test:coverage  # Check coverage
 
 # TypeScript
 npm run type-check     # TypeScript type checking
+
+# Deployment (Automated)
+npm run deploy         # Interactive deployment (version + tag + push)
+npm run deploy:patch   # Patch version (0.6.0 → 0.6.1)
+npm run deploy:minor   # Minor version (0.6.0 → 0.7.0)
+npm run deploy:major   # Major version (0.6.0 → 1.0.0)
 ```
+
+For detailed deployment instructions, see
+[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md).
 
 #### Automated Pre-commit Validation
 
