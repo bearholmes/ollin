@@ -2,284 +2,396 @@
 /* 2017.01.20 ~ 22*/
 
 (function() {
-    //  "use strict";
+    "use strict";
 
-    var doc = document,
-        html = doc.getElementsByTagName("html")[0],
-        body = doc.getElementsByTagName("BODY")[0];
-
-    var getCssProperty = function(elmId, property) {
-        var elem = elmId ? elmId : doc.getElementById(elmId);
-        var prop = window.getComputedStyle(elem, null).getPropertyValue(property);
-        return parseInt(prop);
+    // Constants
+    var CONFIG = {
+        SCALE_MAX: 3,
+        SCALE_MIN: 0.5,
+        SCALE_STEP: 0.5,
+        OPACITY_MIN: 0,
+        OPACITY_MAX: 1,
+        OPACITY_STEP: 0.05,
+        OPACITY_DEFAULT: 0.5,
+        TOOLBAR_HEIGHT: 30,
+        KEYBOARD_MOVE_NORMAL: 1,
+        KEYBOARD_MOVE_FAST: 10,
+        KEY_CODES: {
+            LEFT: 37,
+            UP: 38,
+            RIGHT: 39,
+            DOWN: 40
+        }
     };
 
-    var clickX = 0,
-        clickY = 0,
-        beforeX = 0,
-        beforeY = 0,
-        elemOffsetX = 0,
-        elemOffsetY = 0;
+    var doc = document;
+    var html = doc.getElementsByTagName("html")[0];
+    var body = doc.getElementsByTagName("BODY")[0];
+
+    /**
+     * DOM 요소의 CSS 속성값을 정수로 반환
+     * @param {HTMLElement|string} elmId - DOM 요소 또는 요소 ID
+     * @param {string} property - CSS 속성명
+     * @returns {number} 속성값 (정수)
+     */
+    var getCssProperty = function(elmId, property) {
+        var elem = typeof elmId === 'string' ? doc.getElementById(elmId) : elmId;
+        if (!elem) {
+            console.error('Element not found:', elmId);
+            return 0;
+        }
+        var prop = window.getComputedStyle(elem, null).getPropertyValue(property);
+        return parseInt(prop, 10);
+    };
+
+    /**
+     * 사용자에게 에러 메시지 표시
+     * @param {string} message - 에러 메시지
+     */
+    var showError = function(message) {
+        alert(message);
+    };
+
+    var clickX = 0;
+    var clickY = 0;
+    var beforeX = 0;
+    var beforeY = 0;
+    var elemOffsetX = 0;
+    var elemOffsetY = 0;
 
     var doclang = doc.documentElement.lang;
     var extension_name = "Images overlap with Kitty";
-    if (doclang === "ko" || doclang === "ko-KR" ) {
+    if (doclang === "ko" || doclang === "ko-KR") {
         extension_name = "이미지는 키티가 겹쳐줄거야";
-    };
+    }
 
+    // Cached DOM elements
+    var elements = {
+        imgLayer: null,
+        img: null,
+        btn: null,
+        scale: null,
+        scaleText: null,
+        opacity: null,
+        opacityText: null,
+        files: null
+    };
 
     var ollin = {
         handle: {
+            /**
+             * 이미지 파일 로드 및 오버레이 활성화
+             * @param {Event} e - File input change event
+             */
             file: function(e) {
-                var canvas = doc.getElementById("dk_overlay_img");
-                let layer = doc.getElementById("dk_overlay_img_layer");
-                if (e.target.files && e.target.files[0]) {
-                    var fr = new FileReader();
-                    fr.onload = function(e) {
-                        var img = new Image();
-                        canvas.src = fr.result;
+                var canvas = elements.img;
+                var layer = elements.imgLayer;
 
-                        img.onload = function() {
-                            var iwidth = img.naturalWidth || img.width;
-                            var iheight = img.naturalHeight || img.height;
+                if (!e.target.files || !e.target.files[0]) {
+                    return;
+                }
 
-                            canvas.width = iwidth;
-                            canvas.height = iheight;
-                            layer.style.width = iwidth;
-                            layer.style.height = iheight;
-                            layer.style.left = 0;
-                            layer.style.top = "30px";
-                        }
-                        img.src = fr.result;
+                var file = e.target.files[0];
+
+                // 이미지 파일 타입 검증
+                if (!file.type.match(/image\/(png|jpe?g|gif|svg\+xml|webp)/i)) {
+                    showError('이미지 파일만 선택할 수 있습니다.');
+                    return;
+                }
+
+                var fr = new FileReader();
+
+                fr.onerror = function() {
+                    console.error('파일 읽기 실패:', file.name);
+                    showError('파일을 읽을 수 없습니다.');
+                };
+
+                fr.onload = function(e) {
+                    var img = new Image();
+
+                    img.onerror = function() {
+                        console.error('이미지 로드 실패:', file.name);
+                        showError('이미지 파일을 불러올 수 없습니다.');
                     };
-                    fr.readAsDataURL(e.target.files[0]);
-                }
 
-                var btn_elem = doc.getElementById("dk_overlay_btn");
-                if (btn_elem.disabled == true) {
-                    doc.getElementById("dk_overlay_img_layer").style.display = "block";
-                    btn_elem.childNodes[0].className = "on";
-                    //btn_elem.childNodes[1].innerHTML = "on";
-                    btn_elem.disabled = false;
-                    doc.getElementById("dk_overlay_scale").disabled = false;
-                    doc.getElementById("dk_overlay_opacity").disabled = false;
+                    img.onload = function() {
+                        var iwidth = img.naturalWidth || img.width;
+                        var iheight = img.naturalHeight || img.height;
+
+                        canvas.src = fr.result;
+                        canvas.width = iwidth;
+                        canvas.height = iheight;
+                        layer.style.width = iwidth + 'px';
+                        layer.style.height = iheight + 'px';
+                        layer.style.left = '0';
+                        layer.style.top = CONFIG.TOOLBAR_HEIGHT + 'px';
+
+                        // 오버레이 활성화
+                        ollin.activateOverlay();
+                    };
+
+                    img.src = fr.result;
+                };
+
+                fr.readAsDataURL(file);
+            },
+
+            /**
+             * 오버레이 레이어 및 컨트롤 활성화
+             */
+            activateOverlay: function() {
+                if (elements.btn.disabled === true) {
+                    elements.imgLayer.style.display = "block";
+                    elements.btn.childNodes[0].className = "on";
+                    elements.btn.disabled = false;
+                    elements.scale.disabled = false;
+                    elements.opacity.disabled = false;
                 }
             },
-            opacity: function(e) {
-                console.log('opacity',this.value);
-                doc.getElementById("dk_overlay_img_layer").style.opacity = this.value;
-                doc.getElementById("dk_overlay_opacity_text").innerText = this.value;
+
+            /**
+             * 투명도 조절
+             */
+            opacity: function() {
+                var value = this.value;
+                elements.imgLayer.style.opacity = value;
+                elements.opacityText.innerText = value;
             },
-            scale: function(e) {
-                console.log('scale',this.value);
-                doc.getElementById("dk_overlay_img_layer").style.transform = "scale(" + this.value + ", " + this.value + ")";
-                doc.getElementById("dk_overlay_scale_text").innerText = "x" + this.value;
 
+            /**
+             * 배율 조절 및 위치 보정
+             */
+            scale: function() {
+                var value = parseFloat(this.value);
+                elements.imgLayer.style.transform = "scale(" + value + ", " + value + ")";
+                elements.scaleText.innerText = "x" + value;
 
-                var img_width = getCssProperty(doc.getElementById("dk_overlay_img"), "width");
-                var img_height = getCssProperty(doc.getElementById("dk_overlay_img"), "height");
-                
-                if (this.value === "0.5") {
-                    doc.getElementById("dk_overlay_img_layer").style.top = ((img_height * (parseFloat(this.value * 0.5))) * -1) + 30 + 'px';
-                    doc.getElementById("dk_overlay_img_layer").style.left = (img_width * (parseFloat(this.value * 0.5)))* -1 + 'px';
+                var img_width = getCssProperty(elements.img, "width");
+                var img_height = getCssProperty(elements.img, "height");
+
+                // 배율 변경 시 중앙 정렬 유지를 위한 위치 보정
+                if (value === CONFIG.SCALE_MIN) {
+                    elements.imgLayer.style.top = ((img_height * (value * 0.5)) * -1) + CONFIG.TOOLBAR_HEIGHT + 'px';
+                    elements.imgLayer.style.left = (img_width * (value * 0.5)) * -1 + 'px';
                 } else {
-                    doc.getElementById("dk_overlay_img_layer").style.top = ((img_height * (1 - parseFloat(this.value))) * -0.5) + 30 + "px";
-                    doc.getElementById("dk_overlay_img_layer").style.left = (img_width * (1 - parseFloat(this.value))) * -0.5 + "px";
+                    elements.imgLayer.style.top = ((img_height * (1 - value)) * -0.5) + CONFIG.TOOLBAR_HEIGHT + "px";
+                    elements.imgLayer.style.left = (img_width * (1 - value)) * -0.5 + "px";
                 }
             },
-            layer: function(e) {
-                var overlay_elem = doc.getElementById("dk_overlay_img_layer");
-                var btn_elem = doc.getElementById("dk_overlay_btn");
-                if (overlay_elem.style.display == "block") {
+
+            /**
+             * 오버레이 레이어 표시/숨김 토글
+             */
+            layer: function() {
+                var overlay_elem = elements.imgLayer;
+                var btn_elem = elements.btn;
+
+                if (overlay_elem.style.display === "block") {
                     overlay_elem.style.display = "none";
                     btn_elem.childNodes[0].className = "off";
-                    //btn_elem.childNodes[1].innerHTML = "off";
                 } else {
                     overlay_elem.style.display = "block";
                     btn_elem.childNodes[0].className = "on";
-                    //btn_elem.childNodes[1].innerHTML = "on";
                 }
             }
         },
+
         markup: {
+            /**
+             * CSS 파일 로드
+             */
             css: function() {
                 var link = document.createElement("link");
-                link.href = "https://bearholmes.github.io/ollin//ollin.css";
+                link.href = "https://bearholmes.github.io/ollin/ollin.css";
                 link.type = "text/css";
                 link.rel = "stylesheet";
                 link.media = "all";
                 doc.getElementsByTagName("head")[0].appendChild(link);
             },
+
+            /**
+             * 이미지 오버레이 레이어 DOM 생성
+             */
             overlay: function() {
-                var div = doc.createElement("div"),
-                    img = doc.createElement("img");
+                var div = doc.createElement("div");
+                var img = doc.createElement("img");
+
                 div.id = "dk_overlay_img_layer";
                 div.style.display = "none";
+
                 img.id = "dk_overlay_img";
                 img.src = "";
                 img.alt = "";
+
                 div.draggable = "true";
                 div.appendChild(img);
                 html.appendChild(div);
             },
+
+            /**
+             * 제어 도구모음 DOM 생성
+             */
             control: function() {
-                var div = doc.createElement("div"),
-                    tit = doc.createElement("span");
+                var div = doc.createElement("div");
+                var tit = doc.createElement("span");
+
                 div.id = "dk_overlay_controller_toolbar";
                 tit.className = "tit";
                 tit.innerText = extension_name;
 
-                var sw = doc.createElement("button"),
-                    sw_icon = doc.createElement("i");
-                    //sw_txt = doc.createElement("span");
+                // 토글 버튼
+                var sw = doc.createElement("button");
+                var sw_icon = doc.createElement("i");
+
                 sw.id = "dk_overlay_btn";
                 sw.className = "sw";
                 sw.disabled = true;
                 sw_icon.className = "off";
                 sw.appendChild(sw_icon);
-                //sw_txt.innerText = "off";
-                //sw.appendChild(sw_txt);
+
                 div.appendChild(sw);
                 div.appendChild(tit);
 
+                // 파일 입력
                 var file = doc.createElement("input");
                 file.id = "dk_overlay_files";
                 file.setAttribute("type", "file");
+                file.setAttribute("accept", "image/*");
                 div.appendChild(file);
 
+                // 도구모음 컨테이너
                 var sub = doc.createElement("div");
                 sub.className = "tools";
 
-                var s_icon = doc.createElement("i"),
-                    scale = doc.createElement("input"),
-                    s_txt = doc.createElement("span");
+                // 배율 조절
+                var s_icon = doc.createElement("i");
+                var scale = doc.createElement("input");
+                var s_txt = doc.createElement("span");
+
                 s_icon.className = "mag";
                 s_icon.title = "ratio";
                 scale.id = "dk_overlay_scale";
                 scale.setAttribute("type", "range");
-                scale.max = 3;
-                scale.min = 0.5;
-                scale.step = 0.5;
+                scale.max = CONFIG.SCALE_MAX;
+                scale.min = CONFIG.SCALE_MIN;
+                scale.step = CONFIG.SCALE_STEP;
                 scale.value = 1;
                 scale.disabled = true;
                 s_txt.id = "dk_overlay_scale_text";
                 s_txt.innerText = "x1";
+
                 sub.appendChild(s_icon);
                 sub.appendChild(scale);
                 sub.appendChild(s_txt);
 
-                var o_icon = doc.createElement("i"),
-                    opacity = doc.createElement("input"),
-                    o_txt = doc.createElement("span");
+                // 투명도 조절
+                var o_icon = doc.createElement("i");
+                var opacity = doc.createElement("input");
+                var o_txt = doc.createElement("span");
+
                 o_icon.className = "opacity";
                 o_icon.title = "opacity";
                 opacity.id = "dk_overlay_opacity";
                 opacity.setAttribute("type", "range");
-                opacity.max = 1;
-                opacity.min = 0;
-                opacity.step = 0.05;
-                opacity.value = 0.5;
+                opacity.max = CONFIG.OPACITY_MAX;
+                opacity.min = CONFIG.OPACITY_MIN;
+                opacity.step = CONFIG.OPACITY_STEP;
+                opacity.value = CONFIG.OPACITY_DEFAULT;
                 opacity.disabled = true;
                 o_txt.id = "dk_overlay_opacity_text";
-                o_txt.innerText = "0.5";
+                o_txt.innerText = CONFIG.OPACITY_DEFAULT.toString();
+
                 sub.appendChild(o_icon);
                 sub.appendChild(opacity);
                 sub.appendChild(o_txt);
 
                 div.appendChild(sub);
 
-                body.style.setProperty("transform", "translateY(30px)", "important");
+                // body를 아래로 밀어서 도구모음 공간 확보
+                body.style.setProperty("transform", "translateY(" + CONFIG.TOOLBAR_HEIGHT + "px)", "important");
                 html.appendChild(div);
             }
         },
+
         drag: {
+            /**
+             * 드래그 시작
+             * @param {MouseEvent} event
+             */
             move: function(event) {
                 event.preventDefault();
-                // Set variable to true on mousedown
 
                 var click = event || window.event;
-                if (click.which == 1) {
+                if (click.which === 1) {
                     moving = true;
                 }
+
                 var target = event.target;
-                // Positions cursor in center of element when being dragged, as oposed to the top left
                 var width = target.offsetWidth / 2;
                 var height = target.offsetHeight / 2;
-                // Element follows mouse cursor
+
                 target.addEventListener('mousemove', function(e) {
-                    // Only run if variable is true (this is destroyed on mouseup)
                     if (moving === true) {
-                        var layer = document.getElementById("dk_overlay_img_layer");
-                        // Postion element, minus half width/height as above
+                        var layer = elements.imgLayer;
                         var x = e.clientX - width;
                         var y = e.clientY - height;
-                        // Set style
+
                         layer.style.left = x + "px";
                         layer.style.top = y + "px";
                         layer.style.cursor = "move";
-                    };
+                    }
                 });
             },
+
+            /**
+             * 드래그 종료
+             * @param {MouseEvent} event
+             */
             end: function(event) {
-                // Destroy drag on mouse up
                 moving = false;
                 event.target.removeEventListener('mousemove', false);
-                var layer = document.getElementById("dk_overlay_img_layer");
+                var layer = elements.imgLayer;
                 layer.style.cursor = "pointer";
             },
+
+            /**
+             * 키보드 방향키로 요소 이동
+             * @param {KeyboardEvent} e
+             * @param {HTMLElement} elem
+             */
             key: function(e, elem) {
-                //drag key event - code by 멀린
                 elemOffsetX = getCssProperty(elem, "left");
                 elemOffsetY = getCssProperty(elem, "top");
 
+                var moveStep = e.shiftKey ? CONFIG.KEYBOARD_MOVE_FAST : CONFIG.KEYBOARD_MOVE_NORMAL;
+
                 switch (e.keyCode) {
-                    //left
-                    case 37:
-                        if (!e.shiftKey) {
-                            console.log("left");
-                            elem.style.left = (elemOffsetX - 1) + "px";
-                        } else if (e.shiftKey) {
-                            console.log("shift + left");
-                            elem.style.left = (elemOffsetX - 10) + "px";
-                        }
+                    case CONFIG.KEY_CODES.LEFT:
+                        elem.style.left = (elemOffsetX - moveStep) + "px";
                         e.preventDefault();
                         break;
-                        //up
-                    case 38:
-                        if (!e.shiftKey) {
-                            console.log("up");
-                            elem.style.top = (elemOffsetY - 1) + "px";
-                        } else if (e.shiftKey) {
-                            console.log("shift + up");
-                            elem.style.top = (elemOffsetY - 10) + "px";
-                        }
+
+                    case CONFIG.KEY_CODES.UP:
+                        elem.style.top = (elemOffsetY - moveStep) + "px";
                         e.preventDefault();
                         break;
-                        //right
-                    case 39:
-                        if (!e.shiftKey) {
-                            console.log("right");
-                            elem.style.left = (elemOffsetX + 1) + "px";
-                        } else if (e.shiftKey) {
-                            console.log("shift + right");
-                            elem.style.left = (elemOffsetX + 10) + "px";
-                        }
+
+                    case CONFIG.KEY_CODES.RIGHT:
+                        elem.style.left = (elemOffsetX + moveStep) + "px";
                         e.preventDefault();
                         break;
-                        //down
-                    case 40:
-                        if (!e.shiftKey) {
-                            console.log("down");
-                            elem.style.top = (elemOffsetY + 1) + "px";
-                        } else if (e.shiftKey) {
-                            console.log("shift + down");
-                            elem.style.top = (elemOffsetY + 10) + "px";
-                        }
+
+                    case CONFIG.KEY_CODES.DOWN:
+                        elem.style.top = (elemOffsetY + moveStep) + "px";
                         e.preventDefault();
                         break;
                 }
             }
         },
+
+        /**
+         * Ollin 초기화
+         */
         init: function() {
             ollin.markup.css();
             ollin.markup.overlay();
@@ -287,22 +399,33 @@
 
             var moving = false;
 
-            var layer = doc.getElementById("dk_overlay_img_layer");
+            // DOM 요소 캐싱
+            elements.imgLayer = doc.getElementById("dk_overlay_img_layer");
+            elements.img = doc.getElementById("dk_overlay_img");
+            elements.btn = doc.getElementById("dk_overlay_btn");
+            elements.scale = doc.getElementById("dk_overlay_scale");
+            elements.scaleText = doc.getElementById("dk_overlay_scale_text");
+            elements.opacity = doc.getElementById("dk_overlay_opacity");
+            elements.opacityText = doc.getElementById("dk_overlay_opacity_text");
+            elements.files = doc.getElementById("dk_overlay_files");
+
+            var layer = elements.imgLayer;
             body.addEventListener("keydown", function(e) {
                 ollin.drag.key(e, layer);
             });
 
-            doc.getElementById("dk_overlay_img_layer").addEventListener("mousedown", ollin.drag.move);
-            doc.getElementById("dk_overlay_img_layer").addEventListener("mouseup", ollin.drag.end);
-            doc.getElementById("dk_overlay_img").ondragstart = function() {
+            elements.imgLayer.addEventListener("mousedown", ollin.drag.move);
+            elements.imgLayer.addEventListener("mouseup", ollin.drag.end);
+            elements.img.ondragstart = function() {
                 return false;
             };
 
-            doc.getElementById("dk_overlay_btn").addEventListener("click", ollin.handle.layer);
-            doc.getElementById("dk_overlay_opacity").addEventListener("change", ollin.handle.opacity);
-            doc.getElementById("dk_overlay_scale").addEventListener("change", ollin.handle.scale);
-            doc.getElementById("dk_overlay_files").addEventListener("change", ollin.handle.file);
+            elements.btn.addEventListener("click", ollin.handle.layer);
+            elements.opacity.addEventListener("change", ollin.handle.opacity);
+            elements.scale.addEventListener("change", ollin.handle.scale);
+            elements.files.addEventListener("change", ollin.handle.file);
         }
-    }
+    };
+
     ollin.init();
 })();
