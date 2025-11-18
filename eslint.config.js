@@ -14,8 +14,31 @@ export default [
       'coverage/**',
       '.git/**',
       '*.min.js',
-      '*.bundle.js'
+      '*.bundle.js',
+      'bookmarklet/**',
+      'docs/ollin.js'
     ]
+  },
+  // Test files
+  {
+    files: ['tests/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.webextensions,
+        ...globals.jest,
+        ...globals.node,
+        chrome: 'readonly'
+      }
+    },
+    plugins: {
+      jsdoc: jsdocPlugin
+    },
+    rules: {
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }]
+    }
   },
   // JavaScript files
   {
@@ -44,12 +67,12 @@ export default [
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
 
       // Code Quality
-      'eqeqeq': ['error', 'always'],
-      'curly': ['error', 'all'],
+      eqeqeq: ['error', 'always'],
+      curly: ['error', 'all'],
       'brace-style': ['error', '1tbs'],
-      'indent': ['error', 2, { SwitchCase: 1 }],
-      'quotes': ['error', 'single', { avoidEscape: true }],
-      'semi': ['error', 'always'],
+      indent: ['error', 2, { SwitchCase: 1 }],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      semi: ['error', 'always'],
       'comma-dangle': ['error', 'never'],
       'no-trailing-spaces': 'error',
       'eol-last': ['error', 'always'],
@@ -101,13 +124,13 @@ export default [
 
       // Code Quality
       'no-console': ['warn', { allow: ['error', 'warn'] }],
-      'eqeqeq': ['error', 'always'],
-      'curly': ['error', 'all'],
-      'indent': 'off', // Use TS version
+      eqeqeq: ['error', 'always'],
+      curly: ['error', 'all'],
+      indent: 'off', // Use TS version
       '@typescript-eslint/indent': ['error', 2, { SwitchCase: 1 }],
-      'quotes': 'off', // Use TS version
+      quotes: 'off', // Use TS version
       '@typescript-eslint/quotes': ['error', 'single', { avoidEscape: true }],
-      'semi': 'off', // Use TS version
+      semi: 'off', // Use TS version
       '@typescript-eslint/semi': ['error', 'always']
     }
   },

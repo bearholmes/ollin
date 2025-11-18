@@ -1,86 +1,86 @@
 {
-    "application_title": {
-        "message": "Ollin"
-    },
-    "application_description": {
-        "message": "You can overlay the design."
-    },
-    "application_default_title": {
-        "message": "Ollin"
-    },
-    "txt_version": {
-        "message": "Version"
-    },
-    "txt_introduction": {
-        "message": "Introduction"
-    },
-    "txt_menu": {
-        "message": "Menu"
-    },
-    "txt_guidance": {
-        "message": "Guidance"
-    },
-    "txt_support": {
-        "message": "Support"
-    },
-    "txt_body": {
-        "message": "Body"
-    },
-    "txt_introduction_desc_1": {
-        "message": "You can easily display and move images on the webpage."
-    },
-    "txt_support_desc_1": {
-        "message": "Feel free to contact us with any questions or feedback."
-    },
-    "txt_guidance_tit_1" : {
-        "message": "Basic Features"
-    },
-    "txt_guidance_tit_2" : {
-        "message": "Additional Features"
-    },
-    "txt_guidance_tit_3" : {
-        "message": "Basic Keys"
-    },
-    "txt_guidance_tit_4" : {
-        "message": "Shortcuts"
-    },
-    "txt_guidance_desc_1" : {
-        "message": "1. Select image file"
-    },
-    "txt_guidance_desc_2" : {
-        "message": "2. Adjust position using arrow keys"
-    },
-    "txt_guidance_desc_3" : {
-        "message": "Select from toolbar"
-    },
-    "txt_guidance_desc_4" : {
-        "message": "1. Hide/Show image"
-    },
-    "txt_guidance_desc_5" : {
-        "message": "2. Adjust image ratio"
-    },
-    "txt_guidance_desc_6" : {
-        "message": "3. Adjust image transparency"
-    },
-    "txt_guidance_desc_7" : {
-        "message": "arrow key {up, down, left, right} : 1px move"
-    },
-    "txt_guidance_desc_8" : {
-        "message": "shift + arrow key : 10px move"
-    },
-    "txt_guidance_desc_9" : {
-        "message": "If it doesn't move, click the image and then operate"
-    },
-    "txt_guidance_desc_10" : {
-        "message": "You can quickly switch by setting an activation/deactivation shortcut."
-    },
-    "txt_guidance_desc_11" : {
-        "message": "Go to chrome://extensions/"
-    },
-    "txt_guidance_desc_12" : {
-        "message": "2. Select the 'Keyboard shortcuts' link at the bottom of the extensions list"
-    },
-    "txt_guidance_desc_13" : {
-        "message": "3. Set the shortcut in the 'Program Name - Enable extension' section"
-    }
+  "application_title": {
+    "message": "Ollin"
+  },
+  "application_description": {
+    "message": "You can overlay the design."
+  },
+  "application_default_title": {
+    "message": "Ollin"
+  },
+  "txt_version": {
+    "message": "Version"
+  },
+  "txt_introduction": {
+    "message": "Introduction"
+  },
+  "txt_menu": {
+    "message": "Menu"
+  },
+  "txt_guidance": {
+    "message": "Guidance"
+  },
+  "txt_support": {
+    "message": "Support"
+  },
+  "txt_body": {
+    "message": "Body"
+  },
+  "txt_introduction_desc_1": {
+    "message": "You can easily display and move images on the webpage."
+  },
+  "txt_support_desc_1": {
+    "message": "Feel free to contact us with any questions or feedback."
+  },
+  "txt_guidance_tit_1": {
+    "message": "Basic Features"
+  },
+  "txt_guidance_tit_2": {
+    "message": "Additional Features"
+  },
+  "txt_guidance_tit_3": {
+    "message": "Basic Keys"
+  },
+  "txt_guidance_tit_4": {
+    "message": "Shortcuts"
+  },
+  "txt_guidance_desc_1": {
+    "message": "1. Select image file"
+  },
+  "txt_guidance_desc_2": {
+    "message": "2. Adjust position using arrow keys"
+  },
+  "txt_guidance_desc_3": {
+    "message": "Select from toolbar"
+  },
+  "txt_guidance_desc_4": {
+    "message": "1. Hide/Show image"
+  },
+  "txt_guidance_desc_5": {
+    "message": "2. Adjust image ratio"
+  },
+  "txt_guidance_desc_6": {
+    "message": "3. Adjust image transparency"
+  },
+  "txt_guidance_desc_7": {
+    "message": "arrow key {up, down, left, right} : 1px move"
+  },
+  "txt_guidance_desc_8": {
+    "message": "shift + arrow key : 10px move"
+  },
+  "txt_guidance_desc_9": {
+    "message": "If it doesn't move, click the image and then operate"
+  },
+  "txt_guidance_desc_10": {
+    "message": "You can quickly switch by setting an activation/deactivation shortcut."
+  },
+  "txt_guidance_desc_11": {
+    "message": "Go to chrome://extensions/"
+  },
+  "txt_guidance_desc_12": {
+    "message": "2. Select the 'Keyboard shortcuts' link at the bottom of the extensions list"
+  },
+  "txt_guidance_desc_13": {
+    "message": "3. Set the shortcut in the 'Program Name - Enable extension' section"
+  }
 }

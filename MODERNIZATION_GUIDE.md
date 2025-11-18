@@ -2,8 +2,7 @@
 
 > 최신 JavaScript/TypeScript 생태계 트렌드에 맞춘 프로젝트 현대화
 
-**버전**: 0.5.0
-**작성일**: 2025-11-18
+**버전**: 0.5.0 **작성일**: 2025-11-18
 
 ---
 
@@ -48,14 +47,14 @@
 
 ### 핵심 도구
 
-| 도구 | 버전 | 용도 |
-|------|------|------|
-| **TypeScript** | ^5.7.2 | 타입 안전성 |
-| **ESLint** | ^9.16.0 | 코드 린팅 |
-| **Prettier** | ^3.4.2 | 코드 포맷팅 |
-| **Husky** | ^9.1.7 | Git Hooks |
+| 도구            | 버전     | 용도               |
+| --------------- | -------- | ------------------ |
+| **TypeScript**  | ^5.7.2   | 타입 안전성        |
+| **ESLint**      | ^9.16.0  | 코드 린팅          |
+| **Prettier**    | ^3.4.2   | 코드 포맷팅        |
+| **Husky**       | ^9.1.7   | Git Hooks          |
 | **lint-staged** | ^15.2.10 | 스테이징 파일 검증 |
-| **Jest** | ^29.7.0 | 테스트 |
+| **Jest**        | ^29.7.0  | 테스트             |
 
 ### 라이브러리 선택 기준
 
@@ -113,6 +112,7 @@ git commit -m "feat: Add new feature"
 ### 3. Pre-commit Hook
 
 `.husky/pre-commit`:
+
 ```bash
 #!/usr/bin/env sh
 
@@ -126,6 +126,7 @@ fi
 ```
 
 **동작:**
+
 1. 스테이징된 `.js`, `.ts` 파일에 ESLint 실행
 2. 스테이징된 모든 파일에 Prettier 실행
 3. `.ts` 파일이 있으면 `tsc --noEmit` 실행
@@ -146,12 +147,13 @@ import tsParser from '@typescript-eslint/parser';
 import prettier from 'eslint-config-prettier';
 
 export default [
-  js.configs.recommended,
+  js.configs.recommended
   // ... TypeScript, Prettier 통합
 ];
 ```
 
 **주요 규칙:**
+
 - ✅ `no-var`: var 사용 금지
 - ✅ `prefer-const`: const 사용 강제
 - ✅ `eqeqeq`: 엄격한 비교 (`===`)
@@ -161,6 +163,7 @@ export default [
 ### Prettier 설정
 
 **.prettierrc.json**:
+
 ```json
 {
   "semi": true,
@@ -174,16 +177,12 @@ export default [
 ### lint-staged 설정
 
 **package.json**:
+
 ```json
 {
   "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,css,html}": [
-      "prettier --write"
-    ]
+    "*.{js,ts}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,css,html}": ["prettier --write"]
   }
 }
 ```
@@ -309,6 +308,7 @@ const CONFIG = { ... };
 ### Vite 설정 (예정)
 
 **vite.config.ts**:
+
 ```typescript
 import { defineConfig } from 'vite';
 import path from 'path';
@@ -319,8 +319,11 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        'content-script': path.resolve(__dirname, 'src/chrome/content-script.ts'),
-        'background': path.resolve(__dirname, 'src/chrome/background.ts')
+        'content-script': path.resolve(
+          __dirname,
+          'src/chrome/content-script.ts'
+        ),
+        background: path.resolve(__dirname, 'src/chrome/background.ts')
       }
     }
   },
@@ -354,6 +357,7 @@ export default defineConfig({
 ### GitHub Actions Workflow (예정)
 
 **.github/workflows/ci.yml**:
+
 ```yaml
 name: CI
 
@@ -399,6 +403,7 @@ jobs:
 ### 1. Modern Syntax
 
 #### Optional Chaining (`?.`)
+
 ```typescript
 // Before
 const value = obj && obj.prop && obj.prop.nested;
@@ -408,17 +413,20 @@ const value = obj?.prop?.nested;
 ```
 
 #### Nullish Coalescing (`??`)
+
 ```typescript
 // Before
-const value = options.timeout !== null && options.timeout !== undefined
-  ? options.timeout
-  : 5000;
+const value =
+  options.timeout !== null && options.timeout !== undefined
+    ? options.timeout
+    : 5000;
 
 // After
 const value = options.timeout ?? 5000;
 ```
 
 #### Template Literals
+
 ```typescript
 // Before
 const message = 'Scale: x' + value;
@@ -430,6 +438,7 @@ const message = `Scale: x${value}`;
 ### 2. Modern APIs
 
 #### Fetch API
+
 ```typescript
 // 현대적인 HTTP 요청
 const response = await fetch('/api/data');
@@ -437,6 +446,7 @@ const data = await response.json();
 ```
 
 #### Async/Await
+
 ```typescript
 // Before
 fr.readAsDataURL(file);
@@ -511,16 +521,16 @@ const handleFileSelect = async (event: Event): Promise<void> => {
 };
 
 // ❌ Bad
-var handle_file = function(e) {
+var handle_file = function (e) {
   var file = e.target.files[0];
   if (file) {
     var fr = new FileReader();
-    fr.onload = function(e) {
+    fr.onload = function (e) {
       // ...
-    }
+    };
     fr.readAsDataURL(file);
   }
-}
+};
 ```
 
 ### 2. 타입 정의
@@ -565,6 +575,7 @@ try {
 ## 마이그레이션 체크리스트
 
 ### Phase 1: 설정 (완료 ✅)
+
 - [x] package.json 업데이트
 - [x] ESLint 설정
 - [x] Prettier 설정
@@ -573,6 +584,7 @@ try {
 - [x] .gitignore 업데이트
 
 ### Phase 2: 코드 현대화 (진행 중 🔄)
+
 - [ ] 파일명 변경 (네이밍 컨벤션)
 - [ ] ID/클래스명 변경
 - [ ] var → const/let
@@ -581,6 +593,7 @@ try {
 - [ ] 템플릿 리터럴 사용
 
 ### Phase 3: TypeScript 전환 (계획 📋)
+
 - [ ] 타입 정의 파일 작성
 - [ ] 유틸리티 함수 → `.ts`
 - [ ] 핵심 로직 → `.ts`
@@ -588,12 +601,14 @@ try {
 - [ ] 테스트 파일 → `.ts`
 
 ### Phase 4: 빌드 시스템 (계획 📋)
+
 - [ ] Vite 설정
 - [ ] 이중 빌드 (Chrome + Bookmarklet)
 - [ ] Source maps
 - [ ] Tree shaking
 
 ### Phase 5: CI/CD (계획 📋)
+
 - [ ] GitHub Actions 설정
 - [ ] 자동 테스트
 - [ ] 자동 배포
@@ -604,21 +619,23 @@ try {
 ## 참고 자료
 
 ### 공식 문서
+
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [ESLint v9 Docs](https://eslint.org/docs/latest/)
 - [Prettier Docs](https://prettier.io/docs/en/)
 - [Husky Docs](https://typicode.github.io/husky/)
 
 ### 스타일 가이드
+
 - [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 
 ### 현대 JavaScript
+
 - [MDN Web Docs](https://developer.mozilla.org/)
 - [JavaScript.info](https://javascript.info/)
 - [ES6 Features](https://github.com/lukehoban/es6features)
 
 ---
 
-**마지막 업데이트**: 2025-11-18
-**다음 리뷰**: TypeScript 전환 후
+**마지막 업데이트**: 2025-11-18 **다음 리뷰**: TypeScript 전환 후

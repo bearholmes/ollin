@@ -49,16 +49,6 @@
     /* Chrome Extension Types */
     "types": ["chrome", "jest"]
   },
-  "include": [
-    "src/**/*",
-    "app/**/*",
-    "tests/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "coverage",
-    "bookmarklet",
-    "docs"
-  ]
+  "include": ["src/**/*", "app/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist", "coverage", "bookmarklet", "docs"]
 }

@@ -9,6 +9,7 @@ docs/
 ```
 
 **문제점:**
+
 - 정적 HTML 유지보수 어려움
 - 북마클릿 설명 페이지만 존재
 - 반응형 디자인 부족
@@ -21,14 +22,15 @@ docs/
 
 ### 왜 Svelte인가?
 
-| 프레임워크 | 번들 크기 | 학습 곡선 | 성능 | GitHub Pages 적합성 |
-|-----------|----------|----------|------|-------------------|
-| **Svelte** | ⭐⭐⭐⭐⭐ 작음 | ⭐⭐⭐⭐ 쉬움 | ⭐⭐⭐⭐⭐ | ✅ 최적 |
-| React | ⭐⭐ 큼 | ⭐⭐⭐ 보통 | ⭐⭐⭐⭐ | △ |
-| Vue | ⭐⭐⭐ 보통 | ⭐⭐⭐⭐ 쉬움 | ⭐⭐⭐⭐ | ✅ 좋음 |
-| Vanilla JS | ⭐⭐⭐⭐⭐ 최소 | ⭐⭐ 어려움 | ⭐⭐⭐ | △ |
+| 프레임워크 | 번들 크기       | 학습 곡선     | 성능       | GitHub Pages 적합성 |
+| ---------- | --------------- | ------------- | ---------- | ------------------- |
+| **Svelte** | ⭐⭐⭐⭐⭐ 작음 | ⭐⭐⭐⭐ 쉬움 | ⭐⭐⭐⭐⭐ | ✅ 최적             |
+| React      | ⭐⭐ 큼         | ⭐⭐⭐ 보통   | ⭐⭐⭐⭐   | △                   |
+| Vue        | ⭐⭐⭐ 보통     | ⭐⭐⭐⭐ 쉬움 | ⭐⭐⭐⭐   | ✅ 좋음             |
+| Vanilla JS | ⭐⭐⭐⭐⭐ 최소 | ⭐⭐ 어려움   | ⭐⭐⭐     | △                   |
 
 **Svelte 장점:**
+
 - ✅ 컴파일 타임 최적화 → 런타임 번들 최소
 - ✅ 간단한 문법 (HTML + CSS + JS)
 - ✅ 반응형 기본 내장
@@ -86,6 +88,7 @@ ollin/
 ## SvelteKit 설정
 
 ### svelte.config.js
+
 ```javascript
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
@@ -117,6 +120,7 @@ export default config;
 ```
 
 ### package.json (업데이트)
+
 ```json
 {
   "scripts": {
@@ -147,6 +151,7 @@ export default config;
 ## Svelte 페이지 예시
 
 ### src/pages/routes/+page.svelte (메인 페이지)
+
 ```svelte
 <script>
   import { onMount } from 'svelte';
@@ -251,6 +256,7 @@ export default config;
 ```
 
 ### src/pages/routes/demo/+page.svelte (데모 페이지)
+
 ```svelte
 <script>
   import { onMount } from 'svelte';
@@ -315,6 +321,7 @@ export default config;
 ## 제안 2: GitHub Actions로 자동 배포
 
 ### .github/workflows/deploy.yml
+
 ```yaml
 name: Build and Deploy
 
@@ -375,12 +382,14 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/pages
-          cname: ollin.yoursite.com  # (선택) 커스텀 도메인
+          cname: ollin.yoursite.com # (선택) 커스텀 도메인
 
   release:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[release]')
+    if:
+      github.ref == 'refs/heads/main' &&
+      contains(github.event.head_commit.message, '[release]')
 
     steps:
       - name: Checkout
@@ -411,6 +420,7 @@ jobs:
 ## 배포 워크플로우
 
 ### 개발 중
+
 ```bash
 # 로컬 개발
 npm run dev:pages
@@ -424,6 +434,7 @@ npm run dev:bookmarklet
 ```
 
 ### PR 생성 시
+
 ```bash
 git checkout -b feature/new-feature
 git add .
@@ -432,11 +443,13 @@ git push origin feature/new-feature
 ```
 
 **GitHub Actions 자동 실행:**
+
 1. ✅ 테스트 실행
 2. ✅ 빌드 검증
 3. ✅ 아티팩트 생성 (미리보기 가능)
 
 ### Main 브랜치 머지 시
+
 ```bash
 git checkout main
 git merge feature/new-feature
@@ -444,18 +457,21 @@ git push origin main
 ```
 
 **GitHub Actions 자동 실행:**
+
 1. ✅ 전체 빌드
 2. ✅ GitHub Pages 자동 배포
 3. ✅ 아티팩트 업로드
 4. (선택) Release 생성
 
 ### 릴리즈 배포 시
+
 ```bash
 git commit -m "chore: [release] v0.5.0"
 git push origin main
 ```
 
 **GitHub Actions 자동 실행:**
+
 1. ✅ 빌드
 2. ✅ GitHub Pages 배포
 3. ✅ GitHub Release 생성
@@ -480,6 +496,7 @@ https://bearholmes.github.io/ollin/
 ## SEO 최적화
 
 ### src/pages/app.html
+
 ```html
 <!DOCTYPE html>
 <html lang="ko">
@@ -488,19 +505,34 @@ https://bearholmes.github.io/ollin/
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- SEO -->
-    <meta name="description" content="UI 개발자를 위한 디자인 오버레이 도구. 웹 페이지 위에 디자인 시안을 표시하여 픽셀 퍼펙트 구현을 도와줍니다." />
-    <meta name="keywords" content="UI, 디자인, 오버레이, 개발도구, Chrome Extension" />
+    <meta
+      name="description"
+      content="UI 개발자를 위한 디자인 오버레이 도구. 웹 페이지 위에 디자인 시안을 표시하여 픽셀 퍼펙트 구현을 도와줍니다."
+    />
+    <meta
+      name="keywords"
+      content="UI, 디자인, 오버레이, 개발도구, Chrome Extension"
+    />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Ollin - UI 개발자를 위한 디자인 오버레이 도구" />
-    <meta property="og:description" content="웹 페이지 위에 디자인 시안을 오버레이하여 픽셀 퍼펙트 구현" />
+    <meta
+      property="og:title"
+      content="Ollin - UI 개발자를 위한 디자인 오버레이 도구"
+    />
+    <meta
+      property="og:description"
+      content="웹 페이지 위에 디자인 시안을 오버레이하여 픽셀 퍼펙트 구현"
+    />
     <meta property="og:image" content="%sveltekit.assets%/og-image.png" />
     <meta property="og:url" content="https://bearholmes.github.io/ollin/" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ollin" />
-    <meta name="twitter:description" content="UI 개발자를 위한 디자인 오버레이 도구" />
+    <meta
+      name="twitter:description"
+      content="UI 개발자를 위한 디자인 오버레이 도구"
+    />
 
     %sveltekit.head%
   </head>
@@ -515,12 +547,14 @@ https://bearholmes.github.io/ollin/
 ## 성능 최적화
 
 ### Svelte 번들 크기
+
 ```
 Before (정적 HTML):  ~5KB
 After (Svelte):      ~15KB (압축 후)
 ```
 
 **최적화 기법:**
+
 - ✅ 코드 스플리팅 (라우트별 분리)
 - ✅ Tree shaking (미사용 코드 제거)
 - ✅ Prerendering (정적 HTML 생성)
@@ -531,38 +565,42 @@ After (Svelte):      ~15KB (압축 후)
 
 ## 비교표
 
-| 항목 | 현재 (정적 HTML) | Svelte + CI/CD |
-|------|-----------------|----------------|
-| **유지보수** | 어려움 | 쉬움 |
-| **반응형** | 수동 | 자동 |
-| **SEO** | 기본 | 최적화 |
-| **배포** | 수동 | 자동 |
-| **번들 크기** | 5KB | 15KB |
-| **개발 경험** | 낮음 | 높음 |
-| **확장성** | 낮음 | 높음 |
+| 항목          | 현재 (정적 HTML) | Svelte + CI/CD |
+| ------------- | ---------------- | -------------- |
+| **유지보수**  | 어려움           | 쉬움           |
+| **반응형**    | 수동             | 자동           |
+| **SEO**       | 기본             | 최적화         |
+| **배포**      | 수동             | 자동           |
+| **번들 크기** | 5KB              | 15KB           |
+| **개발 경험** | 낮음             | 높음           |
+| **확장성**    | 낮음             | 높음           |
 
 ---
 
 ## 마이그레이션 계획
 
 ### Phase 1: SvelteKit 설정 (0.5일)
+
 1. ✅ SvelteKit 설치
 2. ✅ svelte.config.js 작성
 3. ✅ 기본 라우트 생성
 4. ✅ 빌드 테스트
 
 ### Phase 2: 페이지 마이그레이션 (1일)
+
 1. ✅ 메인 페이지 (Svelte 컴포넌트)
 2. ✅ 데모 페이지 (Ollin 통합)
 3. ✅ 문서 페이지
 4. ✅ 레이아웃 및 스타일
 
 ### Phase 3: CI/CD 설정 (0.5일)
+
 1. ✅ GitHub Actions 워크플로우 작성
 2. ✅ 자동 배포 테스트
 3. ✅ 브랜치 보호 규칙 설정
 
 ### Phase 4: 테스트 및 최적화 (0.5일)
+
 1. ✅ 성능 측정 (Lighthouse)
 2. ✅ SEO 검증
 3. ✅ 크로스 브라우저 테스트
@@ -576,16 +614,19 @@ After (Svelte):      ~15KB (압축 후)
 Svelte가 부담스럽다면:
 
 ### 옵션 1: Astro (추천)
+
 - 정적 사이트 생성에 최적화
 - 번들 크기 더 작음 (Svelte보다)
 - Svelte 컴포넌트 사용 가능
 
 ### 옵션 2: 11ty (Eleventy)
+
 - 가장 가벼움
 - 템플릿 엔진 기반
 - 학습 곡선 낮음
 
 ### 옵션 3: 현재 유지 + 자동화
+
 - HTML은 그대로
 - GitHub Actions만 추가
 - 가장 간단
@@ -597,6 +638,7 @@ Svelte가 부담스럽다면:
 **추천**: Svelte + GitHub Actions
 
 **이유:**
+
 1. ✅ 유지보수 용이 (컴포넌트 기반)
 2. ✅ 자동 배포 (main 머지 시)
 3. ✅ 현대적인 개발 경험
@@ -604,6 +646,7 @@ Svelte가 부담스럽다면:
 5. ✅ 확장 가능한 구조
 
 **우선순위:**
+
 1. **즉시**: GitHub Actions 설정 (자동 배포)
 2. **단기**: Svelte 마이그레이션
 3. **중기**: 데모 페이지 강화
@@ -611,5 +654,4 @@ Svelte가 부담스럽다면:
 
 ---
 
-**작성일**: 2025-11-18
-**작성자**: AI Analysis (Claude Code)
+**작성일**: 2025-11-18 **작성자**: AI Analysis (Claude Code)

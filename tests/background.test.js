@@ -16,7 +16,7 @@ describe('Background Script', () => {
         'chrome-extension://',
         'https://chrome.google.com'
       ];
-      return BLOCKED_URL_PATTERNS.some(pattern => url.indexOf(pattern) === 0);
+      return BLOCKED_URL_PATTERNS.some((pattern) => url.indexOf(pattern) === 0);
     };
 
     test('chrome:// URL을 차단해야 함', () => {
@@ -41,11 +41,6 @@ describe('Background Script', () => {
 
   describe('Content Script 주입', () => {
     test('일반 페이지에서 스크립트가 주입되어야 함', () => {
-      const mockTab = {
-        id: 1,
-        url: 'https://www.example.com'
-      };
-
       // executeScript이 성공적으로 호출되어야 함
       expect(chrome.scripting.executeScript).toBeDefined();
       expect(chrome.scripting.insertCSS).toBeDefined();
@@ -54,10 +49,6 @@ describe('Background Script', () => {
 
   describe('확장 프로그램 설치', () => {
     test('첫 설치 시 옵션 페이지가 열려야 함', () => {
-      const mockDetails = {
-        reason: 'install'
-      };
-
       // onInstalled 리스너가 등록되어야 함
       expect(chrome.runtime.onInstalled.addListener).toBeDefined();
     });

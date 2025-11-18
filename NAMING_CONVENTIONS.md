@@ -1,13 +1,16 @@
 # Ollin 네이밍 컨벤션 가이드
 
 ## 목적
-프로젝트 전체에서 일관된 네이밍 규칙을 사용하여 코드 가독성과 유지보수성을 높입니다.
+
+프로젝트 전체에서 일관된 네이밍 규칙을 사용하여 코드 가독성과 유지보수성을
+높입니다.
 
 ---
 
 ## 1. 파일 네이밍
 
 ### 규칙
+
 - **케밥 케이스 (kebab-case)** 사용
 - 소문자만 사용
 - 목적을 명확히 표현
@@ -15,11 +18,11 @@
 
 ### Before / After
 
-| Before | After | 이유 |
-|--------|-------|------|
+| Before         | After               | 이유                          |
+| -------------- | ------------------- | ----------------------------- |
 | `dkoverlay.js` | `content-script.js` | "dk" 의미 불명확, 목적 명확화 |
-| `option.js` | `options.js` | 복수형이 더 적절 |
-| `i18n.js` | `i18n.js` | (유지, 이미 명확함) |
+| `option.js`    | `options.js`        | 복수형이 더 적절              |
+| `i18n.js`      | `i18n.js`           | (유지, 이미 명확함)           |
 
 ### 파일명 패턴
 
@@ -28,12 +31,14 @@
 ```
 
 **예시 (app/js/):**
+
 - `content-script.js` - Chrome Extension content script
 - `background.js` - Service Worker
 - `options.js` - 옵션 페이지
 - `i18n.js` - 다국어 지원
 
 **예시 (src/core/):**
+
 - `index.js` / `core.js` - 핵심 로직 export
 - `utils.js` - 유틸리티 함수
 - `config.js` - 설정 상수
@@ -46,23 +51,24 @@
 ## 2. HTML ID 네이밍
 
 ### 규칙
+
 - **케밥 케이스 (kebab-case)** 사용
 - `ollin-` 접두사 사용 (네임스페이스)
 - 계층 구조 표현
 
 ### Before / After
 
-| Before | After | 설명 |
-|--------|-------|------|
-| `dk_overlay_img_layer` | `ollin-layer` | 간결하고 명확 |
-| `dk_overlay_img` | `ollin-image` | 간결 |
-| `dk_overlay_btn` | `ollin-toggle-btn` | 목적 명확 |
-| `dk_overlay_scale` | `ollin-scale-slider` | 타입 명시 |
-| `dk_overlay_scale_text` | `ollin-scale-value` | 의미 명확 |
-| `dk_overlay_opacity` | `ollin-opacity-slider` | 타입 명시 |
-| `dk_overlay_opacity_text` | `ollin-opacity-value` | 의미 명확 |
-| `dk_overlay_files` | `ollin-file-input` | 타입 명시 |
-| `dk_overlay_controller_toolbar` | `ollin-toolbar` | 간결 |
+| Before                          | After                  | 설명          |
+| ------------------------------- | ---------------------- | ------------- |
+| `dk_overlay_img_layer`          | `ollin-layer`          | 간결하고 명확 |
+| `dk_overlay_img`                | `ollin-image`          | 간결          |
+| `dk_overlay_btn`                | `ollin-toggle-btn`     | 목적 명확     |
+| `dk_overlay_scale`              | `ollin-scale-slider`   | 타입 명시     |
+| `dk_overlay_scale_text`         | `ollin-scale-value`    | 의미 명확     |
+| `dk_overlay_opacity`            | `ollin-opacity-slider` | 타입 명시     |
+| `dk_overlay_opacity_text`       | `ollin-opacity-value`  | 의미 명확     |
+| `dk_overlay_files`              | `ollin-file-input`     | 타입 명시     |
+| `dk_overlay_controller_toolbar` | `ollin-toolbar`        | 간결          |
 
 ### ID 패턴
 
@@ -71,6 +77,7 @@ ollin-{element}-{type}
 ```
 
 **예시:**
+
 - `ollin-layer` - 오버레이 레이어
 - `ollin-image` - 이미지 요소
 - `ollin-toggle-btn` - 토글 버튼
@@ -86,24 +93,26 @@ ollin-{element}-{type}
 ## 3. CSS 클래스 네이밍
 
 ### 규칙
+
 - **BEM (Block Element Modifier)** 또는 **케밥 케이스**
 - `ollin-` 접두사 사용
 
 ### Before / After
 
-| Before | After (BEM) | After (케밥 케이스) |
-|--------|-------------|-------------------|
-| `tit` | `ollin__title` | `ollin-title` |
-| `sw` | `ollin__toggle` | `ollin-toggle` |
-| `mag` | `ollin__scale-icon` | `ollin-scale-icon` |
-| `opacity` | `ollin__opacity-icon` | `ollin-opacity-icon` |
-| `tools` | `ollin__toolbar` | `ollin-toolbar` |
-| `on` | `ollin__toggle--active` | `ollin-toggle-active` |
-| `off` | `ollin__toggle--inactive` | `ollin-toggle-inactive` |
+| Before    | After (BEM)               | After (케밥 케이스)     |
+| --------- | ------------------------- | ----------------------- |
+| `tit`     | `ollin__title`            | `ollin-title`           |
+| `sw`      | `ollin__toggle`           | `ollin-toggle`          |
+| `mag`     | `ollin__scale-icon`       | `ollin-scale-icon`      |
+| `opacity` | `ollin__opacity-icon`     | `ollin-opacity-icon`    |
+| `tools`   | `ollin__toolbar`          | `ollin-toolbar`         |
+| `on`      | `ollin__toggle--active`   | `ollin-toggle-active`   |
+| `off`     | `ollin__toggle--inactive` | `ollin-toggle-inactive` |
 
 ### 선택: BEM vs 케밥 케이스
 
 #### 옵션 1: BEM (추천)
+
 ```css
 /* Block */
 .ollin { ... }
@@ -120,6 +129,7 @@ ollin-{element}-{type}
 ```
 
 #### 옵션 2: 케밥 케이스 (간단)
+
 ```css
 .ollin-layer { ... }
 .ollin-image { ... }
@@ -138,6 +148,7 @@ ollin-{element}-{type}
 ### 4.1 변수
 
 #### 규칙
+
 - **카멜 케이스 (camelCase)** 사용
 - 명사형
 
@@ -154,6 +165,7 @@ const imageWidth;
 ```
 
 #### 상수
+
 - **대문자 스네이크 케이스 (UPPER_SNAKE_CASE)**
 
 ```javascript
@@ -169,39 +181,41 @@ const OPACITY_STEP = 0.05;
 ### 4.2 함수
 
 #### 규칙
+
 - **카멜 케이스 (camelCase)** 사용
 - 동사로 시작
 
 ```javascript
 // Before
-ollin.handle.file()
-ollin.handle.opacity()
-ollin.handle.scale()
-ollin.handle.layer()
+ollin.handle.file();
+ollin.handle.opacity();
+ollin.handle.scale();
+ollin.handle.layer();
 
 // After
-ollin.handlers.onFileSelect()
-ollin.handlers.onOpacityChange()
-ollin.handlers.onScaleChange()
-ollin.handlers.onLayerToggle()
+ollin.handlers.onFileSelect();
+ollin.handlers.onOpacityChange();
+ollin.handlers.onScaleChange();
+ollin.handlers.onLayerToggle();
 ```
 
 #### 함수명 패턴
 
-| 동사 | 의미 | 예시 |
-|------|------|------|
-| `get` | 값을 반환 | `getCssProperty()` |
-| `set` | 값을 설정 | `setOpacity()` |
-| `is` / `has` | boolean 반환 | `isVisible()`, `hasError()` |
-| `create` | 요소 생성 | `createToolbar()` |
-| `init` | 초기화 | `initOverlay()` |
-| `on` | 이벤트 핸들러 | `onFileSelect()` |
-| `handle` | 이벤트 처리 | `handleDragStart()` |
-| `show` / `hide` | 표시/숨김 | `showLayer()`, `hideLayer()` |
+| 동사            | 의미          | 예시                         |
+| --------------- | ------------- | ---------------------------- |
+| `get`           | 값을 반환     | `getCssProperty()`           |
+| `set`           | 값을 설정     | `setOpacity()`               |
+| `is` / `has`    | boolean 반환  | `isVisible()`, `hasError()`  |
+| `create`        | 요소 생성     | `createToolbar()`            |
+| `init`          | 초기화        | `initOverlay()`              |
+| `on`            | 이벤트 핸들러 | `onFileSelect()`             |
+| `handle`        | 이벤트 처리   | `handleDragStart()`          |
+| `show` / `hide` | 표시/숨김     | `showLayer()`, `hideLayer()` |
 
 ### 4.3 객체/모듈
 
 #### 규칙
+
 - **파스칼 케이스 (PascalCase)** - 생성자, 클래스
 - **카멜 케이스 (camelCase)** - 일반 객체
 
@@ -221,6 +235,7 @@ class OllinOverlay { ... }
 ## 5. 객체 구조 네이밍
 
 ### Before
+
 ```javascript
 var ollin = {
   handle: { ... },    // 모호함
@@ -230,6 +245,7 @@ var ollin = {
 ```
 
 ### After
+
 ```javascript
 const ollinOverlay = {
   config: CONFIG,
@@ -277,7 +293,7 @@ const ollinOverlay = {
  * const leftPosition = getCssProperty('ollin-layer', 'left');
  * const topPosition = getCssProperty(element, 'top');
  */
-const getCssProperty = function(elementOrId, property) {
+const getCssProperty = function (elementOrId, property) {
   // ...
 };
 ```
@@ -287,6 +303,7 @@ const getCssProperty = function(elementOrId, property) {
 ## 7. 전체 변환 매핑
 
 ### IDs (HTML)
+
 ```javascript
 const IDS = {
   LAYER: 'ollin-layer',
@@ -302,6 +319,7 @@ const IDS = {
 ```
 
 ### Classes (CSS)
+
 ```javascript
 const CLASSES = {
   TITLE: 'ollin-title',
@@ -319,12 +337,13 @@ const CLASSES = {
 ## 8. 실제 적용 예시
 
 ### Before (app/js/dkoverlay.js)
+
 ```javascript
 var ollin = {
   handle: {
-    file: function(e) {
-      var canvas = doc.getElementById("dk_overlay_img");
-      var btn_elem = doc.getElementById("dk_overlay_btn");
+    file: function (e) {
+      var canvas = doc.getElementById('dk_overlay_img');
+      var btn_elem = doc.getElementById('dk_overlay_btn');
       // ...
     }
   }
@@ -332,10 +351,11 @@ var ollin = {
 ```
 
 ### After (app/js/ollin-content-script.js)
+
 ```javascript
 const ollinOverlay = {
   handlers: {
-    onFileSelect: function(event) {
+    onFileSelect: function (event) {
       const imageElement = document.getElementById(IDS.IMAGE);
       const toggleButton = document.getElementById(IDS.TOGGLE_BTN);
       // ...
@@ -372,6 +392,4 @@ const ollinOverlay = {
 
 ---
 
-**작성일**: 2025-11-18
-**버전**: 1.0.0
-**적용 범위**: 전체 프로젝트
+**작성일**: 2025-11-18 **버전**: 1.0.0 **적용 범위**: 전체 프로젝트

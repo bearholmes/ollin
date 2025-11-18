@@ -18,8 +18,8 @@ describe('Option Page', () => {
       const name = manifest.name;
       const version = manifest.version;
 
-      const titleElement = document.getElementById("dk_title");
-      const versionElement = document.getElementById("dk_ver");
+      const titleElement = document.getElementById('dk_title');
+      const versionElement = document.getElementById('dk_ver');
 
       if (titleElement) {
         titleElement.innerText = name;
@@ -47,8 +47,8 @@ describe('Option Page', () => {
       const name = manifest.name;
       const version = manifest.version;
 
-      const titleElement = document.getElementById("dk_title");
-      const versionElement = document.getElementById("dk_ver");
+      const titleElement = document.getElementById('dk_title');
+      const versionElement = document.getElementById('dk_ver');
 
       if (titleElement) {
         titleElement.innerText = name;

@@ -2,6 +2,7 @@
  * Jest 테스트 환경 설정
  * Chrome Extension API 모킹
  */
+/* eslint-env node */
 
 // Chrome Extension API 모킹
 global.chrome = {
@@ -29,8 +30,8 @@ global.chrome = {
   i18n: {
     getMessage: jest.fn((key) => {
       const messages = {
-        'application_title': 'Ollin',
-        'application_default_title': 'Ollin - Design Overlay Tool'
+        application_title: 'Ollin',
+        application_default_title: 'Ollin - Design Overlay Tool'
       };
       return messages[key] || key;
     })
@@ -44,7 +45,7 @@ global.FileReader = class FileReader {
     this.onerror = null;
   }
 
-  readAsDataURL(file) {
+  readAsDataURL(_file) {
     setTimeout(() => {
       if (this.onload) {
         this.onload({

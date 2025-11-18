@@ -20,7 +20,9 @@
 
 ### 📖 소개
 
-Ollin은 UI 개발 중 디자인 시안과 실제 구현을 비교할 수 있도록 웹 페이지 위에 이미지를 오버레이하는 Chrome Extension입니다. 디자인 시안을 화면에 띄워놓고 픽셀 퍼펙트한 구현을 확인할 수 있습니다.
+Ollin은 UI 개발 중 디자인 시안과 실제 구현을 비교할 수 있도록 웹 페이지 위에
+이미지를 오버레이하는 Chrome Extension입니다. 디자인 시안을 화면에 띄워놓고 픽셀
+퍼펙트한 구현을 확인할 수 있습니다.
 
 ### ✨ 주요 기능
 
@@ -34,13 +36,18 @@ Ollin은 UI 개발 중 디자인 시안과 실제 구현을 비교할 수 있도
 ### 🚀 설치 방법
 
 #### Chrome Web Store에서 설치
-1. [Chrome Web Store](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko)에서 설치
+
+1. [Chrome Web Store](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko)에서
+   설치
 2. 확장 프로그램 아이콘을 클릭하여 사용
 
 #### 북마클릿으로 사용
-[데모 페이지](https://bearholmes.github.io/ollin/)에서 북마클릿을 드래그하여 북마크바에 추가
+
+[데모 페이지](https://bearholmes.github.io/ollin/)에서 북마클릿을 드래그하여
+북마크바에 추가
 
 #### 로컬 개발 환경 설치
+
 ```bash
 # 저장소 클론
 git clone https://github.com/bearholmes/ollin.git
@@ -92,11 +99,13 @@ Ollin 아이콘 클릭
 ### 🛠️ 개발 환경
 
 #### 기술 스택
+
 - **JavaScript (ES6)**: 순수 바닐라 JavaScript
 - **Chrome Extension API**: Manifest V3
 - **HTML5 & CSS3**: 시맨틱 마크업
 
 #### 테스트 실행
+
 ```bash
 # 의존성 설치
 npm install
@@ -109,6 +118,7 @@ npm run test:coverage
 ```
 
 #### 프로젝트 구조
+
 ```
 ollin/
 ├── app/                  # Chrome Extension 소스
@@ -142,12 +152,15 @@ MIT License - 자유롭게 사용 가능합니다.
 
 ### 📧 문의
 
-- GitHub Issues: [https://github.com/bearholmes/ollin/issues](https://github.com/bearholmes/ollin/issues)
-- Chrome Web Store: [Ollin Extension](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
+- GitHub Issues:
+  [https://github.com/bearholmes/ollin/issues](https://github.com/bearholmes/ollin/issues)
+- Chrome Web Store:
+  [Ollin Extension](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
 
 ### 🙏 감사의 말
 
-UI 개발자를 위해 제작되었습니다. 불필요한 부분이나 더 필요한 기능에 대한 의견은 항시 받습니다.
+UI 개발자를 위해 제작되었습니다. 불필요한 부분이나 더 필요한 기능에 대한 의견은
+항시 받습니다.
 
 ---
 
@@ -155,12 +168,15 @@ UI 개발자를 위해 제작되었습니다. 불필요한 부분이나 더 필�
 
 ### 📖 Introduction
 
-Ollin is a Chrome Extension that overlays design mockups on web pages, helping UI developers compare designs with actual implementations. Achieve pixel-perfect accuracy by placing design images directly over your work.
+Ollin is a Chrome Extension that overlays design mockups on web pages, helping
+UI developers compare designs with actual implementations. Achieve pixel-perfect
+accuracy by placing design images directly over your work.
 
 ### ✨ Key Features
 
 - 🖼️ **Image Overlay**: Display local image files transparently over web pages
-- 🎯 **Precise Positioning**: Move images with mouse drag or keyboard arrows (1px accuracy)
+- 🎯 **Precise Positioning**: Move images with mouse drag or keyboard arrows
+  (1px accuracy)
 - 🔍 **Scale Control**: Zoom from 0.5x to 3x
 - 👁️ **Opacity Control**: Adjust transparency from 0 to 1
 - ⚡ **Quick Toggle**: Show/hide overlay with a single click
@@ -169,13 +185,18 @@ Ollin is a Chrome Extension that overlays design mockups on web pages, helping U
 ### 🚀 Installation
 
 #### From Chrome Web Store
-1. Install from [Chrome Web Store](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
+
+1. Install from
+   [Chrome Web Store](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
 2. Click the extension icon to use
 
 #### As a Bookmarklet
-Drag the bookmarklet from the [demo page](https://bearholmes.github.io/ollin/) to your bookmarks bar
+
+Drag the bookmarklet from the [demo page](https://bearholmes.github.io/ollin/)
+to your bookmarks bar
 
 #### Local Development
+
 ```bash
 # Clone repository
 git clone https://github.com/bearholmes/ollin.git
@@ -213,11 +234,13 @@ cd ollin
 ### 🛠️ Development
 
 #### Tech Stack
+
 - **JavaScript (ES6)**: Pure vanilla JavaScript
 - **Chrome Extension API**: Manifest V3
 - **HTML5 & CSS3**: Semantic markup
 
 #### Running Tests
+
 ```bash
 # Install dependencies
 npm install
@@ -245,8 +268,10 @@ Issues and Pull Requests are always welcome!
 
 ### 📧 Contact
 
-- GitHub Issues: [https://github.com/bearholmes/ollin/issues](https://github.com/bearholmes/ollin/issues)
-- Chrome Web Store: [Ollin Extension](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
+- GitHub Issues:
+  [https://github.com/bearholmes/ollin/issues](https://github.com/bearholmes/ollin/issues)
+- Chrome Web Store:
+  [Ollin Extension](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
 
 ---
 

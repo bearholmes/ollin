@@ -87,21 +87,17 @@ describe('Overlay Logic', () => {
         'image/webp'
       ];
 
-      const invalidTypes = [
-        'text/plain',
-        'application/pdf',
-        'video/mp4'
-      ];
+      const invalidTypes = ['text/plain', 'application/pdf', 'video/mp4'];
 
       const isValidImageType = (type) => {
         return /image\/(png|jpe?g|gif|svg\+xml|webp)/i.test(type);
       };
 
-      validTypes.forEach(type => {
+      validTypes.forEach((type) => {
         expect(isValidImageType(type)).toBe(true);
       });
 
-      invalidTypes.forEach(type => {
+      invalidTypes.forEach((type) => {
         expect(isValidImageType(type)).toBe(false);
       });
     });
@@ -128,7 +124,7 @@ describe('Overlay Logic', () => {
 
       const testValues = [0, 0.25, 0.5, 0.75, 1];
 
-      testValues.forEach(value => {
+      testValues.forEach((value) => {
         opacityInput.value = value;
         imgLayer.style.opacity = value;
         expect(parseFloat(imgLayer.style.opacity)).toBe(value);
@@ -143,7 +139,7 @@ describe('Overlay Logic', () => {
 
       const testValues = [0.5, 1, 1.5, 2, 2.5, 3];
 
-      testValues.forEach(value => {
+      testValues.forEach((value) => {
         scaleInput.value = value;
         imgLayer.style.transform = `scale(${value}, ${value})`;
         expect(imgLayer.style.transform).toBe(`scale(${value}, ${value})`);

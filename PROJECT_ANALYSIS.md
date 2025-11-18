@@ -5,6 +5,7 @@
 ## 📋 프로젝트 개요
 
 ### 프로젝트 정보
+
 - **이름**: Ollin (The name is set by Kitty)
 - **버전**: 0.4.0
 - **타입**: Chrome Extension (Manifest V3) + Bookmarklet
@@ -13,7 +14,9 @@
 - **라이선스**: Not specified
 
 ### 핵심 기능
-웹 페이지 위에 디자인 시안 이미지를 오버레이하여 개발 중인 UI와 디자인을 비교할 수 있는 도구
+
+웹 페이지 위에 디자인 시안 이미지를 오버레이하여 개발 중인 UI와 디자인을 비교할
+수 있는 도구
 
 1. **이미지 오버레이**: 로컬 이미지 파일을 웹 페이지 위에 표시
 2. **위치 조절**: 마우스 드래그 및 키보드 방향키로 정밀 위치 조정
@@ -62,11 +65,13 @@ ollin/
 ## 🔧 기술 스택
 
 ### 언어 및 런타임
+
 - **JavaScript (ES6)**: const/let, arrow functions, IIFE
 - **HTML5**: Semantic markup
 - **CSS3**: Grid, Flexbox, Transform
 
 ### Chrome APIs
+
 - **Manifest V3**: 최신 Extension API
 - **chrome.runtime**: 확장 메타데이터 관리
 - **chrome.scripting**: Content script 동적 삽입
@@ -74,12 +79,14 @@ ollin/
 - **chrome.action**: Toolbar 아이콘 제어
 
 ### Web APIs
+
 - **FileReader API**: 로컬 이미지 파일 읽기
 - **Image API**: 이미지 로드 및 크기 계산
 - **DOM API**: 동적 요소 생성 및 조작
 - **Event API**: 마우스/키보드 이벤트 처리
 
 ### 개발 도구
+
 - **외부 의존성 없음**: npm, webpack, babel 불필요
 - **Vanilla JS**: 순수 JavaScript 구현
 - **JSHint**: 코드 품질 검사 (주석으로 설정)
@@ -93,6 +100,7 @@ ollin/
 **전체 로직의 80%를 차지하는 핵심 파일**
 
 #### 구조
+
 ```javascript
 (function() {
     "use strict";
@@ -119,29 +127,34 @@ ollin/
 #### 주요 객체 및 메서드
 
 ##### `ollin.handle` - 이벤트 핸들러
-| 메서드 | 역할 | 트리거 |
-|--------|------|--------|
-| `file(e)` | 이미지 파일 로드 및 오버레이 활성화 | file input change |
-| `opacity()` | 투명도 조절 (0~1) | range input change |
-| `scale()` | 배율 조절 (0.5~3) 및 위치 보정 | range input change |
-| `layer()` | 오버레이 표시/숨김 토글 | button click |
+
+| 메서드      | 역할                                | 트리거             |
+| ----------- | ----------------------------------- | ------------------ |
+| `file(e)`   | 이미지 파일 로드 및 오버레이 활성화 | file input change  |
+| `opacity()` | 투명도 조절 (0~1)                   | range input change |
+| `scale()`   | 배율 조절 (0.5~3) 및 위치 보정      | range input change |
+| `layer()`   | 오버레이 표시/숨김 토글             | button click       |
 
 ##### `ollin.markup` - DOM 생성
-| 메서드 | 역할 | 생성 요소 |
-|--------|------|-----------|
-| `overlay()` | 이미지 레이어 생성 | `#dk_overlay_img_layer > #dk_overlay_img` |
+
+| 메서드      | 역할               | 생성 요소                                      |
+| ----------- | ------------------ | ---------------------------------------------- |
+| `overlay()` | 이미지 레이어 생성 | `#dk_overlay_img_layer > #dk_overlay_img`      |
 | `control()` | 제어 도구모음 생성 | `#dk_overlay_controller_toolbar` + 하위 요소들 |
 
 ##### `ollin.drag` - 드래그 및 키보드 이동
-| 메서드 | 역할 | 이벤트 |
-|--------|------|--------|
-| `click(e, elem)` | 드래그 시작 좌표 저장 | mousedown |
-| `move(e, elem)` | 드래그 중 위치 계산 및 적용 | drag |
-| `key(e, elem)` | 화살표 키로 1px/10px 이동 | keydown |
-| `init()` | Drag 프로토타입 생성 및 이벤트 바인딩 | - |
+
+| 메서드           | 역할                                  | 이벤트    |
+| ---------------- | ------------------------------------- | --------- |
+| `click(e, elem)` | 드래그 시작 좌표 저장                 | mousedown |
+| `move(e, elem)`  | 드래그 중 위치 계산 및 적용           | drag      |
+| `key(e, elem)`   | 화살표 키로 1px/10px 이동             | keydown   |
+| `init()`         | Drag 프로토타입 생성 및 이벤트 바인딩 | -         |
 
 ##### `ollin.init()` - 초기화
+
 실행 순서:
+
 1. `ollin.markup.overlay()` - 이미지 레이어 DOM 생성
 2. `ollin.markup.control()` - 제어 도구모음 DOM 생성
 3. `ollin.drag.init()("dk_overlay_img_layer")` - 드래그 이벤트 설정
@@ -150,6 +163,7 @@ ollin/
 #### 주요 로직 흐름
 
 **파일 선택 시:**
+
 ```
 사용자가 파일 선택
   ↓
@@ -167,6 +181,7 @@ img.onload에서 canvas에 이미지 설정
 ```
 
 **드래그 시:**
+
 ```
 mousedown → ollin.drag.click()
   ↓
@@ -180,6 +195,7 @@ elem.style.left/top 업데이트
 ```
 
 **배율 조절 시:**
+
 ```
 range input change → ollin.handle.scale()
   ↓
@@ -200,15 +216,17 @@ transform: scale() 적용
 #### 주요 기능
 
 1. **첫 설치 시 옵션 페이지 열기**
+
 ```javascript
-chrome.runtime.onInstalled.addListener(function(details) {
-    if (details.reason === "install") {
-        chrome.tabs.create({ url: "option.html" });
-    }
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason === 'install') {
+    chrome.tabs.create({ url: 'option.html' });
+  }
 });
 ```
 
 2. **확장 아이콘 클릭 시 스크립트 주입**
+
 ```javascript
 chrome.action.onClicked.addListener(function(tab) {
     // Chrome 내부 페이지 차단
@@ -232,6 +250,7 @@ chrome.action.onClicked.addListener(function(tab) {
 ```
 
 #### 보안 고려사항
+
 - Chrome 내부 페이지 (`chrome://`, `chrome.google.com`) 차단
 - `activeTab` 권한으로 최소 권한 원칙 준수
 
@@ -246,14 +265,15 @@ var manifest = chrome.runtime.getManifest();
 var name = manifest.name;
 var ver = manifest.version;
 
-window.onload = function() {
-    document.title = name + "- Option";
-    document.getElementById("dk_title").innerText = name;
-    document.getElementById("dk_ver").innerText = ver;
-}
+window.onload = function () {
+  document.title = name + '- Option';
+  document.getElementById('dk_title').innerText = name;
+  document.getElementById('dk_ver').innerText = ver;
+};
 ```
 
 **역할:**
+
 - manifest.json에서 앱 이름 및 버전 읽기
 - 옵션 페이지 제목 및 UI에 반영
 
@@ -268,20 +288,21 @@ const i18n = chrome.i18n.getMessage;
 
 // HTML 요소의 data-i18n 속성 읽기
 // 형식: "attribute=@@message_key" 또는 "@@message_key"
-let localeText = document.querySelectorAll("[data-i18n]");
-localeText.forEach(elt => {
-    let term = elt.getAttribute("data-i18n").split("=");
-    if (term.length > 1) {
-        // 속성 설정 (예: title=@@tooltip_text)
-        elt.setAttribute(term[0], i18n(term[1].replace("@@", "")));
-    } else {
-        // 텍스트 콘텐츠 설정
-        elt.innerHTML = i18n(term[0].replace("@@", ""));
-    }
+let localeText = document.querySelectorAll('[data-i18n]');
+localeText.forEach((elt) => {
+  let term = elt.getAttribute('data-i18n').split('=');
+  if (term.length > 1) {
+    // 속성 설정 (예: title=@@tooltip_text)
+    elt.setAttribute(term[0], i18n(term[1].replace('@@', '')));
+  } else {
+    // 텍스트 콘텐츠 설정
+    elt.innerHTML = i18n(term[0].replace('@@', ''));
+  }
 });
 ```
 
 **지원 언어:**
+
 - `_locales/ko/messages.json` - 한국어
 - `_locales/en/messages.json` - 영어
 - `_locales/ja/messages.json` - 일본어
@@ -316,11 +337,7 @@ localeText.forEach(elt => {
     "default_title": "__MSG_application_default_title__"
   },
 
-  "permissions": [
-    "activeTab",
-    "contextMenus",
-    "scripting"
-  ],
+  "permissions": ["activeTab", "contextMenus", "scripting"],
 
   "options_page": "option.html",
   "homepage_url": "https://bearholmes.github.io/ollin/"
@@ -328,6 +345,7 @@ localeText.forEach(elt => {
 ```
 
 **주요 설정:**
+
 - **MV3**: 최신 Manifest Version 3 사용
 - **Service Worker**: background.js를 service worker로 실행
 - **최소 권한**: activeTab, contextMenus, scripting만 요청
@@ -351,6 +369,7 @@ localeText.forEach(elt => {
 #### 1. 버그 (심각도: 높음)
 
 **`getCssProperty` 함수 논리 오류 (dkoverlay.js:16)**
+
 ```javascript
 // 현재 (잘못됨)
 const getCssProperty = function (elmId, property) {
@@ -372,6 +391,7 @@ const getCssProperty = function (elmId, property) {
 #### 2. 에러 처리 부재 (심각도: 중)
 
 **파일 로드 실패 처리 없음 (dkoverlay.js:30-44)**
+
 ```javascript
 // 현재: 에러 처리 없음
 fr.onload = function (e) {
@@ -402,21 +422,22 @@ fr.onerror = function() {
 #### 3. 성능 이슈 (심각도: 중)
 
 **DOM 요소 반복 조회**
+
 ```javascript
 // 현재: 매번 getElementById 호출
-doc.getElementById("dk_overlay_img_layer").style.opacity = this.value;
-doc.getElementById("dk_overlay_opacity_text").innerText = this.value;
+doc.getElementById('dk_overlay_img_layer').style.opacity = this.value;
+doc.getElementById('dk_overlay_opacity_text').innerText = this.value;
 
 // 개선안: 요소 캐싱
 const elements = {
-    imgLayer: null,
-    opacityText: null,
-    // ...
+  imgLayer: null,
+  opacityText: null
+  // ...
 };
 
 // init 시점에 한 번만 조회
-elements.imgLayer = doc.getElementById("dk_overlay_img_layer");
-elements.opacityText = doc.getElementById("dk_overlay_opacity_text");
+elements.imgLayer = doc.getElementById('dk_overlay_img_layer');
+elements.opacityText = doc.getElementById('dk_overlay_opacity_text');
 
 // 사용 시
 elements.imgLayer.style.opacity = this.value;
@@ -427,23 +448,23 @@ elements.opacityText.innerText = this.value;
 
 ```javascript
 // 현재
-scale.max = 3;           // 왜 3?
-scale.min = 0.5;         // 왜 0.5?
+scale.max = 3; // 왜 3?
+scale.min = 0.5; // 왜 0.5?
 scale.step = 0.5;
-opacity.step = 0.05;     // 왜 0.05?
-body.style.setProperty("transform", "translateY(30px)", "important"); // 30px?
+opacity.step = 0.05; // 왜 0.05?
+body.style.setProperty('transform', 'translateY(30px)', 'important'); // 30px?
 
 // 개선안
 const CONFIG = {
-    SCALE_MAX: 3,
-    SCALE_MIN: 0.5,
-    SCALE_STEP: 0.5,
-    OPACITY_MIN: 0,
-    OPACITY_MAX: 1,
-    OPACITY_STEP: 0.05,
-    TOOLBAR_HEIGHT: 30,
-    KEYBOARD_MOVE_NORMAL: 1,
-    KEYBOARD_MOVE_FAST: 10
+  SCALE_MAX: 3,
+  SCALE_MIN: 0.5,
+  SCALE_STEP: 0.5,
+  OPACITY_MIN: 0,
+  OPACITY_MAX: 1,
+  OPACITY_STEP: 0.05,
+  TOOLBAR_HEIGHT: 30,
+  KEYBOARD_MOVE_NORMAL: 1,
+  KEYBOARD_MOVE_FAST: 10
 };
 ```
 
@@ -486,12 +507,13 @@ const getCssProperty = function (elmId, property) {
 #### 7. 디버깅 코드 (심각도: 낮음)
 
 프로덕션 코드에 console.log가 남아있음
+
 ```javascript
 // dkoverlay.js에 다수 존재
-console.log('opacity', this.value);     // line 57
-console.log('scale', this.value);       // line 62
-console.log('off')                      // line 84
-console.log("left");                    // line 218
+console.log('opacity', this.value); // line 57
+console.log('scale', this.value); // line 62
+console.log('off'); // line 84
+console.log('left'); // line 218
 // ... 등등
 ```
 
@@ -541,18 +563,21 @@ console.log("left");                    // line 218
 ### 로컬 개발 환경 설정
 
 1. **저장소 클론**
+
 ```bash
 git clone https://github.com/bearholmes/ollin.git
 cd ollin
 ```
 
 2. **Chrome Extension 로드**
+
 - Chrome 주소창에 `chrome://extensions/` 입력
 - "개발자 모드" 활성화
 - "압축해제된 확장 프로그램을 로드합니다." 클릭
 - `ollin/app/` 폴더 선택
 
 3. **테스트**
+
 - 아무 웹페이지 열기
 - 확장 아이콘 클릭
 - 파일 선택 버튼으로 이미지 업로드
@@ -561,20 +586,24 @@ cd ollin
 ### 파일 수정 시 재로드
 
 **방법 1: 확장 프로그램 페이지에서**
+
 - `chrome://extensions/` 접속
 - Ollin 확장의 "새로고침" 아이콘 클릭
 
 **방법 2: background.js 수정 시**
+
 - Service Worker 재시작 필요
 - 확장 재로드 필수
 
 **방법 3: content script (dkoverlay.js) 수정 시**
+
 - 확장 재로드 후
 - 테스트 페이지 새로고침
 
 ### 디버깅
 
 **Content Script 디버깅:**
+
 ```javascript
 // dkoverlay.js에 디버거 추가
 debugger;
@@ -582,13 +611,16 @@ debugger;
 // 또는
 console.log('debug:', variable);
 ```
+
 - Chrome DevTools (F12) → Console 탭에서 확인
 
 **Background Script 디버깅:**
+
 - `chrome://extensions/` → Ollin → "Service Worker" 링크 클릭
 - DevTools 팝업 창에서 로그 확인
 
 **옵션 페이지 디버깅:**
+
 - 옵션 페이지에서 F12로 DevTools 열기
 
 ---
@@ -656,12 +688,14 @@ console.log('debug:', variable);
 ### Chrome Web Store 배포
 
 1. **빌드 준비**
+
 ```bash
 cd ollin/app
 zip -r ../ollin-v0.4.0.zip .
 ```
 
 2. **Chrome Web Store Developer Dashboard**
+
 - https://chrome.google.com/webstore/devconsole 접속
 - "항목 추가" 또는 기존 항목 업데이트
 - ZIP 파일 업로드
@@ -669,6 +703,7 @@ zip -r ../ollin-v0.4.0.zip .
 - 검토 제출
 
 3. **버전 관리**
+
 - manifest.json의 version 필드 업데이트 필요
 - 시맨틱 버저닝 권장 (예: 0.4.1, 0.5.0, 1.0.0)
 
@@ -677,14 +712,17 @@ zip -r ../ollin-v0.4.0.zip .
 ## 📚 참고 자료
 
 ### Chrome Extension 개발
+
 - [Chrome Extensions MV3 공식 문서](https://developer.chrome.com/docs/extensions/mv3/)
 - [Manifest V3 마이그레이션 가이드](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/)
 
 ### Web APIs
+
 - [FileReader API](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
 - [Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
 
 ### 코드 스타일
+
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 
@@ -724,11 +762,11 @@ zip -r ../ollin-v0.4.0.zip .
 ## 📞 연락처 및 지원
 
 - **GitHub**: https://github.com/bearholmes/ollin
-- **Chrome Web Store**: https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp
+- **Chrome Web Store**:
+  https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp
 - **Demo Page**: https://bearholmes.github.io/ollin/
 
 ---
 
-**마지막 업데이트**: 2025-11-18
-**작성자**: AI Analysis (Claude Code)
-**버전**: 1.0.0
+**마지막 업데이트**: 2025-11-18 **작성자**: AI Analysis (Claude Code) **버전**:
+1.0.0

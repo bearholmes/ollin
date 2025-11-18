@@ -1,6 +1,5 @@
 /*jshint browser: true */
-/*global chrome */
-"use strict";
+'use strict';
 
 /**
  * Ollin Options Page Script
@@ -19,18 +18,18 @@ const version = manifest.version;
  * 확장 프로그램 이름과 버전 정보를 페이지에 표시
  */
 function initOptionPage() {
-    const titleElement = document.getElementById("dk_title");
-    const versionElement = document.getElementById("dk_ver");
+  const titleElement = document.getElementById('dk_title');
+  const versionElement = document.getElementById('dk_ver');
 
-    if (titleElement) {
-        titleElement.innerText = name;
-    }
+  if (titleElement) {
+    titleElement.innerText = name;
+  }
 
-    if (versionElement) {
-        versionElement.innerText = version;
-    }
+  if (versionElement) {
+    versionElement.innerText = version;
+  }
 
-    document.title = `${name} - Option`;
+  document.title = `${name} - Option`;
 }
 
 // DOM 로드 완료 시 초기화
