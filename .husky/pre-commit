@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# Run lint-staged
+npx lint-staged
+
+# Type check for TypeScript files (if any .ts files exist)
+if git diff --cached --name-only --diff-filter=ACM | grep -q '\.ts$'; then
+  npm run type-check
+fi

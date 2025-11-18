@@ -1,86 +1,86 @@
 {
-    "application_title": {
-        "message": "Ollin"
-    },
-    "application_description": {
-        "message": "시안을 겹쳐 볼 수 있어요."
-    },
-    "application_default_title": {
-        "message": "Ollin"
-    },
-    "txt_version": {
-        "message": "버전"
-    },
-    "txt_introduction": {
-        "message": "소개"
-    },
-    "txt_menu": {
-        "message": "메뉴"
-    },
-    "txt_guidance": {
-        "message": "안내"
-    },
-    "txt_support": {
-        "message": "지원"
-    },
-    "txt_body": {
-        "message": "본문"
-    },
-    "txt_introduction_desc_1": {
-        "message": "웹페이지에 이미지를 손쉽게 띄우고, 이동시킬 수 있습니다."
-    },
-    "txt_support_desc_1": {
-        "message": "문의사항이나 개선의견이 있으면 언제든지 연락주세요."
-    },
-    "txt_guidance_tit_1" : {
-        "message": "기본 기능"
-    },
-    "txt_guidance_tit_2" : {
-        "message": "추가 기능"
-    },
-    "txt_guidance_tit_3" : {
-        "message": "기본키"
-    },
-    "txt_guidance_tit_4" : {
-        "message": "단축키"
-    },
-    "txt_guidance_desc_1" : {
-        "message": "1. 이미지 파일선택"
-    },
-    "txt_guidance_desc_2" : {
-        "message": "2. 방향키를 이용하여 위치 조절"
-    },
-    "txt_guidance_desc_3" : {
-        "message": "툴바에서 선택"
-    },
-    "txt_guidance_desc_4" : {
-        "message": "1. 이미지 숨기기/보이기"
-    },
-    "txt_guidance_desc_5" : {
-        "message": "2. 이미지 비율 조절"
-    },
-    "txt_guidance_desc_6" : {
-        "message": "3. 이미지 투명도 조절"
-    },
-    "txt_guidance_desc_7" : {
-        "message": "arrow key {up, down, left, right} : 1px move"
-    },
-    "txt_guidance_desc_8" : {
-        "message": "shift + arrow key : 10px move"
-    },
-    "txt_guidance_desc_9" : {
-        "message": "이동이 안되면 이미지 클릭 후, 조작"
-    },
-    "txt_guidance_desc_10" : {
-        "message": "실행/해제 단축키를 설정하면 빠르게 전환할 수 있습니다."
-    },
-    "txt_guidance_desc_11" : {
-        "message": "chrome://extensions/ 로 이동"
-    },
-    "txt_guidance_desc_12" : {
-        "message": "2. 확장프로그램 목록 최하단에 '단축키' 링크 선택"
-    },
-    "txt_guidance_desc_13" : {
-        "message": "3. '프로그램명 - 확장 프로그램 활성화' 항목에서 단축키 설정"
-    }
+  "application_title": {
+    "message": "Ollin"
+  },
+  "application_description": {
+    "message": "시안을 겹쳐 볼 수 있어요."
+  },
+  "application_default_title": {
+    "message": "Ollin"
+  },
+  "txt_version": {
+    "message": "버전"
+  },
+  "txt_introduction": {
+    "message": "소개"
+  },
+  "txt_menu": {
+    "message": "메뉴"
+  },
+  "txt_guidance": {
+    "message": "안내"
+  },
+  "txt_support": {
+    "message": "지원"
+  },
+  "txt_body": {
+    "message": "본문"
+  },
+  "txt_introduction_desc_1": {
+    "message": "웹페이지에 이미지를 손쉽게 띄우고, 이동시킬 수 있습니다."
+  },
+  "txt_support_desc_1": {
+    "message": "문의사항이나 개선의견이 있으면 언제든지 연락주세요."
+  },
+  "txt_guidance_tit_1": {
+    "message": "기본 기능"
+  },
+  "txt_guidance_tit_2": {
+    "message": "추가 기능"
+  },
+  "txt_guidance_tit_3": {
+    "message": "기본키"
+  },
+  "txt_guidance_tit_4": {
+    "message": "단축키"
+  },
+  "txt_guidance_desc_1": {
+    "message": "1. 이미지 파일선택"
+  },
+  "txt_guidance_desc_2": {
+    "message": "2. 방향키를 이용하여 위치 조절"
+  },
+  "txt_guidance_desc_3": {
+    "message": "툴바에서 선택"
+  },
+  "txt_guidance_desc_4": {
+    "message": "1. 이미지 숨기기/보이기"
+  },
+  "txt_guidance_desc_5": {
+    "message": "2. 이미지 비율 조절"
+  },
+  "txt_guidance_desc_6": {
+    "message": "3. 이미지 투명도 조절"
+  },
+  "txt_guidance_desc_7": {
+    "message": "arrow key {up, down, left, right} : 1px move"
+  },
+  "txt_guidance_desc_8": {
+    "message": "shift + arrow key : 10px move"
+  },
+  "txt_guidance_desc_9": {
+    "message": "이동이 안되면 이미지 클릭 후, 조작"
+  },
+  "txt_guidance_desc_10": {
+    "message": "실행/해제 단축키를 설정하면 빠르게 전환할 수 있습니다."
+  },
+  "txt_guidance_desc_11": {
+    "message": "chrome://extensions/ 로 이동"
+  },
+  "txt_guidance_desc_12": {
+    "message": "2. 확장프로그램 목록 최하단에 '단축키' 링크 선택"
+  },
+  "txt_guidance_desc_13": {
+    "message": "3. '프로그램명 - 확장 프로그램 활성화' 항목에서 단축키 설정"
+  }
 }

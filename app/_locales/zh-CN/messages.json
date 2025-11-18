@@ -32,55 +32,55 @@
   "txt_support_desc_1": {
     "message": "如有任何问题或反馈，请随时联系我们。"
   },
-  "txt_guidance_tit_1" : {
+  "txt_guidance_tit_1": {
     "message": "基本功能"
   },
-  "txt_guidance_tit_2" : {
+  "txt_guidance_tit_2": {
     "message": "附加功能"
   },
-  "txt_guidance_tit_3" : {
+  "txt_guidance_tit_3": {
     "message": "基本键"
   },
-  "txt_guidance_tit_4" : {
+  "txt_guidance_tit_4": {
     "message": "快捷键"
   },
-  "txt_guidance_desc_1" : {
+  "txt_guidance_desc_1": {
     "message": "1. 选择图像文件"
   },
-  "txt_guidance_desc_2" : {
+  "txt_guidance_desc_2": {
     "message": "2. 使用箭头键调整位置"
   },
-  "txt_guidance_desc_3" : {
+  "txt_guidance_desc_3": {
     "message": "从工具栏中选择"
   },
-  "txt_guidance_desc_4" : {
+  "txt_guidance_desc_4": {
     "message": "1. 隐藏/显示图像"
   },
-  "txt_guidance_desc_5" : {
+  "txt_guidance_desc_5": {
     "message": "2. 调整图像比例"
   },
-  "txt_guidance_desc_6" : {
+  "txt_guidance_desc_6": {
     "message": "3. 调整图像透明度"
   },
-  "txt_guidance_desc_7" : {
+  "txt_guidance_desc_7": {
     "message": "箭头键 {上, 下, 左, 右} : 移动1像素"
   },
-  "txt_guidance_desc_8" : {
+  "txt_guidance_desc_8": {
     "message": "shift + 箭头键 : 移动10像素"
   },
-  "txt_guidance_desc_9" : {
+  "txt_guidance_desc_9": {
     "message": "如果无法移动，点击图像后再操作"
   },
-  "txt_guidance_desc_10" : {
+  "txt_guidance_desc_10": {
     "message": "通过设置启用/禁用快捷键可以快速切换。"
   },
-  "txt_guidance_desc_11" : {
+  "txt_guidance_desc_11": {
     "message": "转到 chrome://extensions/"
   },
-  "txt_guidance_desc_12" : {
+  "txt_guidance_desc_12": {
     "message": "2. 在扩展程序列表的底部选择“快捷键”链接"
   },
-  "txt_guidance_desc_13" : {
+  "txt_guidance_desc_13": {
     "message": "3. 在“程序名称 - 启用扩展程序”项中设置快捷键"
   }
 }
