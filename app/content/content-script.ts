@@ -7,11 +7,11 @@
  */
 
 import { createOllin } from '../../shared/ollin-core.js';
+import { i18n } from '../shared/i18n.js';
 
-// Get extension name from manifest
-const contentManifest = chrome.runtime.getManifest();
-const extensionName: string = contentManifest.name;
+// Get extension name using i18n
+const extensionName: string = i18n('application_title');
 
-// Create and initialize Ollin overlay
-const ollin = createOllin(extensionName);
+// Create and initialize Ollin overlay with i18n support
+const ollin = createOllin(extensionName, i18n);
 ollin.init();

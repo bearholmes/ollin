@@ -82,5 +82,14 @@
   },
   "txt_guidance_desc_13": {
     "message": "3. 「プログラム名 - 拡張機能を有効にする」項目でショートカットを設定"
+  },
+  "error_invalid_file_type": {
+    "message": "画像ファイルのみ選択できます。"
+  },
+  "error_file_read_failed": {
+    "message": "ファイルを読み込めません。"
+  },
+  "error_image_load_failed": {
+    "message": "画像ファイルを読み込めません。"
   }
 }

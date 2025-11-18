@@ -6,12 +6,14 @@
  */
 
 import { CONFIG } from './constants.js';
-import type { Ollin, OllinElements } from '../types/index.js';
+import type { Ollin, OllinElements, I18nFunction } from '../types/index.js';
 
 /**
  * Create Ollin overlay instance
+ * @param extensionName - Name of the extension/application
+ * @param i18n - Internationalization function for error messages
  */
-export function createOllin(extensionName: string): Ollin {
+export function createOllin(extensionName: string, i18n: I18nFunction): Ollin {
   const doc: Document = document;
   const html: HTMLElement = doc.getElementsByTagName('html')[0]!;
   const body: HTMLElement = doc.getElementsByTagName('BODY')[0]! as HTMLElement;
@@ -77,23 +79,23 @@ export function createOllin(extensionName: string): Ollin {
 
         // Validate image file type
         if (!file.type.match(/image\/(png|jpe?g|gif|svg\+xml|webp)/i)) {
-          showError('이미지 파일만 선택할 수 있습니다.');
+          showError(i18n('error_invalid_file_type'));
           return;
         }
 
         const fr = new FileReader();
 
         fr.onerror = () => {
-          console.error('파일 읽기 실패:', file.name);
-          showError('파일을 읽을 수 없습니다.');
+          console.error('File read failed:', file.name);
+          showError(i18n('error_file_read_failed'));
         };
 
         fr.onload = (e: ProgressEvent<FileReader>) => {
           const img = new Image();
 
           img.onerror = () => {
-            console.error('이미지 로드 실패:', file.name);
-            showError('이미지 파일을 불러올 수 없습니다.');
+            console.error('Image load failed:', file.name);
+            showError(i18n('error_image_load_failed'));
           };
 
           img.onload = () => {

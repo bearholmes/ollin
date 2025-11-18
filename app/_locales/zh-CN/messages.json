@@ -78,9 +78,18 @@
     "message": "转到 chrome://extensions/"
   },
   "txt_guidance_desc_12": {
-    "message": "2. 在扩展程序列表的底部选择“快捷键”链接"
+    "message": "2. 在扩展程序列表的底部选择「快捷键」链接"
   },
   "txt_guidance_desc_13": {
-    "message": "3. 在“程序名称 - 启用扩展程序”项中设置快捷键"
+    "message": "3. 在「程序名称 - 启用扩展程序」项中设置快捷键"
+  },
+  "error_invalid_file_type": {
+    "message": "只能选择图像文件。"
+  },
+  "error_file_read_failed": {
+    "message": "无法读取文件。"
+  },
+  "error_image_load_failed": {
+    "message": "无法加载图像文件。"
   }
 }
