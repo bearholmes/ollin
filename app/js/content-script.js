@@ -1,11 +1,22 @@
+// @ts-check
 /*jshint browser: true */
-/* 키티가 시킨건 아닌데 시작한 프로젝트 */
-/* 2017.01.20 ~ 22*/
+/**
+ * @file Ollin Content Script - Design Overlay Tool
+ * @description Chrome Extension content script for overlaying design mockups
+ * @author bearholmes
+ * @version 0.6.0
+ * @license MIT
+ */
+
+/// <reference path="../../src/types/index.ts" />
 
 (function () {
   'use strict';
 
-  // Constants
+  /**
+   * Configuration constants
+   * @type {import('../../src/types/index').OllinConfig}
+   */
   const CONFIG = {
     SCALE_MAX: 3,
     SCALE_MIN: 0.5,
@@ -25,14 +36,22 @@
     }
   };
 
+  /** @type {import('../../src/types/index').ChromeManifest} */
   const manifest = chrome.runtime.getManifest();
+  /** @type {string} */
   const extension_name = manifest.name;
 
+  /** @type {Document} */
   const doc = document;
+  /** @type {HTMLElement} */
   const html = doc.getElementsByTagName('html')[0];
+  /** @type {HTMLElement} */
   const body = doc.getElementsByTagName('BODY')[0];
 
-  // Cached DOM elements
+  /**
+   * Cached DOM elements
+   * @type {import('../../src/types/index').OllinElements}
+   */
   const elements = {
     imgLayer: null,
     img: null,
@@ -70,13 +89,23 @@
   };
 
   // 드래그 상태 변수
+  /** @type {number} */
   let clickX = 0;
+  /** @type {number} */
   let clickY = 0;
+  /** @type {number} */
   let beforeX = 0;
+  /** @type {number} */
   let beforeY = 0;
+  /** @type {number} */
   let elemOffsetX = 0;
+  /** @type {number} */
   let elemOffsetY = 0;
 
+  /**
+   * Main Ollin object
+   * @type {import('../../src/types/index').Ollin}
+   */
   const ollin = {
     handlers: {
       /**

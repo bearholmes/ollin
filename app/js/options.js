@@ -1,16 +1,25 @@
+// @ts-check
 /*jshint browser: true */
 'use strict';
 
 /**
- * Ollin Options Page Script
- * 확장 프로그램 옵션 페이지 초기화
+ * @file Ollin Options Page Script
+ * @description Chrome Extension options page initialization
+ * @author bearholmes
+ * @version 0.6.0
+ * @license MIT
  */
+
+/// <reference path="../../src/types/index.ts" />
 
 /**
  * manifest.json에서 확장 프로그램 정보 가져오기
+ * @type {import('../../src/types/index').ChromeManifest}
  */
 const manifest = chrome.runtime.getManifest();
+/** @type {string} */
 const name = manifest.name;
+/** @type {string} */
 const version = manifest.version;
 
 /**

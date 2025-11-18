@@ -1,9 +1,15 @@
+// @ts-check
 /*jshint browser: true */
 
 /**
- * Ollin Chrome Extension Background Script (Service Worker)
- * 확장 프로그램 설치 및 아이콘 클릭 이벤트 처리
+ * @file Ollin Background Script - Service Worker
+ * @description Chrome Extension background service worker for extension lifecycle management
+ * @author bearholmes
+ * @version 0.6.0
+ * @license MIT
  */
+
+/// <reference path="../src/types/index.ts" />
 
 /**
  * Chrome 내부 페이지 URL 패턴
@@ -13,7 +19,7 @@ const BLOCKED_URL_PATTERNS = ['chrome://', 'chrome-extension://', 'https://chrom
 
 /**
  * 주입할 Content Scripts
- * @constant {object}
+ * @type {import('../src/types/index').ContentScripts}
  */
 const CONTENT_SCRIPTS = {
   js: ['js/content-script.js'],
@@ -31,8 +37,7 @@ function isInternalPage(url) {
 
 /**
  * 확장 프로그램 설치/업데이트 시 옵션 페이지 열기
- * @param {object} details - 설치 상세 정보
- * @param {string} details.reason - 설치 이유 ('install', 'update', 'chrome_update')
+ * @param {import('../src/types/index').InstallDetails} details - 설치 상세 정보
  */
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
@@ -42,9 +47,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 /**
  * 확장 아이콘 클릭 시 Content Script 주입
- * @param {object} tab - 활성 탭 정보
- * @param {number} tab.id - 탭 ID
- * @param {string} tab.url - 탭 URL
+ * @param {import('../src/types/index').ChromeTab} tab - 활성 탭 정보
  */
 chrome.action.onClicked.addListener((tab) => {
   // Chrome 내부 페이지에서는 실행 차단
