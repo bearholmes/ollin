@@ -7,8 +7,10 @@
 **UI 개발자를 위한 디자인 시안 오버레이 도구**
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko)
-[![Version](https://img.shields.io/badge/version-0.4.0-green.svg)](https://github.com/bearholmes/ollin)
+[![Version](https://img.shields.io/badge/version-0.5.0-green.svg)](https://github.com/bearholmes/ollin)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
+[![ESLint](https://img.shields.io/badge/linting-ESLint-4B32C3.svg)](https://eslint.org/)
 
 [English](#english) | [한국어](#korean)
 
@@ -100,40 +102,85 @@ Ollin 아이콘 클릭
 
 #### 기술 스택
 
-- **JavaScript (ES6)**: 순수 바닐라 JavaScript
+- **JavaScript (ES2020+)**: 최신 ECMAScript 표준 사용
+  - Arrow Functions
+  - Template Literals
+  - Optional Chaining (`?.`)
+  - Nullish Coalescing (`??`)
 - **Chrome Extension API**: Manifest V3
 - **HTML5 & CSS3**: 시맨틱 마크업
+- **코드 품질 도구**:
+  - **ESLint 9.16**: 코드 린팅
+  - **Prettier 3.4**: 코드 포맷팅
+  - **Husky**: Git pre-commit hooks
+  - **lint-staged**: 스테이지된 파일 검증
+- **테스트**:
+  - **Jest 29.7**: 단위 테스트
+  - **jsdom**: DOM 환경 시뮬레이션
 
-#### 테스트 실행
+#### 개발 명령어
 
 ```bash
 # 의존성 설치
 npm install
 
-# 테스트 실행
-npm test
+# 코드 품질 검사
+npm run lint           # ESLint 검사
+npm run lint:fix       # ESLint 자동 수정
+npm run format         # Prettier 포맷팅
+npm run format:check   # 포맷 검증
 
-# 테스트 커버리지 확인
-npm run test:coverage
+# 테스트
+npm test               # 테스트 실행
+npm run test:watch     # 테스트 watch 모드
+npm run test:coverage  # 커버리지 확인
+
+# TypeScript
+npm run type-check     # TypeScript 타입 체크
 ```
+
+#### Git 커밋 전 자동 검증
+
+Husky와 lint-staged가 설정되어 있어 커밋 시 자동으로:
+
+1. ESLint 자동 수정 실행
+2. Prettier 포맷팅 적용
+3. 모든 검사 통과 시에만 커밋 허용
 
 #### 프로젝트 구조
 
 ```
 ollin/
-├── app/                  # Chrome Extension 소스
-│   ├── manifest.json     # Extension 설정
-│   ├── background.js     # Service Worker
+├── app/                              # Chrome Extension 소스
+│   ├── manifest.json                 # Extension 설정
+│   ├── background.js                 # Service Worker
 │   ├── js/
-│   │   ├── dkoverlay.js  # 핵심 로직
-│   │   ├── option.js     # 옵션 페이지
-│   │   └── i18n.js       # 다국어 지원
-│   ├── css/              # 스타일시트
-│   ├── _locales/         # 다국어 메시지
-│   └── icons/            # 아이콘
-├── tests/                # Jest 테스트
-├── PROJECT_ANALYSIS.md   # 프로젝트 분석 문서
-└── CODE_REVIEW.md        # 코드 리뷰 보고서
+│   │   ├── dkoverlay.js              # 핵심 로직 (ES2020+)
+│   │   ├── option.js                 # 옵션 페이지
+│   │   └── i18n.js                   # 다국어 지원
+│   ├── css/                          # 스타일시트
+│   ├── _locales/                     # 다국어 메시지
+│   └── icons/                        # 아이콘
+├── tests/                            # Jest 테스트
+│   ├── setup.js                      # 테스트 환경 설정
+│   ├── dkoverlay.test.js
+│   ├── background.test.js
+│   └── option.test.js
+├── .husky/                           # Git hooks
+│   └── pre-commit                    # 커밋 전 검증
+├── eslint.config.js                  # ESLint 설정
+├── tsconfig.json                     # TypeScript 설정
+├── .prettierrc.json                  # Prettier 설정
+├── PROJECT_ANALYSIS.md               # 프로젝트 분석 문서 (600+ 줄)
+├── CODE_REVIEW.md                    # 코드 리뷰 #1: 버그 수정
+├── CODE_REVIEW_2.md                  # 코드 리뷰 #2: 구조 분석
+├── CODE_REVIEW_3_MODERNIZATION.md    # 코드 리뷰 #3: 현대화
+├── NAMING_CONVENTIONS.md             # 네이밍 컨벤션 가이드
+├── MODERNIZATION_GUIDE.md            # 현대화 가이드
+├── TODO_ROADMAP.md                   # 개선 로드맵 (6단계)
+├── FOLDER_STRUCTURE_PROPOSAL.md      # 폴더 구조 제안
+├── BUILD_SYSTEM_PROPOSAL.md          # 빌드 시스템 제안
+└── GITHUB_PAGES_PROPOSAL.md          # GitHub Pages 제안
 ```
 
 ### 📝 라이선스
@@ -235,21 +282,85 @@ cd ollin
 
 #### Tech Stack
 
-- **JavaScript (ES6)**: Pure vanilla JavaScript
+- **JavaScript (ES2020+)**: Modern ECMAScript features
+  - Arrow Functions
+  - Template Literals
+  - Optional Chaining (`?.`)
+  - Nullish Coalescing (`??`)
 - **Chrome Extension API**: Manifest V3
 - **HTML5 & CSS3**: Semantic markup
+- **Code Quality Tools**:
+  - **ESLint 9.16**: Code linting
+  - **Prettier 3.4**: Code formatting
+  - **Husky**: Git pre-commit hooks
+  - **lint-staged**: Staged files validation
+- **Testing**:
+  - **Jest 29.7**: Unit testing
+  - **jsdom**: DOM environment simulation
 
-#### Running Tests
+#### Development Commands
 
 ```bash
 # Install dependencies
 npm install
 
-# Run tests
-npm test
+# Code quality
+npm run lint           # Run ESLint
+npm run lint:fix       # Auto-fix ESLint issues
+npm run format         # Format with Prettier
+npm run format:check   # Check formatting
 
-# Check coverage
-npm run test:coverage
+# Testing
+npm test               # Run tests
+npm run test:watch     # Test watch mode
+npm run test:coverage  # Check coverage
+
+# TypeScript
+npm run type-check     # TypeScript type checking
+```
+
+#### Automated Pre-commit Validation
+
+Husky and lint-staged are configured to automatically:
+
+1. Run ESLint auto-fix
+2. Apply Prettier formatting
+3. Only allow commit if all checks pass
+
+#### Project Structure
+
+```
+ollin/
+├── app/                              # Chrome Extension source
+│   ├── manifest.json                 # Extension config
+│   ├── background.js                 # Service Worker
+│   ├── js/
+│   │   ├── dkoverlay.js              # Core logic (ES2020+)
+│   │   ├── option.js                 # Options page
+│   │   └── i18n.js                   # Internationalization
+│   ├── css/                          # Stylesheets
+│   ├── _locales/                     # i18n messages
+│   └── icons/                        # Icons
+├── tests/                            # Jest tests
+│   ├── setup.js                      # Test environment setup
+│   ├── dkoverlay.test.js
+│   ├── background.test.js
+│   └── option.test.js
+├── .husky/                           # Git hooks
+│   └── pre-commit                    # Pre-commit validation
+├── eslint.config.js                  # ESLint configuration
+├── tsconfig.json                     # TypeScript configuration
+├── .prettierrc.json                  # Prettier configuration
+├── PROJECT_ANALYSIS.md               # Project analysis (600+ lines)
+├── CODE_REVIEW.md                    # Code Review #1: Bug fixes
+├── CODE_REVIEW_2.md                  # Code Review #2: Structure analysis
+├── CODE_REVIEW_3_MODERNIZATION.md    # Code Review #3: Modernization
+├── NAMING_CONVENTIONS.md             # Naming conventions guide
+├── MODERNIZATION_GUIDE.md            # Modernization guide
+├── TODO_ROADMAP.md                   # Improvement roadmap (6 phases)
+├── FOLDER_STRUCTURE_PROPOSAL.md      # Folder structure proposal
+├── BUILD_SYSTEM_PROPOSAL.md          # Build system proposal
+└── GITHUB_PAGES_PROPOSAL.md          # GitHub Pages proposal
 ```
 
 ### 📝 License
