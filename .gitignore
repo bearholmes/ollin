@@ -24,3 +24,6 @@ dist/
 # Temporary
 *.tmp
 .cache/
+
+# TypeScript
+*.tsbuildinfo
