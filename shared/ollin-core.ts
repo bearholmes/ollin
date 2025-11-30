@@ -1,7 +1,6 @@
 /**
  * @file Ollin Core Module
  * @description Platform-independent overlay functionality
- * @version 0.6.0
  * @license MIT
  */
 

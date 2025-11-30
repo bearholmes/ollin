@@ -2,7 +2,7 @@
  * @file Ollin Content Script - Chrome Extension Entry Point
  * @description Chrome Extension content script using shared core
  * @author bearholmes
- * @version 0.6.0
+
  * @license MIT
  */
 

@@ -2,7 +2,7 @@
  * @file Ollin i18n Utility
  * @description Internationalization utility for Chrome Extension
  * @author bearholmes
- * @version 0.6.0
+
  * @license MIT
  */
 

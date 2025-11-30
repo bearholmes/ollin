@@ -2,7 +2,7 @@
  * @file Ollin Background Script - Service Worker
  * @description Chrome Extension background service worker for extension lifecycle management
  * @author bearholmes
- * @version 0.6.0
+
  * @license MIT
  */
 

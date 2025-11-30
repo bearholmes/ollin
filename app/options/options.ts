@@ -2,7 +2,7 @@
  * @file Ollin Options Page Script
  * @description Chrome Extension options page initialization
  * @author bearholmes
- * @version 0.6.0
+
  * @license MIT
  */
 

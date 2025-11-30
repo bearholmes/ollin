@@ -2,7 +2,7 @@
  * @file Ollin Bookmarklet Entry Point
  * @description Bookmarklet using shared core
  * @author bearholmes
- * @version 0.6.0
+
  * @license MIT
  */
 
