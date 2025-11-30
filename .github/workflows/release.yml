@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build Chrome Extension
+        run: npm run build:chrome
+
+      - name: Build Bookmarklet
+        run: npm run build:bookmarklet
+
+      - name: Create Chrome Extension ZIP
+        run: |
+          cd dist/chrome
+          zip -r ../../ollin-chrome-extension.zip .
+          cd ../..
+
+      - name: Create Bookmarklet ZIP
+        run: |
+          cd dist/bookmarklet
+          zip -r ../../ollin-bookmarklet.zip .
+          cd ../..
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ollin-chrome-extension.zip
+            ollin-bookmarklet.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "### Release Created! 🎉" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ steps.version.outputs.VERSION }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Artifacts:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Chrome Extension ZIP" >> $GITHUB_STEP_SUMMARY
+          echo "- Bookmarklet ZIP" >> $GITHUB_STEP_SUMMARY
