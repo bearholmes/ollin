@@ -6,8 +6,8 @@
 
 **UI 개발자를 위한 디자인 시안 오버레이 도구**
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko)
-[![Version](https://img.shields.io/badge/version-0.6.0-green.svg)](https://github.com/bearholmes/ollin)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore/detail/ollin/fmondiepbajacmihnjakbimgmohadakp?hl=ko)
+[![Version](https://img.shields.io/badge/version-0.7.0-green.svg)](https://github.com/bearholmes/ollin)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
 [![ESLint](https://img.shields.io/badge/linting-ESLint-4B32C3.svg)](https://eslint.org/)
@@ -40,7 +40,7 @@ Ollin은 UI 개발 중 디자인 시안과 실제 구현을 비교할 수 있도
 
 ### Chrome Web Store에서 설치
 
-1. [Chrome Web Store](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko)에서
+1. [Chrome Web Store](https://chrome.google.com/webstore/detail/ollin/fmondiepbajacmihnjakbimgmohadakp?hl=ko)에서
    설치
 2. 확장 프로그램 아이콘을 클릭하여 사용
 
@@ -153,8 +153,6 @@ npm run deploy:minor   # 마이너 버전 배포 (0.6.0 → 0.7.0)
 npm run deploy:major   # 메이저 버전 배포 (0.6.0 → 1.0.0)
 ```
 
-자세한 배포 가이드는 [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)를 참조하세요.
-
 ### Git 커밋 전 자동 검증
 
 Husky와 lint-staged가 설정되어 있어 커밋 시 자동으로:
@@ -246,7 +244,7 @@ MIT License - 자유롭게 사용 가능합니다.
 - GitHub Issues:
   [https://github.com/bearholmes/ollin/issues](https://github.com/bearholmes/ollin/issues)
 - Chrome Web Store:
-  [Ollin Extension](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
+  [Ollin Extension](https://chromewebstore.google.com/detail/ollin/fmondiepbajacmihnjakbimgmohadakp)
 
 ## 🙏 감사의 말
 

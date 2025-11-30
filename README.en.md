@@ -6,8 +6,8 @@
 
 **Design Overlay Tool for UI Developers**
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp?hl=ko)
-[![Version](https://img.shields.io/badge/version-0.6.0-green.svg)](https://github.com/bearholmes/ollin)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore/detail/ollin/fmondiepbajacmihnjakbimgmohadakp?hl=ko)
+[![Version](https://img.shields.io/badge/version-0.7.0-green.svg)](https://github.com/bearholmes/ollin)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
 [![ESLint](https://img.shields.io/badge/linting-ESLint-4B32C3.svg)](https://eslint.org/)
@@ -42,7 +42,7 @@ accuracy by placing design images directly over your work.
 ### From Chrome Web Store
 
 1. Install from
-   [Chrome Web Store](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
+   [Chrome Web Store](https://chrome.google.com/webstore/detail/ollin/fmondiepbajacmihnjakbimgmohadakp)
 2. Click the extension icon to use
 
 ### As a Bookmarklet
@@ -153,9 +153,6 @@ npm run deploy:minor   # Minor version (0.6.0 → 0.7.0)
 npm run deploy:major   # Major version (0.6.0 → 1.0.0)
 ```
 
-For detailed deployment instructions, see
-[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md).
-
 ### Automated Pre-commit Validation
 
 Husky and lint-staged are configured to automatically:
@@ -233,7 +230,7 @@ Issues and Pull Requests are always welcome!
 - GitHub Issues:
   [https://github.com/bearholmes/ollin/issues](https://github.com/bearholmes/ollin/issues)
 - Chrome Web Store:
-  [Ollin Extension](https://chrome.google.com/webstore/detail/the-name-is-set-by-kitty/fmondiepbajacmihnjakbimgmohadakp)
+  [Ollin Extension](https://chromewebstore.google.com/detail/ollin/fmondiepbajacmihnjakbimgmohadakp)
 
 ## 🙏 Acknowledgments
 
