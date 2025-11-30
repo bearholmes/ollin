@@ -3,7 +3,7 @@
   "name": "__MSG_application_title__",
   "description": "__MSG_application_description__",
   "default_locale": "ko",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "background": {
     "service_worker": "background/background.js"
   },
