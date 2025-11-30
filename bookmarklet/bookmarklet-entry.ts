@@ -13,6 +13,18 @@ import type { I18nFunction } from '../types/index.js';
 (function () {
   'use strict';
 
+  // Load CSS dynamically
+  const loadCSS = (href: string): void => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  // Load Ollin CSS
+  loadCSS('https://bearholmes.github.io/ollin/ollin.css');
+
   // Fallback i18n function for bookmarklet (Korean default)
   const i18n: I18nFunction = (key: string): string => {
     const messages: Record<string, string> = {
