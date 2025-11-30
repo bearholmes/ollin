@@ -41,6 +41,7 @@ jobs:
           cp bookmarklet/index.html dist/pages/
           cp bookmarklet/ollin.css dist/pages/
           cp dist/bookmarklet/ollin.js dist/pages/
+          touch dist/pages/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
