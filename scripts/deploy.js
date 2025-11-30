@@ -123,6 +123,28 @@ async function updateManifestJson(newVersion) {
 }
 
 /**
+ * Update README badges to match the version
+ * @param {string} newVersion - New version string
+ */
+async function updateReadmeVersion(newVersion) {
+  const readmeFiles = ['README.md', 'README.en.md'];
+
+  for (const file of readmeFiles) {
+    const path = join(rootDir, file);
+    const content = await readFile(path, 'utf-8');
+    const newContent = content.replace(/(version-)\d+\.\d+\.\d+/, `$1${newVersion}`);
+
+    if (content === newContent) {
+      print(`⚠️  No badge version found in ${file}`, 'yellow');
+      continue;
+    }
+
+    await writeFile(path, newContent);
+    print(`✅ Updated ${file} badge to v${newVersion}`, 'green');
+  }
+}
+
+/**
  * Check if git working directory is clean
  * @returns {boolean}
  */
@@ -258,6 +280,7 @@ async function deploy() {
   print('\n📝 Updating version files...', 'bright');
   await updatePackageJson(newVersion);
   await updateManifestJson(newVersion);
+  await updateReadmeVersion(newVersion);
 
   // Git operations
   print('\n📤 Git operations...', 'bright');
@@ -265,7 +288,7 @@ async function deploy() {
   try {
     // Stage changes
     print('📋 Staging version changes...', 'blue');
-    exec('git add package.json app/manifest.json');
+    exec('git add package.json app/manifest.json README.md README.en.md');
     print('✅ Files staged', 'green');
 
     // Commit

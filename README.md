@@ -7,7 +7,7 @@
 **UI 개발자를 위한 디자인 시안 오버레이 도구**
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?logo=google-chrome)](https://chrome.google.com/webstore/detail/ollin/fmondiepbajacmihnjakbimgmohadakp?hl=ko)
-[![Version](https://img.shields.io/badge/version-0.7.0-green.svg)](https://github.com/bearholmes/ollin)
+[![Version](https://img.shields.io/badge/version-0.6.1-green.svg)](https://github.com/bearholmes/ollin)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
 [![ESLint](https://img.shields.io/badge/linting-ESLint-4B32C3.svg)](https://eslint.org/)
